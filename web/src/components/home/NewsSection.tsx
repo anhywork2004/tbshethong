@@ -84,7 +84,7 @@ export default function NewsSection() {
             <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-emerald-300 bg-emerald-50 text-emerald-700 text-[10px] tracking-[0.2em] uppercase font-bold">
               <IconNews size={14} /> Truyền Thông Tập Đoàn
             </span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-[#08221a]">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-tbs-dark">
               Tin tức & Sự kiện
             </h2>
             <p className="text-gray-500 text-base lg:text-lg">
@@ -98,7 +98,7 @@ export default function NewsSection() {
               onClick={() => setActiveCategory(null)}
               className={`px-4 py-2 rounded-full text-xs font-bold tracking-wider uppercase transition-all ${
                 !activeCategory
-                  ? "bg-[#08221a] text-white shadow-lg"
+                  ? "bg-tbs-dark text-white shadow-lg"
                   : "bg-white text-gray-500 border border-gray-200 hover:border-emerald-300"
               }`}
             >
@@ -110,7 +110,7 @@ export default function NewsSection() {
                 onClick={() => setActiveCategory(cat.slug)}
                 className={`px-4 py-2 rounded-full text-xs font-bold tracking-wider uppercase transition-all ${
                   activeCategory === cat.slug
-                    ? "bg-[#08221a] text-white shadow-lg"
+                    ? "bg-tbs-dark text-white shadow-lg"
                     : "bg-white text-gray-500 border border-gray-200 hover:border-emerald-300"
                 }`}
               >
@@ -164,7 +164,7 @@ export default function NewsSection() {
 
                     {/* Featured badge */}
                     {item.is_featured && (
-                      <span className="absolute top-4 right-4 px-2.5 py-1 bg-amber-400 text-[#08221a] rounded-full text-[9px] font-black uppercase tracking-wider">
+                      <span className="absolute top-4 right-4 px-2.5 py-1 bg-amber-400 text-tbs-dark rounded-full text-[9px] font-black uppercase tracking-wider">
                         ★ Nổi bật
                       </span>
                     )}
@@ -185,7 +185,7 @@ export default function NewsSection() {
                       </span>
                     </div>
 
-                    <h3 className="font-black text-base text-[#08221a] leading-snug line-clamp-2 group-hover:text-emerald-600 transition-colors">
+                    <h3 className="font-black text-base text-tbs-dark leading-snug line-clamp-2 group-hover:text-emerald-600 transition-colors">
                       {item.title}
                     </h3>
 
@@ -214,7 +214,7 @@ export default function NewsSection() {
         <div className="text-center mt-12">
           <a
             href="/news"
-            className="inline-flex items-center gap-2 bg-[#08221a] hover:bg-[#0a3025] text-white font-bold px-8 py-4 rounded-full text-sm tracking-wider uppercase shadow-xl transition-all hover:scale-[1.02]"
+            className="inline-flex items-center gap-2 bg-tbs-dark hover:bg-[#0a3025] text-white font-bold px-8 py-4 rounded-full text-sm tracking-wider uppercase shadow-xl transition-all hover:scale-[1.02]"
           >
             Xem Tất Cả Tin Tức
             <IconExternalLink size={18} />

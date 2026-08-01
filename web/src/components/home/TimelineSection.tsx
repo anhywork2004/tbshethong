@@ -82,7 +82,7 @@ function TimelineCard({ milestone, index, isLeft }: { milestone: typeof MILESTON
               </span>
             )}
           </div>
-          <h3 className={`font-black text-lg text-[#08221a] mb-2 ${isLeft ? "" : "lg:text-right"}`}>
+          <h3 className={`font-black text-lg text-tbs-dark mb-2 ${isLeft ? "" : "lg:text-right"}`}>
             {milestone.title}
           </h3>
           <p className={`text-sm text-gray-500 leading-relaxed ${isLeft ? "" : "lg:text-right"}`}>
@@ -102,7 +102,7 @@ function TimelineCard({ milestone, index, isLeft }: { milestone: typeof MILESTON
 
 export default function TimelineSection() {
   return (
-    <section id="timeline" className="relative py-24 lg:py-32 bg-gradient-to-b from-[#08221a] to-[#0a3025] overflow-hidden">
+    <section id="timeline" className="relative py-24 lg:py-32 bg-gradient-to-b from-tbs-dark to-[#0a3025] overflow-hidden">
       {/* BG patterns */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute top-20 left-10 w-72 h-72 border border-white/50 rounded-full" />

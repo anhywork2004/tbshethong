@@ -20,16 +20,16 @@ export default function CreateDocumentPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#f9fdfb] p-8 max-w-4xl mx-auto space-y-6">
+    <div className="min-h-screen bg-tbs-light p-8 max-w-4xl mx-auto space-y-6">
       <div>
-        <h1 className="text-2xl font-extrabold text-[#08221a]">Số Hóa & Điền Giấy Tờ Biểu Mẫu</h1>
+        <h1 className="text-2xl font-extrabold text-tbs-dark">Số Hóa & Điền Giấy Tờ Biểu Mẫu</h1>
         <p className="text-xs text-gray-500 mt-1">Hệ thống tự động sinh form từ placeholder &#123;&#123;placeholder&#125;&#125; trong file mẫu gốc</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {/* DYNAMIC FORM */}
         <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-xl space-y-4">
-          <h2 className="text-base font-bold text-[#158a63] border-b border-gray-100 pb-3">Form Nhập Liệu Tự Động</h2>
+          <h2 className="text-base font-bold text-accent border-b border-gray-100 pb-3">Form Nhập Liệu Tự Động</h2>
           <form onSubmit={handleSubmit} className="space-y-3 text-xs">
             {Object.keys(formData).map((key) => (
               <div key={key}>
@@ -41,14 +41,14 @@ export default function CreateDocumentPage() {
                     rows={2}
                     value={formData[key]}
                     onChange={(e) => setFormData({ ...formData, [key]: e.target.value })}
-                    className="w-full p-2.5 rounded-lg border border-gray-200 focus:outline-none focus:border-[#158a63]"
+                    className="w-full p-2.5 rounded-lg border border-gray-200 focus:outline-none focus:border-accent"
                   />
                 ) : (
                   <input
                     type={key.includes('ngay') ? 'date' : 'text'}
                     value={formData[key]}
                     onChange={(e) => setFormData({ ...formData, [key]: e.target.value })}
-                    className="w-full p-2.5 rounded-lg border border-gray-200 focus:outline-none focus:border-[#158a63]"
+                    className="w-full p-2.5 rounded-lg border border-gray-200 focus:outline-none focus:border-accent"
                   />
                 )}
               </div>
@@ -56,7 +56,7 @@ export default function CreateDocumentPage() {
 
             <button
               type="submit"
-              className="w-full py-3 rounded-xl bg-[#158a63] text-white font-bold hover:bg-[#1fae7d] transition shadow-md"
+              className="w-full py-3 rounded-xl bg-accent text-white font-bold hover:bg-accent-light transition shadow-md"
             >
               Xuất Giấy Tờ Hoàn Chỉnh (.docx / .pdf)
             </button>
@@ -64,22 +64,22 @@ export default function CreateDocumentPage() {
         </div>
 
         {/* LIVE DOCUMENT PREVIEW */}
-        <div className="bg-[#08221a] text-white p-6 rounded-2xl border border-[#2fd39a]/30 shadow-xl space-y-4 flex flex-col justify-between">
+        <div className="bg-tbs-dark text-white p-6 rounded-2xl border border-accent-soft/30 shadow-xl space-y-4 flex flex-col justify-between">
           <div>
             <div className="flex items-center justify-between border-b border-gray-700 pb-3 mb-4">
-              <span className="text-xs font-mono text-[#2fd39a]">PREVIEW_DOCUMENT.DOCX</span>
+              <span className="text-xs font-mono text-accent-soft">PREVIEW_DOCUMENT.DOCX</span>
               <span className="px-2 py-0.5 rounded text-[10px] bg-emerald-500/20 text-emerald-300">LIVE RENDER</span>
             </div>
 
             <div className="bg-white/5 p-4 rounded-xl space-y-3 text-xs text-gray-300 font-serif leading-relaxed">
               <div className="text-center font-bold text-sm text-white mb-4">CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM<br />Độc lập - Tự do - Hạnh phúc</div>
-              <div className="text-center font-bold text-base text-[#f2dc9a] mb-4">ĐƠN XIN NGHỈ PHÉP</div>
+              <div className="text-center font-bold text-base text-gold-light mb-4">ĐƠN XIN NGHỈ PHÉP</div>
 
               <p>Kính gửi: Ban Giám Đốc & Trưởng Phòng {formData.phong_ban}</p>
-              <p>Tôi tên là: <span className="text-[#2fd39a] font-bold font-sans">{formData.ho_ten}</span></p>
-              <p>Mã nhân viên: <span className="text-[#2fd39a] font-bold font-sans">{formData.ma_nhan_vien}</span></p>
-              <p>Nay tôi làm đơn này xin nghỉ phép số ngày: <span className="text-[#2fd39a] font-bold font-sans">{formData.so_ngay_nghi} ngày</span>, từ ngày: <span className="text-[#2fd39a] font-bold font-sans">{formData.ngay_bat_dau}</span>.</p>
-              <p>Lý do nghỉ: <span className="text-[#2fd39a] font-bold font-sans">{formData.ly_do_nghi}</span>.</p>
+              <p>Tôi tên là: <span className="text-accent-soft font-bold font-sans">{formData.ho_ten}</span></p>
+              <p>Mã nhân viên: <span className="text-accent-soft font-bold font-sans">{formData.ma_nhan_vien}</span></p>
+              <p>Nay tôi làm đơn này xin nghỉ phép số ngày: <span className="text-accent-soft font-bold font-sans">{formData.so_ngay_nghi} ngày</span>, từ ngày: <span className="text-accent-soft font-bold font-sans">{formData.ngay_bat_dau}</span>.</p>
+              <p>Lý do nghỉ: <span className="text-accent-soft font-bold font-sans">{formData.ly_do_nghi}</span>.</p>
               <p>Kính mong Ban Giám đốc xem xét phê duyệt.</p>
             </div>
           </div>

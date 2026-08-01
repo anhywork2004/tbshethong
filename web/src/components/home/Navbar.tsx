@@ -35,7 +35,7 @@ export default function Navbar() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "bg-[#08221a]/95 backdrop-blur-xl shadow-2xl shadow-black/20 border-b border-emerald-500/10"
+          ? "bg-tbs-dark/95 backdrop-blur-xl shadow-2xl shadow-black/20 border-b border-emerald-500/10"
           : "bg-transparent"
       }`}
     >
@@ -80,7 +80,7 @@ export default function Navbar() {
           <div className="flex items-center gap-3">
             <Link
               href="/login"
-              className="hidden sm:inline-flex items-center gap-2 bg-gradient-to-r from-emerald-400 to-emerald-300 hover:from-emerald-300 hover:to-emerald-400 text-[#08221a] font-bold px-5 py-2.5 rounded-full text-xs tracking-wider uppercase shadow-lg shadow-emerald-400/20 hover:shadow-emerald-400/30 hover:scale-[1.03] active:scale-95 transition-all duration-300"
+              className="hidden sm:inline-flex items-center gap-2 bg-gradient-to-r from-emerald-400 to-emerald-300 hover:from-emerald-300 hover:to-emerald-400 text-tbs-dark font-bold px-5 py-2.5 rounded-full text-xs tracking-wider uppercase shadow-lg shadow-emerald-400/20 hover:shadow-emerald-400/30 hover:scale-[1.03] active:scale-95 transition-all duration-300"
             >
               <IconLogin size={15} />
               Đăng Nhập
@@ -99,7 +99,7 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       <div
-        className={`lg:hidden fixed inset-0 top-[72px] bg-[#08221a]/98 backdrop-blur-xl transition-all duration-400 ${
+        className={`lg:hidden fixed inset-0 top-[72px] bg-tbs-dark/98 backdrop-blur-xl transition-all duration-400 ${
           mobileOpen ? "opacity-100 visible" : "opacity-0 invisible"
         }`}
       >
@@ -118,7 +118,7 @@ export default function Navbar() {
           <Link
             href="/login"
             onClick={() => setMobileOpen(false)}
-            className="mt-4 w-full flex justify-center items-center gap-2 bg-gradient-to-r from-emerald-400 to-emerald-300 text-[#08221a] font-bold py-4 rounded-2xl text-sm tracking-wider uppercase"
+            className="mt-4 w-full flex justify-center items-center gap-2 bg-gradient-to-r from-emerald-400 to-emerald-300 text-tbs-dark font-bold py-4 rounded-2xl text-sm tracking-wider uppercase"
           >
             <IconLogin size={18} />
             Đăng Nhập Nhân Viên

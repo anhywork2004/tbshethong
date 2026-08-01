@@ -211,7 +211,7 @@ export default function HRPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#08221a] flex items-center justify-center text-white">
+      <div className="min-h-screen bg-tbs-dark flex items-center justify-center text-white">
         <span className="text-sm font-mono tracking-wider animate-pulse">Đang tải cấu hình xác thực...</span>
       </div>
     );
@@ -219,7 +219,7 @@ export default function HRPage() {
 
   if (!authorized) {
     return (
-      <div className="min-h-screen bg-[#08221a] flex flex-col items-center justify-center text-white p-4 space-y-6">
+      <div className="min-h-screen bg-tbs-dark flex flex-col items-center justify-center text-white p-4 space-y-6">
         <div className="w-16 h-16 bg-red-500/10 text-red-500 rounded-full flex items-center justify-center border border-red-500/20">
           <IconLock size={32} />
         </div>
@@ -240,7 +240,7 @@ export default function HRPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#08221a] text-white py-10 px-4 sm:px-6 lg:px-8 select-none">
+    <div className="min-h-screen bg-tbs-dark text-white py-10 px-4 sm:px-6 lg:px-8 select-none">
       <div className="max-w-7xl mx-auto space-y-8">
         
         {/* Header / Brand info */}
@@ -254,7 +254,7 @@ export default function HRPage() {
                 Bàn Làm Việc Nhân Sự (HR)
               </h1>
               <div className="flex gap-2 items-center mt-1.5">
-                <span className="text-[#2fd39a] text-[10px] tracking-widest font-mono uppercase font-bold bg-[#1fae7d11] px-2 py-0.5 rounded border border-[#2fd39a22]">
+                <span className="text-accent-soft text-[10px] tracking-widest font-mono uppercase font-bold bg-[#1fae7d11] px-2 py-0.5 rounded border border-[#2fd39a22]">
                   {user?.role}
                 </span>
                 <span className="text-gray-400 text-[10px] font-mono">
@@ -266,7 +266,7 @@ export default function HRPage() {
 
           <a 
             href="/dashboard"
-            className="flex items-center gap-2 bg-[#0b0d0c] border border-[#2fd39a22] hover:border-[#2fd39a] text-gray-300 hover:text-white font-bold px-5 py-3 rounded-2xl text-xs uppercase tracking-wider transition-all active:scale-95 shrink-0"
+            className="flex items-center gap-2 bg-[#0b0d0c] border border-[#2fd39a22] hover:border-accent-soft text-gray-300 hover:text-white font-bold px-5 py-3 rounded-2xl text-xs uppercase tracking-wider transition-all active:scale-95 shrink-0"
           >
             <IconArrowLeft size={16} /> Quay Lại Dashboard
           </a>
@@ -279,7 +279,7 @@ export default function HRPage() {
           <div className="lg:col-span-7 bg-[#121614]/80 backdrop-blur-md border border-[#2fd39a1a] rounded-3xl p-6 sm:p-8 space-y-6">
             <div>
               <h2 className="text-lg font-serif font-bold text-white flex items-center gap-2">
-                <IconUser className="text-[#2fd39a]" size={20} /> Danh Sách Hồ Sơ Ứng Tuyển
+                <IconUser className="text-accent-soft" size={20} /> Danh Sách Hồ Sơ Ứng Tuyển
               </h2>
               <p className="text-xs text-gray-400 mt-1">
                 Theo dõi hồ sơ ứng viên và tải CV trực tiếp được đính kèm.
@@ -328,7 +328,7 @@ export default function HRPage() {
                         href={`http://localhost:8000${app.cvUrl}`} 
                         target="_blank" 
                         rel="noreferrer"
-                        className="inline-flex items-center gap-1.5 bg-[#1fae7d22] hover:bg-[#1fae7d] text-[#2fd39a] hover:text-dk font-bold px-3 py-1.5 rounded-lg text-[10px] uppercase tracking-wider transition-all"
+                        className="inline-flex items-center gap-1.5 bg-[#1fae7d22] hover:bg-accent-light text-accent-soft hover:text-dk font-bold px-3 py-1.5 rounded-lg text-[10px] uppercase tracking-wider transition-all"
                       >
                         <IconDownload size={12} /> Tải CV File
                       </a>
@@ -346,7 +346,7 @@ export default function HRPage() {
             <div className="bg-[#121614]/80 backdrop-blur-md border border-[#2fd39a1a] rounded-3xl p-6 sm:p-8 space-y-6">
               <div>
                 <h2 className="text-lg font-serif font-bold text-white flex items-center gap-2">
-                  <IconPlus className="text-[#2fd39a]" size={20} /> Đăng Tin Tuyển Dụng Mới
+                  <IconPlus className="text-accent-soft" size={20} /> Đăng Tin Tuyển Dụng Mới
                 </h2>
                 <p className="text-xs text-gray-400 mt-1">
                   Đưa nhu cầu nhân sự mới lên bảng tin công cộng.
@@ -354,7 +354,7 @@ export default function HRPage() {
               </div>
 
               {formMsg && (
-                <div className="bg-[#1fae7d11] text-[#2fd39a] border border-[#2fd39a22] p-4 rounded-xl text-xs">
+                <div className="bg-[#1fae7d11] text-accent-soft border border-[#2fd39a22] p-4 rounded-xl text-xs">
                   {formMsg}
                 </div>
               )}
@@ -368,7 +368,7 @@ export default function HRPage() {
                     value={jobTitle}
                     onChange={(e) => setJobTitle(e.target.value)}
                     placeholder="Ví dụ: Nhân Viên Lập Trình Số"
-                    className="bg-[#0b0d0c] text-white px-3 py-2.5 rounded-xl border border-[#2fd39a1a] text-xs focus:outline-none focus:border-[#2fd39a]"
+                    className="bg-[#0b0d0c] text-white px-3 py-2.5 rounded-xl border border-[#2fd39a1a] text-xs focus:outline-none focus:border-accent-soft"
                   />
                 </div>
 
@@ -381,7 +381,7 @@ export default function HRPage() {
                       value={jobSalary}
                       onChange={(e) => setJobSalary(e.target.value)}
                       placeholder="Ví dụ: 14 - 15tr"
-                      className="bg-[#0b0d0c] text-white px-3 py-2.5 rounded-xl border border-[#2fd39a1a] text-xs focus:outline-none focus:border-[#2fd39a]"
+                      className="bg-[#0b0d0c] text-white px-3 py-2.5 rounded-xl border border-[#2fd39a1a] text-xs focus:outline-none focus:border-accent-soft"
                     />
                   </div>
                   <div className="flex flex-col gap-1">
@@ -392,7 +392,7 @@ export default function HRPage() {
                       value={jobLocation}
                       onChange={(e) => setJobLocation(e.target.value)}
                       placeholder="Ví dụ: TBS Zone 2"
-                      className="bg-[#0b0d0c] text-white px-3 py-2.5 rounded-xl border border-[#2fd39a1a] text-xs focus:outline-none focus:border-[#2fd39a]"
+                      className="bg-[#0b0d0c] text-white px-3 py-2.5 rounded-xl border border-[#2fd39a1a] text-xs focus:outline-none focus:border-accent-soft"
                     />
                   </div>
                 </div>
@@ -405,7 +405,7 @@ export default function HRPage() {
                     value={jobDesc}
                     onChange={(e) => setJobDesc(e.target.value)}
                     placeholder="Tóm tắt công việc tuyển dụng..."
-                    className="bg-[#0b0d0c] text-white px-3 py-2.5 rounded-xl border border-[#2fd39a1a] text-xs focus:outline-none focus:border-[#2fd39a]"
+                    className="bg-[#0b0d0c] text-white px-3 py-2.5 rounded-xl border border-[#2fd39a1a] text-xs focus:outline-none focus:border-accent-soft"
                   />
                 </div>
 
@@ -416,7 +416,7 @@ export default function HRPage() {
                     value={jobReqs}
                     onChange={(e) => setJobReqs(e.target.value)}
                     placeholder="HTML & CSS, C#, JavaScript..."
-                    className="bg-[#0b0d0c] text-white px-3 py-2.5 rounded-xl border border-[#2fd39a1a] text-xs focus:outline-none focus:border-[#2fd39a]"
+                    className="bg-[#0b0d0c] text-white px-3 py-2.5 rounded-xl border border-[#2fd39a1a] text-xs focus:outline-none focus:border-accent-soft"
                   />
                 </div>
 
@@ -433,7 +433,7 @@ export default function HRPage() {
             <div className="bg-[#121614]/80 backdrop-blur-md border border-[#2fd39a1a] rounded-3xl p-6 sm:p-8 space-y-4">
               <div>
                 <h2 className="text-lg font-serif font-bold text-white flex items-center gap-2">
-                  <IconFileSpreadsheet className="text-[#2fd39a]" size={20} /> Upload Excel Tuyển Dụng Hàng Loạt
+                  <IconFileSpreadsheet className="text-accent-soft" size={20} /> Upload Excel Tuyển Dụng Hàng Loạt
                 </h2>
                 <p className="text-xs text-gray-400 mt-1">
                   Tải file Excel (.xlsx) chứa danh sách vị trí cần đăng. Mỗi dòng là 1 tin tuyển dụng.
@@ -443,7 +443,7 @@ export default function HRPage() {
               {/* Download template */}
               <button
                 onClick={downloadTemplate}
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#1fae7d11] border border-[#2fd39a22] text-[#2fd39a] text-xs font-semibold hover:bg-[#1fae7d22] transition-all"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#1fae7d11] border border-[#2fd39a22] text-accent-soft text-xs font-semibold hover:bg-[#1fae7d22] transition-all"
               >
                 <IconDownload size={14} /> Tải File Excel Mẫu
               </button>
@@ -472,14 +472,14 @@ export default function HRPage() {
                   htmlFor="excel-upload"
                   className={`flex flex-col items-center gap-2 p-6 rounded-2xl border-2 border-dashed cursor-pointer transition-all ${
                     excelFile
-                      ? "border-[#2fd39a] bg-[#1fae7d11]"
+                      ? "border-accent-soft bg-[#1fae7d11]"
                       : "border-gray-700 hover:border-[#2fd39a44] bg-[#0b0d0c]/40"
                   }`}
                 >
                   {excelFile ? (
                     <>
-                      <IconFileSpreadsheet size={32} className="text-[#2fd39a]" />
-                      <span className="text-[#2fd39a] text-sm font-semibold">{excelFile.name}</span>
+                      <IconFileSpreadsheet size={32} className="text-accent-soft" />
+                      <span className="text-accent-soft text-sm font-semibold">{excelFile.name}</span>
                       <span className="text-gray-500 text-[10px]">{(excelFile.size / 1024).toFixed(1)} KB</span>
                     </>
                   ) : (
@@ -501,7 +501,7 @@ export default function HRPage() {
 
               {/* Result */}
               {excelResult && (
-                <div className={`p-4 rounded-xl text-xs space-y-2 ${excelResult.errors?.length > 0 ? "bg-amber-500/10 border border-amber-500/20 text-amber-300" : "bg-[#1fae7d11] border border-[#2fd39a22] text-[#2fd39a]"}`}>
+                <div className={`p-4 rounded-xl text-xs space-y-2 ${excelResult.errors?.length > 0 ? "bg-amber-500/10 border border-amber-500/20 text-amber-300" : "bg-[#1fae7d11] border border-[#2fd39a22] text-accent-soft"}`}>
                   <div className="flex items-center gap-2 font-bold">
                     <IconCheck size={14} /> {excelResult.message}
                   </div>
@@ -549,7 +549,7 @@ export default function HRPage() {
             <div className="bg-[#121614]/80 backdrop-blur-md border border-[#2fd39a1a] rounded-3xl p-6 sm:p-8 space-y-6">
               <div>
                 <h2 className="text-lg font-serif font-bold text-white flex items-center gap-2">
-                  <IconBriefcase className="text-[#2fd39a]" size={20} /> Quản Lý Tin Tuyển Dụng
+                  <IconBriefcase className="text-accent-soft" size={20} /> Quản Lý Tin Tuyển Dụng
                 </h2>
                 <p className="text-xs text-gray-400 mt-1">
                   Xóa các vị trí đã hết hạn hoặc tuyển đủ nhân sự.
@@ -569,7 +569,7 @@ export default function HRPage() {
                     >
                       <div className="min-w-0">
                         <strong className="text-white text-xs block truncate">{j.title}</strong>
-                        <span className="text-[9px] text-[#f2dc9a] font-mono">{j.salary} · {j.location}</span>
+                        <span className="text-[9px] text-gold-light font-mono">{j.salary} · {j.location}</span>
                       </div>
                       <button
                         onClick={() => handleDeleteJob(j.id)}

@@ -73,20 +73,20 @@ export default function CareersPage() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#f9fdfb]">
+    <div className="min-h-screen flex flex-col bg-tbs-light">
       <Header />
 
       <main className="flex-1">
         {/* Hero Banner */}
-        <section className="relative py-16 lg:py-20 bg-gradient-to-b from-[#08221a] via-[#0f4133] to-[#158a63] text-white overflow-hidden">
+        <section className="relative py-16 lg:py-20 bg-gradient-to-b from-tbs-dark via-tbs-mid to-[#158a63] text-white overflow-hidden">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-emerald-400/20 via-transparent to-transparent pointer-events-none" />
           <div className="max-w-7xl mx-auto px-6 relative z-10 text-center">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 text-[#2fd39a] text-xs font-bold uppercase tracking-widest mb-6">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 text-accent-soft text-xs font-bold uppercase tracking-widest mb-6">
               <IconBriefcase size={14} /> Cơ Hội Nghề Nghiệp
             </div>
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight mb-3">
               Tuyển Dụng{" "}
-              <span className="bg-gradient-to-r from-[#f2dc9a] to-[#d9b96a] bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-gold-light to-[#d9b96a] bg-clip-text text-transparent">
                 TBS Group
               </span>
             </h1>
@@ -103,7 +103,7 @@ export default function CareersPage() {
                 { value: "30+", label: "Năm Phát Triển" },
               ].map((s, i) => (
                 <div key={i} className="text-center p-3">
-                  <div className="text-2xl font-black text-[#f2dc9a]">{s.value}</div>
+                  <div className="text-2xl font-black text-gold-light">{s.value}</div>
                   <div className="text-[11px] text-gray-400 mt-0.5">{s.label}</div>
                 </div>
               ))}
@@ -123,7 +123,7 @@ export default function CareersPage() {
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
                   placeholder="Tìm kiếm vị trí, kỹ năng..."
-                  className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-[#158a63] focus:ring-2 focus:ring-emerald-100 transition-all"
+                  className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-accent focus:ring-2 focus:ring-emerald-100 transition-all"
                 />
               </div>
 
@@ -131,7 +131,7 @@ export default function CareersPage() {
               <select
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
-                className="px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-[#158a63] bg-white"
+                className="px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-accent bg-white"
               >
                 {CATEGORIES.map((c) => (
                   <option key={c.value} value={c.value}>{c.label}</option>
@@ -142,7 +142,7 @@ export default function CareersPage() {
               <select
                 value={province}
                 onChange={(e) => setProvince(e.target.value)}
-                className="px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-[#158a63] bg-white"
+                className="px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-accent bg-white"
               >
                 {PROVINCES.map((p) => (
                   <option key={p.value} value={p.value}>{p.label}</option>
@@ -156,7 +156,7 @@ export default function CareersPage() {
         <section className="max-w-7xl mx-auto px-6 py-10">
           {loading ? (
             <div className="flex flex-col items-center justify-center py-20">
-              <IconLoader2 size={40} className="animate-spin text-[#158a63] mb-4" />
+              <IconLoader2 size={40} className="animate-spin text-accent mb-4" />
               <p className="text-sm text-gray-500">Đang tải danh sách việc làm...</p>
             </div>
           ) : error ? (
@@ -172,7 +172,7 @@ export default function CareersPage() {
           ) : jobs.length === 0 ? (
             <div className="text-center py-20">
               <IconBriefcase size={48} className="mx-auto text-gray-300 mb-4" />
-              <h3 className="text-lg font-bold text-[#08221a] mb-2">Không tìm thấy vị trí phù hợp</h3>
+              <h3 className="text-lg font-bold text-tbs-dark mb-2">Không tìm thấy vị trí phù hợp</h3>
               <p className="text-sm text-gray-500">
                 Thử thay đổi bộ lọc hoặc từ khóa tìm kiếm
               </p>
@@ -180,7 +180,7 @@ export default function CareersPage() {
           ) : (
             <>
               <div className="flex items-center justify-between mb-6">
-                <h2 className="text-xl font-bold text-[#08221a]">
+                <h2 className="text-xl font-bold text-tbs-dark">
                   {jobs.length} Vị Trí Đang Tuyển Dụng
                 </h2>
               </div>
@@ -191,7 +191,7 @@ export default function CareersPage() {
                     <JobCard job={job} />
                     <button
                       onClick={() => handleApply(job)}
-                      className="absolute bottom-20 right-6 px-4 py-2 rounded-lg bg-gradient-to-r from-[#d9b96a] to-[#f2dc9a] text-[#08221a] text-xs font-bold hover:brightness-110 transition-all shadow-md shadow-amber-200"
+                      className="absolute bottom-20 right-6 px-4 py-2 rounded-lg bg-gradient-to-r from-[#d9b96a] to-gold-light text-tbs-dark text-xs font-bold hover:brightness-110 transition-all shadow-md shadow-amber-200"
                     >
                       Ứng Tuyển Ngay
                     </button>
@@ -210,7 +210,7 @@ export default function CareersPage() {
               alt="TBS Group"
               className="w-20 h-20 object-contain mx-auto mb-6"
             />
-            <h3 className="text-2xl font-black text-[#08221a] mb-3">TBS Group Tuyển Dụng</h3>
+            <h3 className="text-2xl font-black text-tbs-dark mb-3">TBS Group Tuyển Dụng</h3>
             <p className="text-gray-600 text-sm leading-relaxed max-w-2xl mx-auto mb-8">
               Với hơn 30 năm phát triển, TBS Group tự hào là một trong những tập đoàn sản xuất công
               nghiệp hàng đầu Việt Nam. Chúng tôi luôn chào đón những nhân tài mong muốn phát triển
@@ -223,7 +223,7 @@ export default function CareersPage() {
                 { title: "Phúc Lợi Toàn Diện", desc: "Living Wage, bảo hiểm, học bổng cho con em CBCNV" },
               ].map((item, i) => (
                 <div key={i} className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100">
-                  <h4 className="font-bold text-[#08221a] text-sm mb-2">{item.title}</h4>
+                  <h4 className="font-bold text-tbs-dark text-sm mb-2">{item.title}</h4>
                   <p className="text-xs text-gray-500 leading-relaxed">{item.desc}</p>
                 </div>
               ))}

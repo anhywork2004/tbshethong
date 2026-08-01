@@ -33,16 +33,16 @@ export default function MaintenanceTicketsPage() {
   ]);
 
   return (
-    <div className="min-h-screen bg-[#f9fdfb] p-8 space-y-6">
+    <div className="min-h-screen bg-tbs-light p-8 space-y-6">
       <div>
-        <h1 className="text-2xl font-extrabold text-[#08221a]">Danh Sách Ticket Sự Cố Bảo Trì</h1>
+        <h1 className="text-2xl font-extrabold text-tbs-dark">Danh Sách Ticket Sự Cố Bảo Trì</h1>
         <p className="text-xs text-gray-500 mt-1">Theo dõi tiến độ từ lúc Công nhân quét mã hỏng đến khi Bảo trì sửa xong</p>
       </div>
 
       <div className="bg-white rounded-2xl border border-gray-100 shadow-xl overflow-hidden">
         <table className="w-full text-left border-collapse">
           <thead>
-            <tr className="bg-[#eef7f2] text-xs font-semibold text-[#08221a] uppercase border-b border-emerald-100">
+            <tr className="bg-[#eef7f2] text-xs font-semibold text-tbs-dark uppercase border-b border-emerald-100">
               <th className="p-4">Mã Ticket</th>
               <th className="p-4">Thiết Bị</th>
               <th className="p-4">Công Nhân Báo</th>
@@ -55,13 +55,13 @@ export default function MaintenanceTicketsPage() {
           <tbody className="divide-y divide-gray-100 text-xs text-gray-700">
             {tickets.map((t) => (
               <tr key={t.id} className="hover:bg-gray-50/80 transition">
-                <td className="p-4 font-mono font-bold text-[#158a63]">{t.ticketCode}</td>
+                <td className="p-4 font-mono font-bold text-accent">{t.ticketCode}</td>
                 <td className="p-4">
-                  <div className="font-bold text-[#08221a]">{t.machineName}</div>
+                  <div className="font-bold text-tbs-dark">{t.machineName}</div>
                   <div className="font-mono text-[10px] text-gray-400">{t.machineCode}</div>
                 </td>
                 <td className="p-4">{t.reporter}</td>
-                <td className="p-4 font-semibold text-[#08221a]">{t.mechanic}</td>
+                <td className="p-4 font-semibold text-tbs-dark">{t.mechanic}</td>
                 <td className="p-4 text-red-600 font-medium">{t.errorType}</td>
                 <td className="p-4">
                   {t.status === 'IN_PROGRESS' && <span className="px-2.5 py-1 bg-amber-500/20 text-amber-700 font-bold rounded">Đang Sửa</span>}

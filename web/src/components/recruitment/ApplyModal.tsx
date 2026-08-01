@@ -153,7 +153,7 @@ export default function ApplyModal({ jobId, jobTitle, isOpen, onClose, onSuccess
         {/* Header */}
         <div className="px-6 py-4 border-b border-gray-100 flex items-center justify-between">
           <div>
-            <h2 className="text-lg font-bold text-[#08221a]">Ứng Tuyển</h2>
+            <h2 className="text-lg font-bold text-tbs-dark">Ứng Tuyển</h2>
             <p className="text-xs text-gray-500 truncate max-w-[300px]">{jobTitle}</p>
           </div>
           <button
@@ -174,9 +174,9 @@ export default function ApplyModal({ jobId, jobTitle, isOpen, onClose, onSuccess
                   <div
                     className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-all ${
                       i + 1 < step
-                        ? "bg-[#158a63] text-white"
+                        ? "bg-accent text-white"
                         : i + 1 === step
-                        ? "bg-[#158a63] text-white ring-4 ring-emerald-100"
+                        ? "bg-accent text-white ring-4 ring-emerald-100"
                         : "bg-gray-100 text-gray-400"
                     }`}
                   >
@@ -185,7 +185,7 @@ export default function ApplyModal({ jobId, jobTitle, isOpen, onClose, onSuccess
                   <span className="text-[10px] text-gray-400 mt-1 hidden sm:block">{label}</span>
                 </div>
                 {i < steps.length - 1 && (
-                  <div className={`flex-1 h-0.5 mx-2 ${i + 1 < step ? "bg-[#158a63]" : "bg-gray-100"}`} />
+                  <div className={`flex-1 h-0.5 mx-2 ${i + 1 < step ? "bg-accent" : "bg-gray-100"}`} />
                 )}
               </div>
             ))}
@@ -205,7 +205,7 @@ export default function ApplyModal({ jobId, jobTitle, isOpen, onClose, onSuccess
                   value={form.fullName}
                   onChange={handleChange}
                   placeholder="Nguyễn Văn A"
-                  className="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-[#158a63] focus:ring-2 focus:ring-emerald-100 transition-all"
+                  className="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-accent focus:ring-2 focus:ring-emerald-100 transition-all"
                 />
               </div>
               <div>
@@ -216,7 +216,7 @@ export default function ApplyModal({ jobId, jobTitle, isOpen, onClose, onSuccess
                   value={form.email}
                   onChange={handleChange}
                   placeholder="nguyenvana@gmail.com"
-                  className="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-[#158a63] focus:ring-2 focus:ring-emerald-100 transition-all"
+                  className="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-accent focus:ring-2 focus:ring-emerald-100 transition-all"
                 />
               </div>
               <div>
@@ -227,7 +227,7 @@ export default function ApplyModal({ jobId, jobTitle, isOpen, onClose, onSuccess
                   value={form.phone}
                   onChange={handleChange}
                   placeholder="0901234567"
-                  className="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-[#158a63] focus:ring-2 focus:ring-emerald-100 transition-all"
+                  className="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-accent focus:ring-2 focus:ring-emerald-100 transition-all"
                 />
               </div>
               <div>
@@ -241,7 +241,7 @@ export default function ApplyModal({ jobId, jobTitle, isOpen, onClose, onSuccess
                   rows={4}
                   maxLength={2000}
                   placeholder="Giới thiệu ngắn về bản thân và lý do bạn muốn ứng tuyển..."
-                  className="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-[#158a63] focus:ring-2 focus:ring-emerald-100 transition-all resize-none"
+                  className="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-accent focus:ring-2 focus:ring-emerald-100 transition-all resize-none"
                 />
                 <div className="text-[10px] text-gray-400 text-right mt-0.5">
                   {form.coverLetter.length}/2000 ký tự
@@ -262,16 +262,16 @@ export default function ApplyModal({ jobId, jobTitle, isOpen, onClose, onSuccess
                 onClick={() => fileInputRef.current?.click()}
                 className={`border-2 border-dashed rounded-2xl p-10 text-center cursor-pointer transition-all ${
                   dragOver
-                    ? "border-[#158a63] bg-emerald-50"
+                    ? "border-accent bg-emerald-50"
                     : file
-                    ? "border-[#158a63] bg-emerald-50/50"
-                    : "border-gray-200 hover:border-[#158a63] hover:bg-gray-50"
+                    ? "border-accent bg-emerald-50/50"
+                    : "border-gray-200 hover:border-accent hover:bg-gray-50"
                 }`}
               >
                 {file ? (
                   <div className="space-y-2">
-                    <IconFile size={40} className="mx-auto text-[#158a63]" />
-                    <p className="text-sm font-semibold text-[#08221a]">{file.name}</p>
+                    <IconFile size={40} className="mx-auto text-accent" />
+                    <p className="text-sm font-semibold text-tbs-dark">{file.name}</p>
                     <p className="text-xs text-gray-400">
                       {(file.size / (1024 * 1024)).toFixed(2)} MB
                     </p>
@@ -290,7 +290,7 @@ export default function ApplyModal({ jobId, jobTitle, isOpen, onClose, onSuccess
                     <IconUpload size={40} className="mx-auto text-gray-300" />
                     <div>
                       <p className="text-sm text-gray-600">
-                        Kéo thả file CV vào đây hoặc <span className="text-[#158a63] font-semibold">chọn file</span>
+                        Kéo thả file CV vào đây hoặc <span className="text-accent font-semibold">chọn file</span>
                       </p>
                       <p className="text-xs text-gray-400 mt-1">PDF, DOC, DOCX — tối đa 10MB</p>
                     </div>
@@ -313,34 +313,34 @@ export default function ApplyModal({ jobId, jobTitle, isOpen, onClose, onSuccess
           {/* Step 3: Review */}
           {step === 3 && (
             <div className="space-y-4">
-              <h3 className="text-sm font-bold text-[#08221a] mb-2">Xác nhận thông tin ứng tuyển</h3>
+              <h3 className="text-sm font-bold text-tbs-dark mb-2">Xác nhận thông tin ứng tuyển</h3>
 
               <div className="bg-gray-50 rounded-2xl p-4 space-y-3 text-sm">
                 <div className="flex justify-between">
                   <span className="text-gray-500">Vị trí:</span>
-                  <span className="font-semibold text-[#08221a]">{jobTitle}</span>
+                  <span className="font-semibold text-tbs-dark">{jobTitle}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-500">Họ tên:</span>
-                  <span className="font-semibold text-[#08221a]">{form.fullName}</span>
+                  <span className="font-semibold text-tbs-dark">{form.fullName}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-500">Email:</span>
-                  <span className="text-[#08221a]">{form.email}</span>
+                  <span className="text-tbs-dark">{form.email}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-500">SĐT:</span>
-                  <span className="text-[#08221a]">{form.phone}</span>
+                  <span className="text-tbs-dark">{form.phone}</span>
                 </div>
                 {form.coverLetter && (
                   <div>
                     <span className="text-gray-500 block mb-1">Thư giới thiệu:</span>
-                    <p className="text-[#08221a] text-xs leading-relaxed">{form.coverLetter}</p>
+                    <p className="text-tbs-dark text-xs leading-relaxed">{form.coverLetter}</p>
                   </div>
                 )}
                 <div className="flex justify-between border-t border-gray-200 pt-3">
                   <span className="text-gray-500">CV:</span>
-                  <span className="font-semibold text-[#158a63]">{file?.name}</span>
+                  <span className="font-semibold text-accent">{file?.name}</span>
                 </div>
               </div>
 
@@ -381,7 +381,7 @@ export default function ApplyModal({ jobId, jobTitle, isOpen, onClose, onSuccess
           {step < 3 ? (
             <button
               onClick={goNext}
-              className="inline-flex items-center gap-1.5 px-6 py-2.5 rounded-xl bg-[#158a63] text-white text-sm font-semibold hover:bg-[#1fae7d] transition-colors shadow-sm"
+              className="inline-flex items-center gap-1.5 px-6 py-2.5 rounded-xl bg-accent text-white text-sm font-semibold hover:bg-accent-light transition-colors shadow-sm"
             >
               Tiếp Tục
               <IconArrowRight size={16} />
@@ -390,7 +390,7 @@ export default function ApplyModal({ jobId, jobTitle, isOpen, onClose, onSuccess
             <button
               onClick={handleSubmit}
               disabled={uploading}
-              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-gradient-to-r from-[#158a63] to-[#1fae7d] text-white text-sm font-bold hover:brightness-110 transition-all shadow-lg shadow-emerald-200 disabled:opacity-50"
+              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-gradient-to-r from-accent to-accent-light text-white text-sm font-bold hover:brightness-110 transition-all shadow-lg shadow-emerald-200 disabled:opacity-50"
             >
               {uploading ? (
                 <>

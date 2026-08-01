@@ -25,13 +25,13 @@ export default function UsersAdminPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-extrabold text-[#08221a]">Quản Lý Nhân Viên & Phân Quyền</h1>
+          <h1 className="text-2xl font-extrabold text-tbs-dark">Quản Lý Nhân Viên & Phân Quyền</h1>
           <p className="text-xs text-gray-500 mt-1">Danh sách tài khoản cán bộ công nhân viên TBS Group</p>
         </div>
 
         <button
           onClick={() => setShowModal(true)}
-          className="px-4 py-2.5 rounded-xl bg-[#158a63] text-white text-xs font-bold hover:bg-[#1fae7d] transition shadow-md"
+          className="px-4 py-2.5 rounded-xl bg-accent text-white text-xs font-bold hover:bg-accent-light transition shadow-md"
         >
           + Thêm Tài Khoản Mới
         </button>
@@ -41,7 +41,7 @@ export default function UsersAdminPage() {
       <div className="bg-white rounded-2xl border border-gray-100 shadow-xl overflow-hidden">
         <table className="w-full text-left border-collapse">
           <thead>
-            <tr className="bg-[#eef7f2] text-xs font-semibold text-[#08221a] uppercase border-b border-emerald-100">
+            <tr className="bg-[#eef7f2] text-xs font-semibold text-tbs-dark uppercase border-b border-emerald-100">
               <th className="p-4">Mã NV</th>
               <th className="p-4">Họ và Tên</th>
               <th className="p-4">Vai Trò (Role)</th>
@@ -53,10 +53,10 @@ export default function UsersAdminPage() {
           <tbody className="divide-y divide-gray-100 text-xs text-gray-700">
             {users.map((u) => (
               <tr key={u.id} className="hover:bg-gray-50/80 transition">
-                <td className="p-4 font-mono font-bold text-[#158a63]">{u.empCode}</td>
-                <td className="p-4 font-semibold text-[#08221a]">{u.name}</td>
+                <td className="p-4 font-mono font-bold text-accent">{u.empCode}</td>
+                <td className="p-4 font-semibold text-tbs-dark">{u.name}</td>
                 <td className="p-4">
-                  <span className="px-2.5 py-1 rounded-md text-[11px] font-semibold bg-emerald-100 text-[#08221a]">
+                  <span className="px-2.5 py-1 rounded-md text-[11px] font-semibold bg-emerald-100 text-tbs-dark">
                     {u.role}
                   </span>
                 </td>
@@ -80,7 +80,7 @@ export default function UsersAdminPage() {
       {showModal && (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-3xl p-6 max-w-md w-full shadow-2xl space-y-4">
-            <h2 className="text-lg font-bold text-[#08221a]">Thêm Tài Khoản Mới</h2>
+            <h2 className="text-lg font-bold text-tbs-dark">Thêm Tài Khoản Mới</h2>
             <form onSubmit={handleAddUser} className="space-y-3 text-xs">
               <div>
                 <label className="block font-semibold mb-1">Mã Nhân Viên *</label>
@@ -90,7 +90,7 @@ export default function UsersAdminPage() {
                   placeholder="EMP-100"
                   value={newUser.empCode}
                   onChange={(e) => setNewUser({ ...newUser, empCode: e.target.value })}
-                  className="w-full p-2.5 rounded-lg border border-gray-200 focus:outline-none focus:border-[#158a63]"
+                  className="w-full p-2.5 rounded-lg border border-gray-200 focus:outline-none focus:border-accent"
                 />
               </div>
               <div>
@@ -101,7 +101,7 @@ export default function UsersAdminPage() {
                   placeholder="Nguyễn Văn B"
                   value={newUser.name}
                   onChange={(e) => setNewUser({ ...newUser, name: e.target.value })}
-                  className="w-full p-2.5 rounded-lg border border-gray-200 focus:outline-none focus:border-[#158a63]"
+                  className="w-full p-2.5 rounded-lg border border-gray-200 focus:outline-none focus:border-accent"
                 />
               </div>
               <div>
@@ -109,7 +109,7 @@ export default function UsersAdminPage() {
                 <select
                   value={newUser.role}
                   onChange={(e) => setNewUser({ ...newUser, role: e.target.value })}
-                  className="w-full p-2.5 rounded-lg border border-gray-200 focus:outline-none focus:border-[#158a63]"
+                  className="w-full p-2.5 rounded-lg border border-gray-200 focus:outline-none focus:border-accent"
                 >
                   <option value="Trưởng Phòng Ban">Trưởng Phòng Ban</option>
                   <option value="Nhân Viên Văn Phòng">Nhân Viên Văn Phòng</option>
@@ -127,7 +127,7 @@ export default function UsersAdminPage() {
                 </button>
                 <button
                   type="submit"
-                  className="flex-1 py-2.5 rounded-xl bg-[#158a63] text-white font-bold hover:bg-[#1fae7d]"
+                  className="flex-1 py-2.5 rounded-xl bg-accent text-white font-bold hover:bg-accent-light"
                 >
                   Tạo Mới
                 </button>

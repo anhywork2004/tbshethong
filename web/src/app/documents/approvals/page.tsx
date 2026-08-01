@@ -14,16 +14,16 @@ export default function DocumentApprovalsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#f9fdfb] p-8 max-w-5xl mx-auto space-y-6">
+    <div className="min-h-screen bg-tbs-light p-8 max-w-5xl mx-auto space-y-6">
       <div>
-        <h1 className="text-2xl font-extrabold text-[#08221a]">Danh Sách Duyệt Giấy Tờ (Trưởng Phòng)</h1>
+        <h1 className="text-2xl font-extrabold text-tbs-dark">Danh Sách Duyệt Giấy Tờ (Trưởng Phòng)</h1>
         <p className="text-xs text-gray-500 mt-1">Phê duyệt hoặc từ chối các giấy tờ biểu mẫu do nhân viên tạo</p>
       </div>
 
       <div className="bg-white rounded-2xl border border-gray-100 shadow-xl overflow-hidden">
         <table className="w-full text-left border-collapse">
           <thead>
-            <tr className="bg-[#eef7f2] text-xs font-semibold text-[#08221a] uppercase border-b border-emerald-100">
+            <tr className="bg-[#eef7f2] text-xs font-semibold text-tbs-dark uppercase border-b border-emerald-100">
               <th className="p-4">Tên Giấy Tờ</th>
               <th className="p-4">Người Tạo</th>
               <th className="p-4">Phòng Ban</th>
@@ -35,9 +35,9 @@ export default function DocumentApprovalsPage() {
           <tbody className="divide-y divide-gray-100 text-xs text-gray-700">
             {approvals.map((item) => (
               <tr key={item.id} className="hover:bg-gray-50/80 transition">
-                <td className="p-4 font-bold text-[#08221a]">{item.docTitle}</td>
+                <td className="p-4 font-bold text-tbs-dark">{item.docTitle}</td>
                 <td className="p-4">{item.creator}</td>
-                <td className="p-4 font-semibold text-[#158a63]">{item.dept}</td>
+                <td className="p-4 font-semibold text-accent">{item.dept}</td>
                 <td className="p-4 text-gray-500">{item.date}</td>
                 <td className="p-4">
                   {item.status === 'PENDING' && <span className="px-2 py-0.5 rounded text-[10px] bg-amber-500/20 text-amber-700 font-bold">Chờ Duyệt</span>}
@@ -49,7 +49,7 @@ export default function DocumentApprovalsPage() {
                     <>
                       <button
                         onClick={() => handleAction(item.id, 'APPROVED')}
-                        className="px-3 py-1 bg-[#158a63] text-white rounded-lg font-bold hover:bg-[#1fae7d]"
+                        className="px-3 py-1 bg-accent text-white rounded-lg font-bold hover:bg-accent-light"
                       >
                         Đồng Ý
                       </button>

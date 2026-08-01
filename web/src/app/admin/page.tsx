@@ -184,7 +184,7 @@ export default function AdminPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#08221a] text-white py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-tbs-dark text-white py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto space-y-10">
         
         {/* Header */}
@@ -210,7 +210,7 @@ export default function AdminPage() {
             onClick={() => setActiveTab("import")}
             className={`flex items-center gap-2 px-5 py-3 rounded-xl font-semibold text-xs tracking-wider uppercase transition-all whitespace-nowrap active:scale-95 ${
               activeTab === "import"
-                ? "bg-[#1fae7d22] text-[#2fd39a] border border-[#2fd39a44]"
+                ? "bg-[#1fae7d22] text-accent-soft border border-[#2fd39a44]"
                 : "text-gray-400 hover:text-white border border-transparent"
             }`}
           >
@@ -221,7 +221,7 @@ export default function AdminPage() {
             onClick={() => setActiveTab("workflows")}
             className={`flex items-center gap-2 px-5 py-3 rounded-xl font-semibold text-xs tracking-wider uppercase transition-all whitespace-nowrap active:scale-95 ${
               activeTab === "workflows"
-                ? "bg-[#1fae7d22] text-[#2fd39a] border border-[#2fd39a44]"
+                ? "bg-[#1fae7d22] text-accent-soft border border-[#2fd39a44]"
                 : "text-gray-400 hover:text-white border border-transparent"
             }`}
           >
@@ -232,7 +232,7 @@ export default function AdminPage() {
             onClick={() => setActiveTab("audit")}
             className={`flex items-center gap-2 px-5 py-3 rounded-xl font-semibold text-xs tracking-wider uppercase transition-all whitespace-nowrap active:scale-95 ${
               activeTab === "audit"
-                ? "bg-[#1fae7d22] text-[#2fd39a] border border-[#2fd39a44]"
+                ? "bg-[#1fae7d22] text-accent-soft border border-[#2fd39a44]"
                 : "text-gray-400 hover:text-white border border-transparent"
             }`}
           >
@@ -252,7 +252,7 @@ export default function AdminPage() {
               </div>
 
               <div className="bg-[#0b0d0c] p-5 rounded-2xl border border-[#2fd39a1a] space-y-3 font-mono">
-                <span className="block text-[10px] text-[#2fd39a] font-bold uppercase tracking-widest">Cấu trúc tiêu đề CSV:</span>
+                <span className="block text-[10px] text-accent-soft font-bold uppercase tracking-widest">Cấu trúc tiêu đề CSV:</span>
                 <code className="text-xs text-gray-300 block">
                   email,fullName,password,phone,departmentCode,roleName
                 </code>
@@ -271,7 +271,7 @@ export default function AdminPage() {
                 )}
 
                 {importResult && (
-                  <div className="bg-emerald-950/40 text-[#2fd39a] border border-[#2fd39a22] p-4 rounded-2xl text-xs space-y-1">
+                  <div className="bg-emerald-950/40 text-accent-soft border border-[#2fd39a22] p-4 rounded-2xl text-xs space-y-1">
                     <p className="font-bold flex items-center gap-2"><IconCheck size={18} /> Hoàn tất đồng bộ tài khoản!</p>
                     <p className="text-gray-400">Thêm mới thành công: <strong className="text-white">{importResult.created}</strong>. Bỏ qua: <strong className="text-white">{importResult.skipped}</strong> (lỗi/trùng).</p>
                   </div>
@@ -284,7 +284,7 @@ export default function AdminPage() {
                     value={csvContent}
                     onChange={(e) => setCsvContent(e.target.value)}
                     placeholder="Dán các dòng CSV tại đây..."
-                    className="w-full bg-[#0b0d0c] text-white px-4 py-3 rounded-2xl border border-[#2fd39a1a] focus:outline-none focus:border-[#2fd39a] focus:ring-1 focus:ring-[#2fd39a33] font-mono text-xs"
+                    className="w-full bg-[#0b0d0c] text-white px-4 py-3 rounded-2xl border border-[#2fd39a1a] focus:outline-none focus:border-accent-soft focus:ring-1 focus:ring-[#2fd39a33] font-mono text-xs"
                   />
                 </div>
 
@@ -308,7 +308,7 @@ export default function AdminPage() {
               </div>
 
               {saveStatus && (
-                <div className="bg-[#1fae7d22] text-[#2fd39a] border border-[#2fd39a44] p-4 rounded-2xl text-xs">
+                <div className="bg-[#1fae7d22] text-accent-soft border border-[#2fd39a44] p-4 rounded-2xl text-xs">
                   {saveStatus}
                 </div>
               )}
@@ -319,7 +319,7 @@ export default function AdminPage() {
                   <select
                     value={selectedType}
                     onChange={(e) => setSelectedType(e.target.value)}
-                    className="bg-[#0b0d0c] text-white px-4 py-3 rounded-xl border border-[#2fd39a1a] focus:outline-none focus:border-[#2fd39a] text-xs"
+                    className="bg-[#0b0d0c] text-white px-4 py-3 rounded-xl border border-[#2fd39a1a] focus:outline-none focus:border-accent-soft text-xs"
                   >
                     <option value="PURCHASE">PURCHASE (Yêu cầu mua sắm)</option>
                     <option value="HR">HR (Hồ sơ nhân sự / Nghỉ phép)</option>
@@ -336,7 +336,7 @@ export default function AdminPage() {
                     value={workflowName}
                     onChange={(e) => setWorkflowName(e.target.value)}
                     placeholder="Ví dụ: Quy trình phê duyệt vật tư xưởng"
-                    className="bg-[#0b0d0c] text-white px-4 py-3 rounded-xl border border-[#2fd39a1a] focus:outline-none focus:border-[#2fd39a] text-xs"
+                    className="bg-[#0b0d0c] text-white px-4 py-3 rounded-xl border border-[#2fd39a1a] focus:outline-none focus:border-accent-soft text-xs"
                   />
                 </div>
               </div>
@@ -344,7 +344,7 @@ export default function AdminPage() {
               {/* Workflow Steps Builder */}
               <div className="space-y-4">
                 <div className="flex justify-between items-center border-b border-[#2fd39a1a] pb-3">
-                  <span className="text-xs font-bold uppercase tracking-widest text-[#2fd39a]">Các bước phê duyệt hiện hành</span>
+                  <span className="text-xs font-bold uppercase tracking-widest text-accent-soft">Các bước phê duyệt hiện hành</span>
                   <button
                     type="button"
                     onClick={addStep}
@@ -357,7 +357,7 @@ export default function AdminPage() {
                 <div className="space-y-4">
                   {steps.map((step, idx) => (
                     <div key={idx} className="flex flex-col md:flex-row gap-4 items-center bg-[#0b0d0c]/50 p-4 border border-[#2fd39a11] rounded-2xl">
-                      <span className="w-8 h-8 rounded-full bg-[#1fae7d1a] border border-[#2fd39a33] flex items-center justify-center text-xs font-bold text-[#2fd39a] shrink-0">
+                      <span className="w-8 h-8 rounded-full bg-[#1fae7d1a] border border-[#2fd39a33] flex items-center justify-center text-xs font-bold text-accent-soft shrink-0">
                         {idx + 1}
                       </span>
 
@@ -374,7 +374,7 @@ export default function AdminPage() {
                               updated[idx].name = e.target.value;
                               setSteps(updated);
                             }}
-                            className="bg-[#0b0d0c] text-white px-3 py-2 rounded-xl border border-[#2fd39a1a] text-xs focus:outline-none focus:border-[#2fd39a]"
+                            className="bg-[#0b0d0c] text-white px-3 py-2 rounded-xl border border-[#2fd39a1a] text-xs focus:outline-none focus:border-accent-soft"
                           />
                         </div>
 
@@ -387,7 +387,7 @@ export default function AdminPage() {
                               updated[idx].role = e.target.value;
                               setSteps(updated);
                             }}
-                            className="bg-[#0b0d0c] text-white px-3 py-2 rounded-xl border border-[#2fd39a1a] text-xs focus:outline-none focus:border-[#2fd39a]"
+                            className="bg-[#0b0d0c] text-white px-3 py-2 rounded-xl border border-[#2fd39a1a] text-xs focus:outline-none focus:border-accent-soft"
                           >
                             <option value="TRUONG_PHONG">Trưởng Phòng</option>
                             <option value="GIAM_DOC">Ban Giám Đốc</option>
@@ -407,7 +407,7 @@ export default function AdminPage() {
                               updated[idx].slaHours = parseInt(e.target.value, 10);
                               setSteps(updated);
                             }}
-                            className="bg-[#0b0d0c] text-white px-3 py-2 rounded-xl border border-[#2fd39a1a] text-xs focus:outline-none focus:border-[#2fd39a]"
+                            className="bg-[#0b0d0c] text-white px-3 py-2 rounded-xl border border-[#2fd39a1a] text-xs focus:outline-none focus:border-accent-soft"
                           />
                         </div>
                       </div>
@@ -472,7 +472,7 @@ export default function AdminPage() {
                         <tr key={log.id} className="hover:bg-white/5 transition-colors">
                           <td className="py-4 text-gray-400">{new Date(log.createdAt).toLocaleString()}</td>
                           <td className="py-4 font-bold">
-                            <span className="px-2.5 py-0.5 rounded-full bg-[#1fae7d22] text-[#2fd39a] border border-[#2fd39a33]">
+                            <span className="px-2.5 py-0.5 rounded-full bg-[#1fae7d22] text-accent-soft border border-[#2fd39a33]">
                               {log.action}
                             </span>
                           </td>

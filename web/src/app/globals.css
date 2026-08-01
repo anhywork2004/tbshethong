@@ -4,28 +4,38 @@
   --font-sans: var(--font-sans);
   --font-display: var(--font-display);
 
-  /* TBS Brand Palette — Warm Stone Neutrals, Rich Emerald Accent */
-  --color-canvas: #fbfaf8;
-  --color-surface: #ffffff;
-  --color-ink: #171717;
-  --color-steel: #78716c;
-  --color-muted: #a8a29e;
+  /* TBS Brand Palette — Muted Industrial, Controlled Saturation */
 
-  /* Brand Accent — Deep Emerald (saturation controlled, no neon) */
+  /* Neutral — warm off-white → cool near-black (no pure black, no pure white) */
+  --color-canvas: #f8f7f5;
+  --color-surface: #ffffff;
+  --color-ink: #1a1a1a;
+  --color-steel: #6b6560;
+  --color-muted: #9c9692;
+
+  /* Accent — deep green, desaturated, no neon */
   --color-accent: #0d7a5c;
   --color-accent-light: #0f9b74;
-  --color-accent-soft: #34d399;
-  --color-accent-wash: #ecf8f3;
-  --color-accent-deep: #0f172a;
-  --color-accent-mid: #1e293b;
+  --color-accent-soft: #5ab89a;
+  --color-accent-wash: #edf7f3;
+  --color-accent-deep: #0c1924;
+  --color-accent-mid: #1a2937;
 
-  /* Gold — Warm metallic highlight (used sparingly) */
-  --color-gold: #c4a34a;
-  --color-gold-light: #e8d48b;
-  --color-gold-wash: #faf3e0;
+  /* Gold — restrained metallic (only for CTAs, key highlights) */
+  --color-gold: #b8943f;
+  --color-gold-light: #d4b861;
+  --color-gold-wash: #f7f0dd;
 
-  /* Border & Shadow */
+  /* TBS Signature Greens — rooted in the brand, desaturated */
+  --color-tbs-dark: #0c1f19;
+  --color-tbs-mid: #0a3025;
+  --color-tbs-green: #0d7a5c;
+  --color-tbs-green-hover: #0f9b74;
+  --color-tbs-light: #f6faf8;
+
+  /* Border & Shadow — tinted, never pure black */
   --color-border: rgba(0, 0, 0, 0.06);
+  --color-shadow: rgba(0, 0, 0, 0.04);
 }
 
 /* ─── Base ─── */

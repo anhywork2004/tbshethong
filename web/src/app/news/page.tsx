@@ -79,7 +79,7 @@ export default function NewsPage() {
       <Navbar />
 
       {/* Header */}
-      <section className="pt-28 pb-12 bg-[#08221a]">
+      <section className="pt-28 pb-12 bg-tbs-dark">
         <div className="max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-12 text-center">
           <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-emerald-400/30 bg-emerald-400/10 text-emerald-400 text-[10px] tracking-[0.2em] uppercase font-bold mb-4">
             <IconNews size={14} /> Truyền Thông
@@ -118,7 +118,7 @@ export default function NewsPage() {
               onClick={() => { setCategorySlug(cat.slug); setPage(1); }}
               className={`px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-all ${
                 categorySlug === cat.slug
-                  ? "bg-[#08221a] text-white shadow"
+                  ? "bg-tbs-dark text-white shadow"
                   : "text-gray-500 hover:bg-gray-100"
               }`}
             >
@@ -161,7 +161,7 @@ export default function NewsPage() {
                         </span>
                       )}
                       {item.is_featured && (
-                        <span className="absolute top-4 right-4 px-2 py-0.5 bg-amber-400 text-[#08221a] rounded-full text-[9px] font-black uppercase">★ Nổi bật</span>
+                        <span className="absolute top-4 right-4 px-2 py-0.5 bg-amber-400 text-tbs-dark rounded-full text-[9px] font-black uppercase">★ Nổi bật</span>
                       )}
                     </div>
                     <div className="p-6 flex flex-col flex-grow space-y-3">
@@ -171,7 +171,7 @@ export default function NewsPage() {
                         </span>
                         <span className="flex items-center gap-1"><IconEye size={13} />{item.view_count || 0}</span>
                       </div>
-                      <h3 className="font-black text-base text-[#08221a] leading-snug line-clamp-2 group-hover:text-emerald-600 transition-colors">{item.title}</h3>
+                      <h3 className="font-black text-base text-tbs-dark leading-snug line-clamp-2 group-hover:text-emerald-600 transition-colors">{item.title}</h3>
                       {item.summary && <p className="text-sm text-gray-500 leading-relaxed line-clamp-2">{item.summary}</p>}
                       <div className="pt-2 mt-auto flex items-center gap-1.5 text-xs font-bold text-emerald-600">
                         Đọc tiếp <IconArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
@@ -195,7 +195,7 @@ export default function NewsPage() {
                     return (
                       <button key={p} onClick={() => setPage(p)}
                         className={`w-10 h-10 rounded-full text-sm font-bold transition-all ${
-                          p === page ? "bg-[#08221a] text-white" : "bg-white border border-gray-200 hover:border-emerald-300"
+                          p === page ? "bg-tbs-dark text-white" : "bg-white border border-gray-200 hover:border-emerald-300"
                         }`}>{p}</button>
                     );
                   })}

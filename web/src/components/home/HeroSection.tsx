@@ -49,15 +49,15 @@ function AnimatedCounter({ target, suffix = "", duration = 2000 }: { target: num
 
 export default function HeroSection() {
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-[#08221a]">
+    <section className="relative min-h-screen flex items-center overflow-hidden bg-tbs-dark">
       {/* Parallax background layers */}
       <div className="absolute inset-0">
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{ backgroundImage: "url('/images/crawled/05.webp')" }}
         />
-        <div className="absolute inset-0 bg-gradient-to-br from-[#08221a]/95 via-[#0a3025]/88 to-[#08221a]/92" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#08221a] via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-br from-tbs-dark/95 via-[#0a3025]/88 to-tbs-dark/92" />
+        <div className="absolute inset-0 bg-gradient-to-t from-tbs-dark via-transparent to-transparent" />
       </div>
 
       {/* Animated glow orbs */}
@@ -101,7 +101,7 @@ export default function HeroSection() {
           <div className="flex flex-wrap justify-center gap-4 pt-2">
             <Link
               href="/login"
-              className="group inline-flex items-center gap-2.5 bg-gradient-to-r from-emerald-400 to-emerald-300 hover:from-emerald-300 hover:to-emerald-400 text-[#08221a] font-bold px-8 py-4 rounded-full text-sm tracking-wider uppercase shadow-xl shadow-emerald-400/20 hover:shadow-emerald-400/40 hover:scale-[1.03] active:scale-95 transition-all duration-300"
+              className="group inline-flex items-center gap-2.5 bg-gradient-to-r from-emerald-400 to-emerald-300 hover:from-emerald-300 hover:to-emerald-400 text-tbs-dark font-bold px-8 py-4 rounded-full text-sm tracking-wider uppercase shadow-xl shadow-emerald-400/20 hover:shadow-emerald-400/40 hover:scale-[1.03] active:scale-95 transition-all duration-300"
             >
               Truy Cập Hệ Thống
               <IconArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />

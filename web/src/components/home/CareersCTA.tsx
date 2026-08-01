@@ -14,7 +14,7 @@ export default function CareersCTA() {
   return (
     <section id="careers" className="relative py-24 lg:py-32 overflow-hidden">
       {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#08221a] via-[#0a3025] to-[#0f4133]" />
+      <div className="absolute inset-0 bg-gradient-to-br from-tbs-dark via-[#0a3025] to-[#0f4133]" />
       <div className="absolute inset-0 bg-[url('/images/crawled/TBS-GROUP_team_1836-x-765-2.jpg')] bg-cover bg-center opacity-10" />
 
       {/* Glow */}
@@ -59,7 +59,7 @@ export default function CareersCTA() {
             <div className="flex flex-wrap gap-4 pt-2">
               <Link
                 href="/careers"
-                className="group inline-flex items-center gap-2.5 bg-gradient-to-r from-amber-400 to-amber-300 hover:from-amber-300 hover:to-amber-400 text-[#08221a] font-bold px-8 py-4 rounded-full text-sm tracking-wider uppercase shadow-xl shadow-amber-400/20 hover:scale-[1.03] transition-all duration-300"
+                className="group inline-flex items-center gap-2.5 bg-gradient-to-r from-amber-400 to-amber-300 hover:from-amber-300 hover:to-amber-400 text-tbs-dark font-bold px-8 py-4 rounded-full text-sm tracking-wider uppercase shadow-xl shadow-amber-400/20 hover:scale-[1.03] transition-all duration-300"
               >
                 Xem Vị Trí Tuyển Dụng
                 <IconArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />

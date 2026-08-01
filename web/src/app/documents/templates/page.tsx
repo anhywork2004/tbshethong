@@ -72,23 +72,23 @@ export default function DocumentTemplatesPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#f9fdfb] p-8 space-y-6">
+    <div className="min-h-screen bg-tbs-light p-8 space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-extrabold text-[#08221a]">Thư Viện Biểu Mẫu Số Hóa</h1>
+          <h1 className="text-2xl font-extrabold text-tbs-dark">Thư Viện Biểu Mẫu Số Hóa</h1>
           <p className="text-xs text-gray-500 mt-1">Upload file Word/PDF mẫu, tự động dò placeholder và sinh form nhập liệu</p>
         </div>
 
         <div className="flex gap-3">
           <Link
             href="/documents/create"
-            className="px-4 py-2.5 rounded-xl bg-gradient-to-r from-[#d9b96a] to-[#f2dc9a] text-[#08221a] text-xs font-bold shadow-md"
+            className="px-4 py-2.5 rounded-xl bg-gradient-to-r from-[#d9b96a] to-gold-light text-tbs-dark text-xs font-bold shadow-md"
           >
             Điền giấy tờ mới
           </Link>
           <button
             onClick={() => setShowUploadModal(true)}
-            className="px-4 py-2.5 rounded-xl bg-[#158a63] text-white text-xs font-bold hover:bg-[#1fae7d] transition shadow-md"
+            className="px-4 py-2.5 rounded-xl bg-accent text-white text-xs font-bold hover:bg-accent-light transition shadow-md"
           >
             + Upload Mẫu File Mới (.docx / .pdf)
           </button>
@@ -100,12 +100,12 @@ export default function DocumentTemplatesPage() {
         {templates.map((tpl) => (
           <div key={tpl.id} className="bg-white p-6 rounded-2xl border border-gray-100 shadow-lg space-y-4">
             <div className="flex items-center justify-between">
-              <span className="text-xs font-semibold px-2.5 py-0.5 rounded bg-emerald-100 text-[#158a63]">
+              <span className="text-xs font-semibold px-2.5 py-0.5 rounded bg-emerald-100 text-accent">
                 {tpl.dept}
               </span>
               <span className="text-[11px] font-mono text-gray-400 uppercase">{tpl.docType}</span>
             </div>
-            <h3 className="text-lg font-bold text-[#08221a]">{tpl.title}</h3>
+            <h3 className="text-lg font-bold text-tbs-dark">{tpl.title}</h3>
             <div>
               <div className="text-xs font-semibold text-gray-500 mb-2">Placeholder Tự Động Dò ({tpl.placeholders.length}):</div>
               <div className="flex flex-wrap gap-1.5">
@@ -118,7 +118,7 @@ export default function DocumentTemplatesPage() {
             </div>
             <div className="pt-3 border-t border-gray-100 flex justify-between items-center text-xs">
               <span className="text-gray-400">Ngày tạo: {tpl.createdAt}</span>
-              <Link href={`/documents/create?templateId=${tpl.id}`} className="text-[#158a63] font-bold hover:underline">
+              <Link href={`/documents/create?templateId=${tpl.id}`} className="text-accent font-bold hover:underline">
                 Điền Mẫu →
               </Link>
             </div>
@@ -130,7 +130,7 @@ export default function DocumentTemplatesPage() {
       {showUploadModal && (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-3xl p-6 max-w-lg w-full shadow-2xl space-y-4">
-            <h2 className="text-lg font-bold text-[#08221a]">Upload File Mẫu Mới (.docx / .pdf)</h2>
+            <h2 className="text-lg font-bold text-tbs-dark">Upload File Mẫu Mới (.docx / .pdf)</h2>
             <form onSubmit={handleSaveTemplate} className="space-y-4 text-xs">
               <div>
                 <label className="block font-semibold mb-1">Tên Tên Mẫu Giấy Tờ *</label>
@@ -140,7 +140,7 @@ export default function DocumentTemplatesPage() {
                   placeholder="VD: Đề Xuất Tăng Ca Nhà Máy"
                   value={newTitle}
                   onChange={(e) => setNewTitle(e.target.value)}
-                  className="w-full p-2.5 rounded-lg border border-gray-200 focus:outline-none focus:border-[#158a63]"
+                  className="w-full p-2.5 rounded-lg border border-gray-200 focus:outline-none focus:border-accent"
                 />
               </div>
 
@@ -149,7 +149,7 @@ export default function DocumentTemplatesPage() {
                 <select
                   value={newDept}
                   onChange={(e) => setNewDept(e.target.value)}
-                  className="w-full p-2.5 rounded-lg border border-gray-200 focus:outline-none focus:border-[#158a63]"
+                  className="w-full p-2.5 rounded-lg border border-gray-200 focus:outline-none focus:border-accent"
                 >
                   <option value="Nhân Sự (HR)">Nhân Sự (HR)</option>
                   <option value="Bảo Trì - Kỹ Thuật">Bảo Trì - Kỹ Thuật</option>
@@ -180,7 +180,7 @@ export default function DocumentTemplatesPage() {
                   <div className="font-bold mb-1">Đã phát hiện {detectedKeys.length} placeholder:</div>
                   <div className="flex flex-wrap gap-1">
                     {detectedKeys.map((k) => (
-                      <span key={k} className="px-2 py-0.5 bg-emerald-200 text-[#08221a] font-mono text-[10px] rounded">
+                      <span key={k} className="px-2 py-0.5 bg-emerald-200 text-tbs-dark font-mono text-[10px] rounded">
                         &#123;&#123;{k}&#125;&#125;
                       </span>
                     ))}
@@ -198,7 +198,7 @@ export default function DocumentTemplatesPage() {
                 </button>
                 <button
                   type="submit"
-                  className="flex-1 py-2.5 rounded-xl bg-[#158a63] text-white font-bold hover:bg-[#1fae7d]"
+                  className="flex-1 py-2.5 rounded-xl bg-accent text-white font-bold hover:bg-accent-light"
                 >
                   Lưu Vào Thư Viện
                 </button>

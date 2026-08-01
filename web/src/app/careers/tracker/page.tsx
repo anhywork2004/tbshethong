@@ -125,16 +125,16 @@ export default function TrackerPage() {
   }, {});
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#f9fdfb]">
+    <div className="min-h-screen flex flex-col bg-tbs-light">
       <Header />
 
       <main className="flex-1 max-w-3xl mx-auto px-6 py-12 w-full">
         <div className="mb-8">
-          <Link href="/careers" className="inline-flex items-center gap-1 text-xs text-gray-500 hover:text-[#158a63] transition-colors mb-4">
+          <Link href="/careers" className="inline-flex items-center gap-1 text-xs text-gray-500 hover:text-accent transition-colors mb-4">
             <IconArrowLeft size={14} />
             Quay lại trang tuyển dụng
           </Link>
-          <h1 className="text-3xl font-black text-[#08221a]">Tra Cứu Hồ Sơ Ứng Tuyển</h1>
+          <h1 className="text-3xl font-black text-tbs-dark">Tra Cứu Hồ Sơ Ứng Tuyển</h1>
           <p className="text-sm text-gray-500 mt-1">Kiểm tra trạng thái hồ sơ và lịch phỏng vấn của bạn</p>
         </div>
 
@@ -149,7 +149,7 @@ export default function TrackerPage() {
                   value={appId}
                   onChange={(e) => setAppId(e.target.value)}
                   placeholder="Nhập mã hồ sơ bạn đã nhận được"
-                  className="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-[#158a63] transition-all"
+                  className="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-accent transition-all"
                 />
               </div>
               <div>
@@ -159,7 +159,7 @@ export default function TrackerPage() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="nguyenvana@gmail.com"
-                  className="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-[#158a63] transition-all"
+                  className="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-accent transition-all"
                 />
               </div>
               {error && (
@@ -170,7 +170,7 @@ export default function TrackerPage() {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full py-3 rounded-xl bg-[#158a63] text-white font-bold text-sm hover:bg-[#1fae7d] transition-colors flex items-center justify-center gap-2 disabled:opacity-50"
+                className="w-full py-3 rounded-xl bg-accent text-white font-bold text-sm hover:bg-accent-light transition-colors flex items-center justify-center gap-2 disabled:opacity-50"
               >
                 {loading ? (
                   <>
@@ -199,22 +199,22 @@ export default function TrackerPage() {
                   {statusConfig.label}
                 </h2>
                 <p className="text-xs text-gray-500 mt-1">
-                  Mã hồ sơ: <code className="bg-white/50 px-2 py-0.5 rounded text-[#08221a] font-mono">{application.id}</code>
+                  Mã hồ sơ: <code className="bg-white/50 px-2 py-0.5 rounded text-tbs-dark font-mono">{application.id}</code>
                 </p>
               </div>
 
               <div className="bg-white/60 rounded-xl p-4 space-y-2 text-sm">
                 <div className="flex justify-between">
                   <span className="text-gray-500">Họ tên:</span>
-                  <span className="font-semibold text-[#08221a]">{application.fullName}</span>
+                  <span className="font-semibold text-tbs-dark">{application.fullName}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-500">Vị trí:</span>
-                  <span className="font-semibold text-[#08221a]">{application.job?.title}</span>
+                  <span className="font-semibold text-tbs-dark">{application.job?.title}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-500">Ngày nộp:</span>
-                  <span className="text-[#08221a]">{new Date(application.createdAt).toLocaleDateString("vi-VN")}</span>
+                  <span className="text-tbs-dark">{new Date(application.createdAt).toLocaleDateString("vi-VN")}</span>
                 </div>
               </div>
             </div>
@@ -222,11 +222,11 @@ export default function TrackerPage() {
             {/* Interview Info */}
             {application.interview && (
               <div className="bg-white rounded-2xl border border-gray-100 shadow-md p-6 sm:p-8">
-                <h2 className="text-lg font-bold text-[#08221a] mb-4">Lịch phỏng vấn của bạn</h2>
+                <h2 className="text-lg font-bold text-tbs-dark mb-4">Lịch phỏng vấn của bạn</h2>
                 <div className="bg-emerald-50 rounded-xl p-4 space-y-3">
                   <div className="flex items-center gap-2">
-                    <IconCalendar size={18} className="text-[#158a63]" />
-                    <span className="text-sm font-semibold text-[#08221a]">
+                    <IconCalendar size={18} className="text-accent" />
+                    <span className="text-sm font-semibold text-tbs-dark">
                       {new Date(application.interview.scheduledAt).toLocaleDateString("vi-VN", {
                         weekday: "long",
                         year: "numeric",
@@ -238,8 +238,8 @@ export default function TrackerPage() {
                     </span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <IconMapPin size={18} className="text-[#158a63]" />
-                    <span className="text-sm text-[#08221a]">{application.interview.location}</span>
+                    <IconMapPin size={18} className="text-accent" />
+                    <span className="text-sm text-tbs-dark">{application.interview.location}</span>
                   </div>
                   {application.interview.notes && (
                     <p className="text-xs text-gray-500 mt-1">{application.interview.notes}</p>
@@ -265,7 +265,7 @@ export default function TrackerPage() {
                     <button
                       onClick={handleConfirm}
                       disabled={confirming}
-                      className="flex-1 py-2.5 rounded-xl bg-[#158a63] text-white text-sm font-semibold hover:bg-[#1fae7d] transition-colors disabled:opacity-50"
+                      className="flex-1 py-2.5 rounded-xl bg-accent text-white text-sm font-semibold hover:bg-accent-light transition-colors disabled:opacity-50"
                     >
                       {confirming ? "Đang xác nhận..." : "Xác nhận lịch"}
                     </button>
@@ -283,7 +283,7 @@ export default function TrackerPage() {
             {/* Schedule Interview (if not yet scheduled) */}
             {!application.interview && application.status === "SUBMITTED" && (
               <div className="bg-white rounded-2xl border border-gray-100 shadow-md p-6 sm:p-8">
-                <h2 className="text-lg font-bold text-[#08221a] mb-4">Đặt lịch phỏng vấn</h2>
+                <h2 className="text-lg font-bold text-tbs-dark mb-4">Đặt lịch phỏng vấn</h2>
                 <p className="text-sm text-gray-600 mb-4">
                   Bạn có thể chủ động đặt lịch phỏng vấn. HR sẽ xác nhận lại thời gian phù hợp.
                 </p>
@@ -291,7 +291,7 @@ export default function TrackerPage() {
                 {!showSlots ? (
                   <button
                     onClick={handleViewSlots}
-                    className="px-6 py-3 rounded-xl bg-[#158a63] text-white font-bold text-sm hover:bg-[#1fae7d] transition-colors"
+                    className="px-6 py-3 rounded-xl bg-accent text-white font-bold text-sm hover:bg-accent-light transition-colors"
                   >
                     Xem lịch trống & đặt hẹn
                   </button>
@@ -322,8 +322,8 @@ export default function TrackerPage() {
                                       onClick={() => setSelectedSlot(slot.datetime)}
                                       className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
                                         selectedSlot === slot.datetime
-                                          ? "bg-[#158a63] text-white shadow-sm"
-                                          : "bg-white border border-gray-200 text-gray-700 hover:border-[#158a63]"
+                                          ? "bg-accent text-white shadow-sm"
+                                          : "bg-white border border-gray-200 text-gray-700 hover:border-accent"
                                       }`}
                                     >
                                       {slot.time} ({slot.remaining})
@@ -344,7 +344,7 @@ export default function TrackerPage() {
                         <button
                           onClick={handleSchedule}
                           disabled={!selectedSlot || scheduling}
-                          className="w-full py-3 rounded-xl bg-[#158a63] text-white font-bold text-sm hover:bg-[#1fae7d] transition-colors disabled:opacity-50"
+                          className="w-full py-3 rounded-xl bg-accent text-white font-bold text-sm hover:bg-accent-light transition-colors disabled:opacity-50"
                         >
                           {scheduling ? "Đang đặt lịch..." : "Xác nhận đặt lịch"}
                         </button>
@@ -357,13 +357,13 @@ export default function TrackerPage() {
 
             {/* Contact HR */}
             <div className="bg-white rounded-2xl border border-gray-100 shadow-md p-6 text-center">
-              <h3 className="text-sm font-bold text-[#08221a] mb-2">Cần Hỗ Trợ?</h3>
+              <h3 className="text-sm font-bold text-tbs-dark mb-2">Cần Hỗ Trợ?</h3>
               <div className="flex flex-wrap justify-center gap-4 text-xs">
-                <a href={`mailto:${application.job?.contactEmail || "tuyendungdaotaovp2@tbsgroup.vn"}`} className="flex items-center gap-1 text-[#158a63] hover:underline">
+                <a href={`mailto:${application.job?.contactEmail || "tuyendungdaotaovp2@tbsgroup.vn"}`} className="flex items-center gap-1 text-accent hover:underline">
                   <IconMail size={14} />
                   {application.job?.contactEmail || "tuyendungdaotaovp2@tbsgroup.vn"}
                 </a>
-                <a href={`tel:${application.job?.contactPhone || "0905359017"}`} className="flex items-center gap-1 text-[#158a63] hover:underline">
+                <a href={`tel:${application.job?.contactPhone || "0905359017"}`} className="flex items-center gap-1 text-accent hover:underline">
                   <IconPhone size={14} />
                   {application.job?.contactPhone || "0905 359 017"}
                 </a>

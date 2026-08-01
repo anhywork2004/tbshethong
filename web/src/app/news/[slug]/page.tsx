@@ -43,7 +43,7 @@ export default async function NewsDetailPage({ params }: { params: Promise<{ slu
           </Link>
 
           <div className="flex flex-wrap items-center gap-3 mb-4">
-            <span className="px-3 py-1 rounded-full text-[10px] font-bold uppercase text-white bg-[#158a63]">
+            <span className="px-3 py-1 rounded-full text-[10px] font-bold uppercase text-white bg-accent">
               {sampleArticle.category_name}
             </span>
             <span className="flex items-center gap-1 text-xs text-gray-400">
@@ -54,7 +54,7 @@ export default async function NewsDetailPage({ params }: { params: Promise<{ slu
             </span>
           </div>
 
-          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-[#08221a] leading-[1.15] mb-4">
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-tbs-dark leading-[1.15] mb-4">
             {sampleArticle.title}
           </h1>
 
@@ -63,7 +63,7 @@ export default async function NewsDetailPage({ params }: { params: Promise<{ slu
           </p>
 
           <div
-            className="prose prose-lg max-w-none prose-headings:text-[#08221a] prose-headings:font-black prose-a:text-emerald-600 prose-strong:text-[#08221a] prose-img:rounded-2xl prose-li:text-gray-600 prose-p:text-gray-600 prose-p:leading-relaxed"
+            className="prose prose-lg max-w-none prose-headings:text-tbs-dark prose-headings:font-black prose-a:text-emerald-600 prose-strong:text-tbs-dark prose-img:rounded-2xl prose-li:text-gray-600 prose-p:text-gray-600 prose-p:leading-relaxed"
             dangerouslySetInnerHTML={{ __html: sampleArticle.content }}
           />
         </div>

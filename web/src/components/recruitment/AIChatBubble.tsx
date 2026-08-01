@@ -151,7 +151,7 @@ export default function AIChatBubble() {
           </div>
 
           {/* Messages */}
-          <div className="flex-1 overflow-y-auto px-4 py-3 space-y-3 bg-[#f9fdfb]">
+          <div className="flex-1 overflow-y-auto px-4 py-3 space-y-3 bg-tbs-light">
             {messages.map((msg, i) => (
               <div
                 key={i}
@@ -160,7 +160,7 @@ export default function AIChatBubble() {
                 <div
                   className={`max-w-[85%] px-4 py-2.5 rounded-2xl text-sm leading-relaxed whitespace-pre-wrap ${
                     msg.role === "user"
-                      ? "bg-[#158a63] text-white rounded-br-md"
+                      ? "bg-accent text-white rounded-br-md"
                       : "bg-white text-gray-700 rounded-bl-md border border-gray-100 shadow-sm"
                   }`}
                 >
@@ -190,7 +190,7 @@ export default function AIChatBubble() {
                   <button
                     key={i}
                     onClick={() => send(q)}
-                    className="w-full text-left px-3 py-2 rounded-xl border border-emerald-100 bg-white hover:bg-emerald-50 text-xs text-[#158a63] transition-colors hover:border-[#158a63]"
+                    className="w-full text-left px-3 py-2 rounded-xl border border-emerald-100 bg-white hover:bg-emerald-50 text-xs text-accent transition-colors hover:border-accent"
                   >
                     {q}
                   </button>

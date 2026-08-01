@@ -255,8 +255,8 @@ export default function BIScreen() {
 
       {/* ── Ambient radial glow orbs (fixed, GPU-safe) ── */}
       <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
-        <div className="absolute -top-40 -left-40 w-[600px] h-[600px] rounded-full bg-[#2fd39a]/[0.04] blur-[120px]" />
-        <div className="absolute top-1/2 -right-60 w-[500px] h-[500px] rounded-full bg-[#2fd39a]/[0.03] blur-[100px]" />
+        <div className="absolute -top-40 -left-40 w-[600px] h-[600px] rounded-full bg-accent-soft/[0.04] blur-[120px]" />
+        <div className="absolute top-1/2 -right-60 w-[500px] h-[500px] rounded-full bg-accent-soft/[0.03] blur-[100px]" />
         <div className="absolute -bottom-32 left-1/3 w-[400px] h-[400px] rounded-full bg-emerald-900/[0.08] blur-[90px]" />
         {/* Fine grid overlay */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff04_1px,transparent_1px),linear-gradient(to_bottom,#ffffff04_1px,transparent_1px)] bg-[size:48px_48px]" />
@@ -270,12 +270,12 @@ export default function BIScreen() {
         <header className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           {/* Left: wordmark + eyebrow */}
           <div>
-            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#2fd39a]/10 border border-[#2fd39a]/20 text-[#2fd39a] text-[10px] font-bold tracking-[0.2em] uppercase mb-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#2fd39a] animate-pulse" />
+            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent-soft/10 border border-accent-soft/20 text-accent-soft text-[10px] font-bold tracking-[0.2em] uppercase mb-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-accent-soft animate-pulse" />
               Live Operational Intelligence
             </span>
             <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-white leading-none">
-              Digital<span className="text-[#2fd39a]"> Cockpit</span>
+              Digital<span className="text-accent-soft"> Cockpit</span>
             </h1>
             <p className="text-[11px] text-white/40 tracking-[0.15em] uppercase mt-1">TBS Group — Phòng Điều Hành Số Hoá</p>
           </div>
@@ -283,14 +283,14 @@ export default function BIScreen() {
           {/* Right: live clock + status */}
           <div className="flex items-center gap-3 shrink-0">
             {loading && (
-              <div className="w-4 h-4 rounded-full border border-[#2fd39a]/40 border-t-[#2fd39a] animate-spin" />
+              <div className="w-4 h-4 rounded-full border border-accent-soft/40 border-t-[#2fd39a] animate-spin" />
             )}
             <div className="px-4 py-2 rounded-2xl bg-white/[0.03] border border-white/[0.06] text-[10px] text-white/50 font-mono">
-              <span className="text-[#2fd39a] font-bold">SYS</span> · {mounted ? lastUpdated.toLocaleTimeString("vi-VN") : "--:--:--"}
+              <span className="text-accent-soft font-bold">SYS</span> · {mounted ? lastUpdated.toLocaleTimeString("vi-VN") : "--:--:--"}
             </div>
             <button
               onClick={fetchStats}
-              className="w-9 h-9 rounded-xl bg-white/[0.04] border border-white/[0.08] flex items-center justify-center text-white/40 hover:text-[#2fd39a] hover:border-[#2fd39a]/30 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-[0.95]"
+              className="w-9 h-9 rounded-xl bg-white/[0.04] border border-white/[0.08] flex items-center justify-center text-white/40 hover:text-accent-soft hover:border-accent-soft/30 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-[0.95]"
             >
               <IconRefresh size={14} />
             </button>
@@ -307,7 +307,7 @@ export default function BIScreen() {
                 onClick={() => setActiveDivision(isActive ? "overview" : div.id)}
                 className={`flex items-center gap-2 px-4 py-2 rounded-xl text-[11px] font-bold tracking-wide transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] ${
                   isActive
-                    ? "bg-[#2fd39a]/15 text-[#2fd39a] border border-[#2fd39a]/40 shadow-[0_0_16px_rgba(47,211,154,0.1)]"
+                    ? "bg-accent-soft/15 text-accent-soft border border-accent-soft/40 shadow-[0_0_16px_rgba(47,211,154,0.1)]"
                     : "bg-white/[0.03] text-white/30 border border-white/[0.06] hover:text-white/60 hover:bg-white/[0.06]"
                 }`}
               >
@@ -328,7 +328,7 @@ export default function BIScreen() {
               <div>
                 <span className="text-[9px] font-bold tracking-[0.2em] uppercase text-white/30">Trạm Hoạt Động</span>
                 <div className="mt-3 flex items-end gap-2">
-                  <span className="text-5xl font-black text-[#2fd39a] leading-none tabular-nums">{stats.operationalSummary?.active}</span>
+                  <span className="text-5xl font-black text-accent-soft leading-none tabular-nums">{stats.operationalSummary?.active}</span>
                   <span className="text-white/30 text-sm pb-1 font-medium">/ {stats.operationalSummary?.total}</span>
                 </div>
               </div>
@@ -429,7 +429,7 @@ export default function BIScreen() {
                   </svg>
                   <div className="absolute text-center">
                     <span className="text-3xl font-black text-white block leading-none">{stats.financials?.orderOnTimePercentage}%</span>
-                    <span className="text-[8px] text-[#2fd39a] tracking-widest uppercase">OTD</span>
+                    <span className="text-[8px] text-accent-soft tracking-widest uppercase">OTD</span>
                   </div>
                 </div>
                 <p className="text-[9px] text-white/25 text-center mt-2 leading-relaxed">Cam kết giao hàng đúng hạn</p>
@@ -442,14 +442,14 @@ export default function BIScreen() {
                 <span className="text-[9px] font-bold tracking-[0.2em] uppercase text-white/30 block mb-4">Nhật Ký Tuyến Vận Hành</span>
                 <div className="space-y-2">
                   {stats.lines?.map((line: any, idx: number) => (
-                    <div key={idx} className="flex justify-between items-center p-2.5 rounded-xl bg-white/[0.02] border border-white/[0.04] hover:border-[#2fd39a]/20 transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)]">
+                    <div key={idx} className="flex justify-between items-center p-2.5 rounded-xl bg-white/[0.02] border border-white/[0.04] hover:border-accent-soft/20 transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)]">
                       <div className="flex items-center gap-2">
-                        <div className={`w-1.5 h-1.5 rounded-full ${line.status === "WARNING" ? "bg-amber-400" : "bg-[#2fd39a]"}`} />
+                        <div className={`w-1.5 h-1.5 rounded-full ${line.status === "WARNING" ? "bg-amber-400" : "bg-accent-soft"}`} />
                         <span className="text-[11px] text-white font-bold font-mono">{line.code}</span>
                       </div>
                       <div className="flex items-center gap-2">
                         <span className="text-[10px] text-white/40 font-mono">{line.score}%</span>
-                        <span className={`text-[8px] px-1.5 py-0.5 rounded-md font-bold ${line.status === "WARNING" ? "bg-amber-500/10 text-amber-400" : line.status === "OPTIMAL" ? "bg-emerald-500/10 text-[#2fd39a]" : "bg-blue-500/10 text-blue-400"}`}>
+                        <span className={`text-[8px] px-1.5 py-0.5 rounded-md font-bold ${line.status === "WARNING" ? "bg-amber-500/10 text-amber-400" : line.status === "OPTIMAL" ? "bg-emerald-500/10 text-accent-soft" : "bg-blue-500/10 text-blue-400"}`}>
                           {line.status}
                         </span>
                       </div>
@@ -467,8 +467,8 @@ export default function BIScreen() {
               {/* Map header */}
               <div className="flex items-center justify-between px-5 py-4 border-b border-white/[0.05]">
                 <div className="flex items-center gap-2.5">
-                  <div className="w-7 h-7 rounded-lg bg-[#2fd39a]/10 border border-[#2fd39a]/20 flex items-center justify-center">
-                    <IconWorld size={14} className="text-[#2fd39a]" />
+                  <div className="w-7 h-7 rounded-lg bg-accent-soft/10 border border-accent-soft/20 flex items-center justify-center">
+                    <IconWorld size={14} className="text-accent-soft" />
                   </div>
                   <div>
                     <span className="text-[11px] font-bold text-white block">Asset Location Map</span>
@@ -477,8 +477,8 @@ export default function BIScreen() {
                     </span>
                   </div>
                 </div>
-                <span className="flex items-center gap-1.5 text-[9px] text-[#2fd39a] font-mono">
-                  <span className="w-1 h-1 rounded-full bg-[#2fd39a] animate-pulse" />
+                <span className="flex items-center gap-1.5 text-[9px] text-accent-soft font-mono">
+                  <span className="w-1 h-1 rounded-full bg-accent-soft animate-pulse" />
                   LIVE
                 </span>
               </div>
@@ -519,7 +519,7 @@ export default function BIScreen() {
               <div className="rounded-[calc(1.75rem-1px)] bg-[#0a0f0d] p-5">
                 <div className="flex items-center justify-between mb-4">
                   <span className="text-[9px] font-bold tracking-[0.2em] uppercase text-white/30">Kho ICD Tân Vạn</span>
-                  <span className="text-[10px] font-black text-[#2fd39a] font-mono">82.4%</span>
+                  <span className="text-[10px] font-black text-accent-soft font-mono">82.4%</span>
                 </div>
                 <div className="grid grid-cols-6 gap-1.5">
                   {Array.from({ length: 24 }).map((_, idx) => {
@@ -530,7 +530,7 @@ export default function BIScreen() {
                         key={idx}
                         className={`h-5 rounded-lg transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] ${
                           isFull
-                            ? "bg-[#2fd39a]/30 border border-[#2fd39a]/40"
+                            ? "bg-accent-soft/30 border border-accent-soft/40"
                             : isWarning
                             ? "bg-amber-500/20 border border-amber-500/30"
                             : "bg-white/[0.04] border border-white/[0.06]"
@@ -590,7 +590,7 @@ export default function BIScreen() {
         <footer className="flex flex-col sm:flex-row justify-between items-center text-[9px] text-white/20 font-mono border-t border-white/[0.04] pt-4 gap-2">
           <p>© {new Date().getFullYear()} TBS Group Corp. — Digital Intelligence Platform</p>
           <p className="flex items-center gap-1.5">
-            <IconShieldLock size={10} className="text-[#2fd39a]/50" />
+            <IconShieldLock size={10} className="text-accent-soft/50" />
             Console Mode · Security Shields Active
           </p>
         </footer>

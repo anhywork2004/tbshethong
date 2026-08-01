@@ -108,7 +108,7 @@ export default function BusinessUnits() {
             <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-emerald-300 bg-emerald-50 text-emerald-700 text-[10px] tracking-[0.2em] uppercase font-bold">
               6 Lĩnh Vực Kinh Doanh
             </span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-[#08221a]">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-tbs-dark">
               Hệ sinh thái TBS Group
             </h2>
             <p className="text-gray-500 text-base lg:text-lg leading-relaxed max-w-2xl mx-auto">
@@ -138,7 +138,7 @@ export default function BusinessUnits() {
 
                     {/* Stats badge */}
                     <div className="absolute top-4 right-4 bg-white/90 backdrop-blur rounded-xl px-3 py-2 shadow-lg border border-white/80">
-                      <span className="block text-lg font-black text-[#08221a] leading-tight">{biz.stats.value}</span>
+                      <span className="block text-lg font-black text-tbs-dark leading-tight">{biz.stats.value}</span>
                       <span className="block text-[9px] text-gray-500 tracking-wider uppercase">{biz.stats.label}</span>
                     </div>
 
@@ -151,7 +151,7 @@ export default function BusinessUnits() {
                   {/* Content */}
                   <div className="p-6 space-y-3">
                     <span className="text-[11px] text-gray-400 font-semibold tracking-wider uppercase">{biz.subtitle}</span>
-                    <h3 className="font-black text-xl text-[#08221a] group-hover:text-emerald-600 transition-colors">
+                    <h3 className="font-black text-xl text-tbs-dark group-hover:text-emerald-600 transition-colors">
                       {biz.title}
                     </h3>
                     <p className="text-sm text-gray-500 leading-relaxed">{biz.desc}</p>
