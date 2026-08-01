@@ -137,6 +137,7 @@ model Job {
   expiresAt      DateTime?
   viewCount      Int              @default(0)
   applyCount     Int              @default(0)
+  province       String?
   contactEmail   String
   contactPhone   String
   status         String           @default("ACTIVE") // ACTIVE, CLOSED

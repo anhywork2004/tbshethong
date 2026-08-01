@@ -394,15 +394,8 @@ router.get("/interviews/slots", async (req: Request, res: Response) => {
       ? new Date(endDate as string)
       : new Date(Date.now() + 14 * 24 * 60 * 60 * 1000);
 
-    // Fetch configured slot templates
-    const slotConfigs = await prisma.interviewSlot.findMany({
-      where: { isActive: true },
-    });
-
-    // Default business hours if no config
-    const configs = slotConfigs.length > 0
-      ? slotConfigs
-      : [
+    // Use default business hours (Mon-Fri, 8-11 and 13:30-16:30)
+    const configs = [
           { dayOfWeek: 1, startTime: "08:00", endTime: "11:00", maxPerSlot: 3 },
           { dayOfWeek: 1, startTime: "13:30", endTime: "16:30", maxPerSlot: 3 },
           { dayOfWeek: 2, startTime: "08:00", endTime: "11:00", maxPerSlot: 3 },
