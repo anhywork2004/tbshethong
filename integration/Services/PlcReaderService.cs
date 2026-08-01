@@ -9,7 +9,7 @@ namespace TBS2.Integration.Services
     {
         private readonly HttpClient _httpClient;
         private readonly Random _random = new Random();
-        private const string PlcApiKey = "TBS2_PLC_TELEMETRY_API_KEY_SECRET_2026";
+        private readonly string _plcApiKey = Environment.GetEnvironmentVariable("PLC_API_KEY") ?? "DEFAULT_PLC_KEY";
 
         public PlcReaderService(HttpClient httpClient)
         {
@@ -17,7 +17,7 @@ namespace TBS2.Integration.Services
             // Configure secure API key header for telemetry authentication
             if (!_httpClient.DefaultRequestHeaders.Contains("X-API-KEY"))
             {
-                _httpClient.DefaultRequestHeaders.Add("X-API-KEY", PlcApiKey);
+                _httpClient.DefaultRequestHeaders.Add("X-API-KEY", _plcApiKey);
             }
         }
 

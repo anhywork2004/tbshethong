@@ -41,9 +41,9 @@ pip install -r requirements.txt
 
 ### Bước 2.2: Cấu hình Biến Môi Trường Bảo Mật
 ```bash
-set JWT_SECRET_KEY="Chuoi_Bi_Mat_Cuc_Ky_An_Toan_TBS2_Production_2026"
-set ALLOWED_ORIGINS="http://localhost:3000,http://127.0.0.1:3000,http://localhost:8000"
-set PLC_API_KEY="TBS2_PLC_TELEMETRY_API_KEY_SECRET_2026"
+set JWT_SECRET_KEY=your_jwt_secret_key_environment_variable
+set ALLOWED_ORIGINS=http://localhost:3000,http://127.0.0.1:3000,http://localhost:8000
+set PLC_API_KEY=your_plc_api_key_environment_variable
 ```
 
 ### Bước 2.3: Khởi chạy Server Backend

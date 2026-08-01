@@ -7,9 +7,11 @@
     "dev:backend": "npm run dev --prefix backend",
     "dev:web": "npm run dev --prefix web",
     "dev": "npx --yes concurrently \"npm run dev --prefix backend\" \"npm run dev --prefix web\"",
-    "prepare": "husky install"
+    "security-scan": "node scripts/security-scan.js",
+    "security-scan:all": "node scripts/security-scan.js --all",
+    "prepare": "husky"
   },
   "devDependencies": {
-    "husky": "^8.0.0"
+    "husky": "^8.0.3"
   }
 }
