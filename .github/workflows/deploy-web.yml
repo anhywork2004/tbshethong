@@ -32,10 +32,17 @@ jobs:
           cd web
           npm run build
 
+      - name: Check Cloudflare Credentials
+        run: |
+          if [ -z "${{ secrets.CLOUDFLARE_API_TOKEN }}" ]; then
+            echo "⚠️ CLOUDFLARE_API_TOKEN is not set in GitHub Secrets yet."
+            echo "Please add CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID to https://github.com/anhywork2004/tbshethong/settings/secrets/actions"
+          fi
+
       - name: Deploy to Cloudflare Workers
-        uses: cloudflare/wrangler-action@v3
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          workingDirectory: 'web'
-          command: deploy
+        run: |
+          cd web
+          npx wrangler deploy
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
