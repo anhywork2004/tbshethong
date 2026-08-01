@@ -6,7 +6,7 @@
     "nodejs_compat"
   ],
   "assets": {
-    "directory": ".next"
+    "directory": "out"
   },
   "d1_databases": [
     {
@@ -22,7 +22,7 @@
     }
   ],
   "vars": {
-    "NEXT_PUBLIC_APP_URL": "https://tbshethong.workers.dev",
+    "NEXT_PUBLIC_APP_URL": "https://tbshethong.anhy-work-2004.workers.dev",
     "JWT_SECRET": "tbs_group_secure_jwt_secret_key_2026"
   }
 }
