@@ -1,98 +1,252 @@
-'use client';
+"use client";
 
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
-import { useState } from 'react';
+import { useState, useEffect, useCallback } from "react";
+import { useRouter } from "next/navigation";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import JobCard from "@/components/recruitment/JobCard";
+import ApplyModal from "@/components/recruitment/ApplyModal";
+import AIChatBubble from "@/components/recruitment/AIChatBubble";
+import { fetchJobs, type Job } from "@/lib/api";
+import { IconSearch, IconLoader2, IconMapPin, IconBriefcase } from "@tabler/icons-react";
+
+const CATEGORIES = [
+  { value: "", label: "Tất Cả Ngành Nghề" },
+  { value: "it", label: "💻 Công Nghệ" },
+  { value: "san-xuat", label: "🏭 Sản Xuất" },
+  { value: "qc", label: "🔍 Kiểm Soát Chất Lượng" },
+  { value: "ky-thuat", label: "🔧 Kỹ Thuật" },
+  { value: "hanh-chinh-nhan-su", label: "👥 Hành Chính - Nhân Sự" },
+  { value: "ke-toan", label: "📊 Kế Toán" },
+  { value: "logistics", label: "🚛 Logistics" },
+];
+
+const PROVINCES = [
+  { value: "", label: "Tất Cả Địa Điểm" },
+  { value: "An Giang", label: "📍 An Giang" },
+  { value: "Bình Dương", label: "📍 Bình Dương" },
+  { value: "TP. Hồ Chí Minh", label: "📍 TP. Hồ Chí Minh" },
+];
 
 export default function CareersPage() {
-  const [submitted, setSubmitted] = useState(false);
+  const router = useRouter();
+  const [jobs, setJobs] = useState<Job[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+  const [search, setSearch] = useState("");
+  const [category, setCategory] = useState("");
+  const [province, setProvince] = useState("");
 
-  const sampleJobs = [
-    { id: 1, title: 'Kỹ Sư Bảo Trì Máy Cơ Điện', dept: 'Bảo Trì - Kỹ Thuật', loc: 'Thoại Sơn, An Giang', type: 'Toàn thời gian' },
-    { id: 2, title: 'Chuyên Viên Kiểm Soát Chất Lượng (QC)', dept: 'QC', loc: 'Thoại Sơn, An Giang', type: 'Toàn thời gian' },
-    { id: 3, title: 'Lập Trình Viên Mobile Native (Kotlin/Swift)', dept: 'Công Nghệ Thông Tin (IT)', loc: 'TP. Hồ Chí Minh / Hybrid', type: 'Toàn thời gian' },
-  ];
+  // Apply modal state
+  const [applyModalOpen, setApplyModalOpen] = useState(false);
+  const [selectedJob, setSelectedJob] = useState<Job | null>(null);
+
+  const loadJobs = useCallback(async () => {
+    setLoading(true);
+    setError("");
+    try {
+      const data = await fetchJobs({
+        search: search || undefined,
+        category: category || undefined,
+        province: province || undefined,
+      });
+      setJobs(data);
+    } catch (err) {
+      setError("Không thể tải danh sách việc làm. Vui lòng thử lại sau.");
+    } finally {
+      setLoading(false);
+    }
+  }, [search, category, province]);
+
+  useEffect(() => {
+    loadJobs();
+  }, [loadJobs]);
+
+  const handleApply = (job: Job) => {
+    setSelectedJob(job);
+    setApplyModalOpen(true);
+  };
+
+  const handleApplySuccess = (applicationId: string) => {
+    setApplyModalOpen(false);
+    router.push(`/careers/interview-confirmation?applicationId=${applicationId}`);
+  };
 
   return (
     <div className="min-h-screen flex flex-col bg-[#f9fdfb]">
       <Header />
-      <main className="flex-1 py-16 max-w-6xl mx-auto px-6">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-extrabold text-[#08221a]">Tuyển Dụng & Cơ Hội Nghề Nghiệp</h1>
-          <p className="text-gray-600 mt-2 text-base">Gia nhập đội ngũ TBS Group — Cùng nhau phát triển và tạo dựng giá trị</p>
-        </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <div className="lg:col-span-2 space-y-4">
-            <h2 className="text-xl font-bold text-[#08221a] mb-4">Vị Trí Đang Tuyển Dụng</h2>
-            {sampleJobs.map((job) => (
-              <div key={job.id} className="bg-white p-6 rounded-2xl border border-gray-100 shadow-md flex flex-col md:flex-row md:items-center justify-between gap-4">
-                <div>
-                  <div className="inline-block px-2.5 py-0.5 rounded text-xs font-semibold bg-emerald-100 text-[#158a63] mb-2">
-                    {job.dept}
-                  </div>
-                  <h3 className="text-lg font-bold text-[#08221a]">{job.title}</h3>
-                  <div className="text-xs text-gray-500 mt-1 flex gap-4">
-                    <span>📍 {job.loc}</span>
-                    <span>⏰ {job.type}</span>
-                  </div>
+      <main className="flex-1">
+        {/* Hero Banner */}
+        <section className="relative py-16 lg:py-20 bg-gradient-to-b from-[#08221a] via-[#0f4133] to-[#158a63] text-white overflow-hidden">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-emerald-400/20 via-transparent to-transparent pointer-events-none" />
+          <div className="max-w-7xl mx-auto px-6 relative z-10 text-center">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 text-[#2fd39a] text-xs font-bold uppercase tracking-widest mb-6">
+              <IconBriefcase size={14} /> Cơ Hội Nghề Nghiệp
+            </div>
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight mb-3">
+              Tuyển Dụng{" "}
+              <span className="bg-gradient-to-r from-[#f2dc9a] to-[#d9b96a] bg-clip-text text-transparent">
+                TBS Group
+              </span>
+            </h1>
+            <p className="text-gray-300 text-base sm:text-lg max-w-2xl mx-auto">
+              Gia nhập tập đoàn đa ngành hàng đầu Việt Nam với 50.000+ nhân sự, 6 lĩnh vực trụ cột
+              và môi trường làm việc chuyên nghiệp
+            </p>
+
+            {/* Stats */}
+            <div className="grid grid-cols-3 gap-6 max-w-xl mx-auto mt-10">
+              {[
+                { value: "50.000+", label: "Nhân Sự" },
+                { value: "6", label: "Ngành Trụ Cột" },
+                { value: "30+", label: "Năm Phát Triển" },
+              ].map((s, i) => (
+                <div key={i} className="text-center p-3">
+                  <div className="text-2xl font-black text-[#f2dc9a]">{s.value}</div>
+                  <div className="text-[11px] text-gray-400 mt-0.5">{s.label}</div>
                 </div>
-                <a
-                  href="#apply-form"
-                  className="px-4 py-2 rounded-lg bg-[#158a63] text-white text-xs font-semibold hover:bg-[#1fae7d] transition text-center"
-                >
-                  Ứng Tuyện Ngay
-                </a>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
+        </section>
 
-          <div id="apply-form" className="bg-white p-6 rounded-2xl border border-gray-100 shadow-xl h-fit">
-            <h2 className="text-lg font-bold text-[#08221a] mb-4">Nộp Hồ Sơ Ứng Tuyện</h2>
-            {submitted ? (
-              <div className="p-4 bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs rounded-xl text-center">
-                ✅ Đã nhận hồ sơ! Bộ phận Nhân sự TBS Group sẽ liên hệ với bạn trong thời gian sớm nhất.
+        {/* Search & Filter Bar */}
+        <section className="max-w-7xl mx-auto px-6 -mt-6 relative z-20">
+          <div className="bg-white rounded-2xl shadow-xl shadow-gray-200/50 p-4 sm:p-6 border border-gray-100">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              {/* Search */}
+              <div className="relative">
+                <IconSearch size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+                <input
+                  type="text"
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                  placeholder="Tìm kiếm vị trí, kỹ năng..."
+                  className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-[#158a63] focus:ring-2 focus:ring-emerald-100 transition-all"
+                />
               </div>
-            ) : (
-              <form
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  setSubmitted(true);
-                }}
-                className="space-y-4 text-xs"
+
+              {/* Category filter */}
+              <select
+                value={category}
+                onChange={(e) => setCategory(e.target.value)}
+                className="px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-[#158a63] bg-white"
               >
-                <div>
-                  <label className="block font-medium text-gray-700 mb-1">Họ và Tên *</label>
-                  <input required type="text" className="w-full p-2.5 rounded-lg border border-gray-200 focus:outline-none focus:border-[#158a63]" placeholder="Nguyễn Văn A" />
-                </div>
-                <div>
-                  <label className="block font-medium text-gray-700 mb-1">Email *</label>
-                  <input required type="email" className="w-full p-2.5 rounded-lg border border-gray-200 focus:outline-none focus:border-[#158a63]" placeholder="nguyenvana@gmail.com" />
-                </div>
-                <div>
-                  <label className="block font-medium text-gray-700 mb-1">Số Điện Thoại *</label>
-                  <input required type="tel" className="w-full p-2.5 rounded-lg border border-gray-200 focus:outline-none focus:border-[#158a63]" placeholder="0901234567" />
-                </div>
-                <div>
-                  <label className="block font-medium text-gray-700 mb-1">Vị Trí Ứng Tuyện</label>
-                  <select className="w-full p-2.5 rounded-lg border border-gray-200 focus:outline-none focus:border-[#158a63]">
-                    {sampleJobs.map((j) => (
-                      <option key={j.id} value={j.title}>{j.title}</option>
-                    ))}
-                  </select>
-                </div>
-                <button
-                  type="submit"
-                  className="w-full py-3 rounded-lg bg-[#158a63] text-white font-bold hover:bg-[#1fae7d] transition"
-                >
-                  Gửi Hồ Sơ
-                </button>
-              </form>
-            )}
+                {CATEGORIES.map((c) => (
+                  <option key={c.value} value={c.value}>{c.label}</option>
+                ))}
+              </select>
+
+              {/* Province filter */}
+              <select
+                value={province}
+                onChange={(e) => setProvince(e.target.value)}
+                className="px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-[#158a63] bg-white"
+              >
+                {PROVINCES.map((p) => (
+                  <option key={p.value} value={p.value}>{p.label}</option>
+                ))}
+              </select>
+            </div>
           </div>
-        </div>
+        </section>
+
+        {/* Job Listings */}
+        <section className="max-w-7xl mx-auto px-6 py-10">
+          {loading ? (
+            <div className="flex flex-col items-center justify-center py-20">
+              <IconLoader2 size={40} className="animate-spin text-[#158a63] mb-4" />
+              <p className="text-sm text-gray-500">Đang tải danh sách việc làm...</p>
+            </div>
+          ) : error ? (
+            <div className="bg-red-50 border border-red-200 rounded-2xl p-6 text-center text-red-600 text-sm">
+              {error}
+              <button
+                onClick={loadJobs}
+                className="block mx-auto mt-3 px-4 py-2 rounded-lg bg-red-100 text-red-700 text-xs font-semibold hover:bg-red-200 transition-colors"
+              >
+                Thử Lại
+              </button>
+            </div>
+          ) : jobs.length === 0 ? (
+            <div className="text-center py-20">
+              <IconBriefcase size={48} className="mx-auto text-gray-300 mb-4" />
+              <h3 className="text-lg font-bold text-[#08221a] mb-2">Không tìm thấy vị trí phù hợp</h3>
+              <p className="text-sm text-gray-500">
+                Thử thay đổi bộ lọc hoặc từ khóa tìm kiếm
+              </p>
+            </div>
+          ) : (
+            <>
+              <div className="flex items-center justify-between mb-6">
+                <h2 className="text-xl font-bold text-[#08221a]">
+                  {jobs.length} Vị Trí Đang Tuyển Dụng
+                </h2>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {jobs.map((job) => (
+                  <div key={job.id} className="relative">
+                    <JobCard job={job} />
+                    <button
+                      onClick={() => handleApply(job)}
+                      className="absolute bottom-20 right-6 px-4 py-2 rounded-lg bg-gradient-to-r from-[#d9b96a] to-[#f2dc9a] text-[#08221a] text-xs font-bold hover:brightness-110 transition-all shadow-md shadow-amber-200"
+                    >
+                      Ứng Tuyển Ngay
+                    </button>
+                  </div>
+                ))}
+              </div>
+            </>
+          )}
+        </section>
+
+        {/* TBS Company Info */}
+        <section className="bg-gradient-to-b from-white to-[#eef7f2] py-16 border-t border-emerald-100">
+          <div className="max-w-4xl mx-auto px-6 text-center">
+            <img
+              src="/images/tbs-logo.png"
+              alt="TBS Group"
+              className="w-20 h-20 object-contain mx-auto mb-6"
+            />
+            <h3 className="text-2xl font-black text-[#08221a] mb-3">TBS Group Tuyển Dụng</h3>
+            <p className="text-gray-600 text-sm leading-relaxed max-w-2xl mx-auto mb-8">
+              Với hơn 30 năm phát triển, TBS Group tự hào là một trong những tập đoàn sản xuất công
+              nghiệp hàng đầu Việt Nam. Chúng tôi luôn chào đón những nhân tài mong muốn phát triển
+              sự nghiệp trong môi trường chuyên nghiệp, năng động và đầy cơ hội.
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+              {[
+                { title: "Môi Trường Chuyên Nghiệp", desc: "33 chuyền sản xuất công nghệ cao, hệ thống quản lý số hóa toàn diện" },
+                { title: "Phát Triển Sự Nghiệp", desc: "Lộ trình thăng tiến rõ ràng, đào tạo kỹ năng liên tục" },
+                { title: "Phúc Lợi Toàn Diện", desc: "Living Wage, bảo hiểm, học bổng cho con em CBCNV" },
+              ].map((item, i) => (
+                <div key={i} className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100">
+                  <h4 className="font-bold text-[#08221a] text-sm mb-2">{item.title}</h4>
+                  <p className="text-xs text-gray-500 leading-relaxed">{item.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
       </main>
+
       <Footer />
+
+      {/* Apply Modal */}
+      {selectedJob && (
+        <ApplyModal
+          jobId={selectedJob.id}
+          jobTitle={selectedJob.title}
+          isOpen={applyModalOpen}
+          onClose={() => setApplyModalOpen(false)}
+          onSuccess={handleApplySuccess}
+        />
+      )}
+
+      {/* AI Chat Bubble */}
+      <AIChatBubble />
     </div>
   );
 }

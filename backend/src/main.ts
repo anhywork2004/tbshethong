@@ -20,6 +20,7 @@ import chatRouter from "./routes/chat";
 import adminRouter from "./routes/admin";
 import compatibilityRouter from "./routes/compatibility";
 import recruitmentRouter from "./routes/recruitment";
+import aiChatRouter from "./routes/ai-chat";
 import path from "path";
 
 const app = express();
@@ -73,6 +74,7 @@ app.use("/api/chat", chatRouter);
 app.use("/api/admin", adminRouter);
 app.use("/api/v1", compatibilityRouter);
 app.use("/api/recruitment", recruitmentRouter);
+app.use("/api/ai", aiChatRouter);
 app.use("/uploads", express.static(path.join(__dirname, "../uploads")));
 
 // 5.B Public Synced News Endpoint (Crawled from TBS Group main portal)

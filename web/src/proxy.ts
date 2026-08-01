@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import { verifyToken } from './lib/auth';
 
-const PUBLIC_ROUTES = ['/', '/about', '/careers', '/contact', '/login', '/mobile-guide'];
+const PUBLIC_ROUTES = ['/', '/about', '/careers', '/contact', '/login', '/mobile-guide', '/news'];
 
 export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
@@ -10,6 +10,8 @@ export async function proxy(request: NextRequest) {
   // 1. Allow public website pages & static assets
   if (
     PUBLIC_ROUTES.includes(pathname) ||
+    pathname.startsWith('/careers') ||
+    pathname.startsWith('/news') ||
     pathname.startsWith('/_next') ||
     pathname.startsWith('/api/public') ||
     pathname.startsWith('/api/auth/login') ||

@@ -7,9 +7,11 @@ export default function Header() {
     <header className="sticky top-0 z-50 bg-[#08221a]/95 backdrop-blur-md border-b border-[#158a63]/20 text-white">
       <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#158a63] to-[#2fd39a] flex items-center justify-center font-bold text-xl shadow-lg shadow-[#158a63]/30">
-            TBS
-          </div>
+          <img
+            src="/images/tbs-logo.png"
+            alt="TBS Group Logo"
+            className="w-10 h-10 object-contain"
+          />
           <div>
             <div className="font-bold text-lg leading-tight tracking-wide text-[#f2dc9a]">TBS GROUP</div>
             <div className="text-xs text-gray-300">Hệ Thống Số Hóa & Vận Hành</div>

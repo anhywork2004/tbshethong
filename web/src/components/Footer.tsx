@@ -6,9 +6,11 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-10">
         <div className="space-y-4">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#158a63] to-[#2fd39a] flex items-center justify-center font-black text-white text-base shadow-lg shadow-emerald-900/50">
-              TBS
-            </div>
+            <img
+              src="/images/tbs-logo.png"
+              alt="TBS Group Logo"
+              className="w-10 h-10 object-contain"
+            />
             <div>
               <span className="font-extrabold text-white text-lg tracking-wider block">TBS GROUP</span>
               <span className="text-[10px] text-[#f2dc9a] font-bold uppercase tracking-widest block">Thoại Sơn Shoes</span>
