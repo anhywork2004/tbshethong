@@ -1,0 +1,61 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: var(--font-sans);
+  --font-serif: var(--font-serif);
+
+  --color-dk: #08221a;
+  --color-dk2: #0f4133;
+  --color-gr: #158a63;
+  --color-gr2: #1fae7d;
+  --color-gr3: #2fd39a;
+  --color-gold: #d9b96a;
+  --color-gold2: #f2dc9a;
+  --color-goldsoft: #faf0d0;
+  --color-paper: #f9fdfb;
+  --color-paper2: #eef7f2;
+}
+
+/* Global Styles */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans), sans-serif;
+  background-color: #f9fdfb;
+  color: #1c2e27;
+  overflow-x: hidden;
+  
+  /* Prevent copying text on UI layout level */
+  user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
+/* Make inputs, textareas selectionable so user can type! */
+input, textarea, select {
+  user-select: text !important;
+  -webkit-user-select: text !important;
+  -ms-user-select: text !important;
+}
+
+/* Prevent printing content */
+@media print {
+  body {
+    display: none !important;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(31, 174, 125, 0.3);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
