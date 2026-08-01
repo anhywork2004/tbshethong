@@ -11,13 +11,13 @@ import { fetchJob, fetchJobs, type Job } from "@/lib/api";
 import {
   IconMapPin, IconClock, IconUsers, IconBriefcase, IconCash,
   IconArrowLeft, IconLoader2, IconShare, IconMail, IconPhone,
-  IconBuilding, IconCheck,
+  IconBuilding, IconCheck, IconSchool,
 } from "@tabler/icons-react";
 
 const CATEGORY_LABELS: Record<string, string> = {
-  "it": "💻 Công Nghệ", "san-xuat": "🏭 Sản Xuất", "qc": "🔍 Kiểm Soát Chất Lượng",
-  "ky-thuat": "🔧 Kỹ Thuật", "hanh-chinh-nhan-su": "👥 Hành Chính - Nhân Sự",
-  "ke-toan": "📊 Kế Toán", "logistics": "🚛 Logistics",
+  "it": "Công nghệ", "san-xuat": "Sản xuất", "qc": "Kiểm soát chất lượng",
+  "ky-thuat": "Kỹ thuật", "hanh-chinh-nhan-su": "Hành chính — Nhân sự",
+  "ke-toan": "Kế toán", "logistics": "Logistics",
 };
 
 const EDU_LABELS: Record<string, string> = {
@@ -124,7 +124,7 @@ export default function JobDetailClient({ id }: { id: string }) {
                         <span className="text-xs font-semibold text-[#158a63] bg-emerald-50 px-2.5 py-0.5 rounded-full">{CATEGORY_LABELS[job.category]}</span>
                       )}
                       <span className={`text-xs font-semibold px-2.5 py-0.5 rounded-full ${job.status === "ACTIVE" ? "bg-green-50 text-green-600" : "bg-red-50 text-red-500"}`}>
-                        {job.status === "ACTIVE" ? "🟢 Đang tuyển" : "🔴 Đã đóng"}
+                        {job.status === "ACTIVE" ? "Đang tuyển" : "Đã đóng"}
                       </span>
                     </div>
                   </div>
@@ -144,8 +144,8 @@ export default function JobDetailClient({ id }: { id: string }) {
                 </div>
 
                 <div className="flex flex-wrap gap-3">
-                  <button onClick={() => setApplyModalOpen(true)} className="px-6 py-3 rounded-xl bg-gradient-to-r from-[#158a63] to-[#1fae7d] text-white font-bold text-sm hover:brightness-110 transition-all shadow-lg shadow-emerald-200">🚀 Ứng Tuyển Ngay</button>
-                  <a href={generateCalendarLink()} target="_blank" rel="noopener noreferrer" className="px-4 py-3 rounded-xl bg-amber-50 text-amber-700 font-semibold text-xs border border-amber-200 hover:bg-amber-100 transition-colors">📅 Gợi Ý Lịch Phỏng Vấn</a>
+                  <button onClick={() => setApplyModalOpen(true)} className="px-6 py-3 rounded-xl bg-accent-light hover:bg-accent text-white font-bold text-sm active:scale-[0.98] transition-all duration-200">Ứng tuyển ngay</button>
+                  <a href={generateCalendarLink()} target="_blank" rel="noopener noreferrer" className="px-4 py-3 rounded-xl bg-amber-50 text-amber-700 font-semibold text-xs border border-amber-200 hover:bg-amber-100 transition-colors">Gợi ý lịch phỏng vấn</a>
                   <div className="flex items-center gap-1">
                     <button onClick={handleCopyLink} className="p-2.5 rounded-xl bg-gray-50 text-gray-500 hover:bg-gray-100" title="Sao chép">{copied ? <IconCheck size={18} className="text-green-500" /> : <IconShare size={18} />}</button>
                     <button onClick={() => window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`, "_blank")} className="p-2.5 rounded-xl bg-blue-50 text-blue-600 hover:bg-blue-100" title="Facebook">
@@ -159,31 +159,31 @@ export default function JobDetailClient({ id }: { id: string }) {
               </div>
 
               <div className="bg-white rounded-2xl border border-gray-100 shadow-md p-6 sm:p-8">
-                <h2 className="text-lg font-bold text-[#08221a] mb-4">📋 Mô Tả Công Việc</h2>
+                <h2 className="text-lg font-bold text-[#08221a] mb-4">Mô Tả Công Việc</h2>
                 <div className="prose prose-sm max-w-none text-gray-700 leading-relaxed whitespace-pre-wrap">{job.description}</div>
               </div>
 
               <div className="bg-white rounded-2xl border border-gray-100 shadow-md p-6 sm:p-8">
-                <h2 className="text-lg font-bold text-[#08221a] mb-4">✅ Yêu Cầu Ứng Viên</h2>
+                <h2 className="text-lg font-bold text-[#08221a] mb-4">Yêu Cầu Ứng Viên</h2>
                 <div className="prose prose-sm max-w-none text-gray-700 leading-relaxed whitespace-pre-wrap">{job.requirements}</div>
               </div>
 
               {job.benefits && (
                 <div className="bg-white rounded-2xl border border-gray-100 shadow-md p-6 sm:p-8">
-                  <h2 className="text-lg font-bold text-[#08221a] mb-4">🎁 Quyền Lợi & Chế Độ</h2>
+                  <h2 className="text-lg font-bold text-[#08221a] mb-4">Quyền Lợi & Chế Độ</h2>
                   <div className="prose prose-sm max-w-none text-gray-700 leading-relaxed whitespace-pre-wrap">{job.benefits}</div>
                 </div>
               )}
 
               {similarJobs.length > 0 && (
                 <div className="bg-white rounded-2xl border border-gray-100 shadow-md p-6 sm:p-8">
-                  <h2 className="text-lg font-bold text-[#08221a] mb-4">🔗 Vị Trí Tương Tự</h2>
+                  <h2 className="text-lg font-bold text-[#08221a] mb-4">Vị Trí Tương Tự</h2>
                   <div className="space-y-3">
                     {similarJobs.map((sj) => (
                       <Link key={sj.id} href={`/careers/${sj.id}`} className="flex items-center justify-between p-4 rounded-xl bg-gray-50 hover:bg-emerald-50 transition-colors group">
                         <div>
                           <h3 className="text-sm font-semibold text-[#08221a] group-hover:text-[#158a63] transition-colors">{sj.title}</h3>
-                          <div className="flex gap-3 text-[11px] text-gray-500 mt-1"><span>💰 {sj.salary}</span><span>📍 {sj.location}</span></div>
+                          <div className="flex gap-3 text-[11px] text-gray-500 mt-1"><span>{sj.salary}</span><span>{sj.location}</span></div>
                         </div>
                         <span className="text-xs text-[#158a63] font-semibold bg-white px-3 py-1 rounded-full border border-emerald-200 group-hover:bg-[#158a63] group-hover:text-white transition-colors">Xem →</span>
                       </Link>
@@ -204,14 +204,14 @@ export default function JobDetailClient({ id }: { id: string }) {
                   <div className="flex items-start gap-2"><IconBuilding size={16} className="text-[#158a63] shrink-0 mt-0.5" /><div><p className="text-[10px] text-gray-400">Địa điểm</p><p className="font-semibold text-[#08221a] text-xs">{job.location}</p></div></div>
                   <div className="flex items-start gap-2"><IconMail size={16} className="text-[#158a63] shrink-0 mt-0.5" /><div><p className="text-[10px] text-gray-400">Email</p><a href={`mailto:${job.contactEmail}`} className="font-semibold text-[#158a63] text-xs hover:underline">{job.contactEmail}</a></div></div>
                   <div className="flex items-start gap-2"><IconPhone size={16} className="text-[#158a63] shrink-0 mt-0.5" /><div><p className="text-[10px] text-gray-400">Điện thoại</p><a href={`tel:${job.contactPhone}`} className="font-semibold text-[#158a63] text-xs hover:underline">{job.contactPhone}</a></div></div>
-                  {job.educationLevel && <div className="flex items-start gap-2"><span className="text-base shrink-0">🎓</span><div><p className="text-[10px] text-gray-400">Trình độ</p><p className="font-semibold text-[#08221a] text-xs">{EDU_LABELS[job.educationLevel] || job.educationLevel}</p></div></div>}
+                  {job.educationLevel && <div className="flex items-start gap-2"><IconSchool size={16} className="text-accent shrink-0 mt-0.5" /><div><p className="text-[10px] text-gray-400">Trình độ</p><p className="font-semibold text-[#08221a] text-xs">{EDU_LABELS[job.educationLevel] || job.educationLevel}</p></div></div>}
                 </div>
                 <hr className="my-4 border-gray-100" />
                 <div className="grid grid-cols-2 gap-3 text-center">
                   <div className="bg-emerald-50 rounded-xl p-3"><div className="text-lg font-black text-[#158a63]">{job.viewCount}</div><div className="text-[10px] text-gray-500">Lượt xem</div></div>
                   <div className="bg-amber-50 rounded-xl p-3"><div className="text-lg font-black text-amber-600">{job.applyCount}</div><div className="text-[10px] text-gray-500">Lượt ứng tuyển</div></div>
                 </div>
-                <button onClick={() => setApplyModalOpen(true)} className="w-full mt-4 py-3 rounded-xl bg-gradient-to-r from-[#158a63] to-[#1fae7d] text-white font-bold text-sm hover:brightness-110 transition-all shadow-lg shadow-emerald-200">🚀 Ứng Tuyển Ngay</button>
+                <button onClick={() => setApplyModalOpen(true)} className="w-full mt-4 py-3 rounded-xl bg-accent-light hover:bg-accent text-white font-bold text-sm active:scale-[0.98] transition-all duration-200">Ứng tuyển ngay</button>
                 <p className="text-[10px] text-gray-400 text-center mt-3">Đăng ngày {formatDate(job.createdAt)} • Hạn nộp: {job.expiresAt ? formatDate(job.expiresAt) : "Đang cập nhật"}</p>
               </div>
             </div>

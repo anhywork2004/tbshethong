@@ -11,21 +11,21 @@ import { fetchJobs, type Job } from "@/lib/api";
 import { IconSearch, IconLoader2, IconMapPin, IconBriefcase } from "@tabler/icons-react";
 
 const CATEGORIES = [
-  { value: "", label: "Tất Cả Ngành Nghề" },
-  { value: "it", label: "💻 Công Nghệ" },
-  { value: "san-xuat", label: "🏭 Sản Xuất" },
-  { value: "qc", label: "🔍 Kiểm Soát Chất Lượng" },
-  { value: "ky-thuat", label: "🔧 Kỹ Thuật" },
-  { value: "hanh-chinh-nhan-su", label: "👥 Hành Chính - Nhân Sự" },
-  { value: "ke-toan", label: "📊 Kế Toán" },
-  { value: "logistics", label: "🚛 Logistics" },
+  { value: "", label: "Tất cả ngành nghề" },
+  { value: "it", label: "Công nghệ" },
+  { value: "san-xuat", label: "Sản xuất" },
+  { value: "qc", label: "Kiểm soát chất lượng" },
+  { value: "ky-thuat", label: "Kỹ thuật" },
+  { value: "hanh-chinh-nhan-su", label: "Hành chính — Nhân sự" },
+  { value: "ke-toan", label: "Kế toán" },
+  { value: "logistics", label: "Logistics" },
 ];
 
 const PROVINCES = [
-  { value: "", label: "Tất Cả Địa Điểm" },
-  { value: "An Giang", label: "📍 An Giang" },
-  { value: "Bình Dương", label: "📍 Bình Dương" },
-  { value: "TP. Hồ Chí Minh", label: "📍 TP. Hồ Chí Minh" },
+  { value: "", label: "Tất cả địa điểm" },
+  { value: "An Giang", label: "An Giang" },
+  { value: "Bình Dương", label: "Bình Dương" },
+  { value: "TP. Hồ Chí Minh", label: "TP. Hồ Chí Minh" },
 ];
 
 export default function CareersPage() {

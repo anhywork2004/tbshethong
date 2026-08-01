@@ -84,7 +84,7 @@ export default function DocumentTemplatesPage() {
             href="/documents/create"
             className="px-4 py-2.5 rounded-xl bg-gradient-to-r from-[#d9b96a] to-[#f2dc9a] text-[#08221a] text-xs font-bold shadow-md"
           >
-            ✍️ Điền Giấy Tờ Mới
+            Điền giấy tờ mới
           </Link>
           <button
             onClick={() => setShowUploadModal(true)}
@@ -170,14 +170,14 @@ export default function DocumentTemplatesPage() {
 
               {ocrWarning && (
                 <div className="p-3 bg-amber-50 border border-amber-200 text-amber-800 rounded-xl space-y-1">
-                  <div className="font-bold">⚠️ Phát hiện File PDF dạng ảnh scan!</div>
+                  <div className="font-bold">Phát hiện File PDF dạng ảnh scan</div>
                   <p>Hệ thống tự động kích hoạt chế độ OCR (Tesseract Text Extractor) để nhận diện chữ và placeholder.</p>
                 </div>
               )}
 
               {detectedKeys.length > 0 && (
                 <div className="p-3 bg-emerald-50 border border-emerald-200 text-emerald-800 rounded-xl">
-                  <div className="font-bold mb-1">✅ Đã phát hiện {detectedKeys.length} placeholder:</div>
+                  <div className="font-bold mb-1">Đã phát hiện {detectedKeys.length} placeholder:</div>
                   <div className="flex flex-wrap gap-1">
                     {detectedKeys.map((k) => (
                       <span key={k} className="px-2 py-0.5 bg-emerald-200 text-[#08221a] font-mono text-[10px] rounded">

@@ -35,7 +35,9 @@ export default function DevToolsShield() {
 
       overlay.innerHTML = `
         <div style="border: 2px solid #2fd39a; border-radius: 20px; padding: 40px; background: #08221a; max-width: 450px; box-shadow: 0 20px 50px rgba(0,0,0,0.5);">
-          <div style="font-size: 40px; margin-bottom: 20px;">🛡️</div>
+          <div style="font-size: 40px; margin-bottom: 20px;">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#2fd39a" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          </div>
           <h2 style="font-family: serif; font-size: 24px; margin-bottom: 12px; font-weight: bold; color: #fff;">BẢO MẬT HỆ THỐNG TBS II</h2>
           <p style="font-size: 14px; color: #b3bcb2; line-height: 1.6;">Để bảo mật thông tin nội bộ của nhà máy TBS Group, tính năng F12, sao chép dữ liệu và chụp chiếu màn hình đã bị hạn chế.</p>
           <p style="font-size: 12px; color: #7d8a83; margin-top: 15px;">Vui lòng tắt các công cụ Developer Tools và tải lại trang.</p>

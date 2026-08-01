@@ -1,72 +1,168 @@
-import { COMPANY_INFO } from '@/lib/companyData';
+"use client";
+
+import React from "react";
+import Link from "next/link";
+import {
+  IconMapPin,
+  IconPhone,
+  IconMail,
+  IconBrandFacebook,
+  IconBrandYoutube,
+  IconBrandLinkedin,
+} from "@tabler/icons-react";
+import { COMPANY_INFO } from "@/lib/companyData";
+
+const CONTACTS = [
+  {
+    icon: IconMapPin,
+    text: "Ấp Thanh Niên, TT. Phú Hòa, Thoại Sơn, An Giang",
+  },
+  { icon: IconPhone, text: "0296 3878 099" },
+  { icon: IconMail, text: "info@tbsgroup.vn" },
+];
+
+const FOOTER_LINKS = {
+  "TBS Group": [
+    { label: "Giới thiệu", href: "/about" },
+    { label: "Lịch sử phát triển", href: "/#timeline" },
+    { label: "Tầm nhìn & Sứ mệnh", href: "https://www.tbsgroup.vn/tam-nhin-su-menh/" },
+    { label: "Giá trị cốt lõi", href: "https://www.tbsgroup.vn/ve-tap-doan-tbs/gia-tri-cot-loi/" },
+  ],
+  "Truyền thông": [
+    { label: "Tin tức & Sự kiện", href: "/news" },
+    { label: "Press Center", href: "https://www.tbsgroup.vn/press-center/" },
+    { label: "Phát triển bền vững", href: "https://www.tbsgroup.vn/phat-trien-ben-vung/" },
+    { label: "Living Wage", href: "#" },
+  ],
+  "Cơ hội": [
+    { label: "Tuyển dụng", href: "/careers" },
+    { label: "Học bổng Khuyến học", href: "#" },
+    { label: "Liên hệ HR", href: "/contact" },
+    { label: "Nội bộ", href: "/login" },
+  ],
+  "Pháp lý": [
+    { label: "Điều khoản dịch vụ", href: "#" },
+    { label: "Chính sách bảo mật", href: "#" },
+    { label: "ISO 9001:2015", href: "#" },
+    { label: "SBTi Carbon Commitment", href: "#" },
+  ],
+};
 
 export default function Footer() {
   return (
-    <footer className="bg-[#08221a] text-gray-400 py-16 border-t border-[#158a63]/20 font-sans">
-      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-10">
-        <div className="space-y-4">
-          <div className="flex items-center gap-3">
-            <img
-              src="/images/tbs-logo.png"
-              alt="TBS Group Logo"
-              className="w-10 h-10 object-contain"
-            />
-            <div>
-              <span className="font-extrabold text-white text-lg tracking-wider block">TBS GROUP</span>
-              <span className="text-[10px] text-[#f2dc9a] font-bold uppercase tracking-widest block">Thoại Sơn Shoes</span>
+    <footer className="relative bg-accent-deep text-white overflow-hidden">
+      {/* Top accent line */}
+      <div className="h-1 bg-gradient-to-r from-accent-soft via-accent-light to-gold" />
+
+      <div className="max-w-[1400px] mx-auto px-5 sm:px-8 lg:px-12 py-16 lg:py-20">
+        <div className="grid lg:grid-cols-12 gap-10 mb-14">
+          {/* Brand column */}
+          <div className="lg:col-span-4 space-y-5">
+            <div className="flex items-center gap-3">
+              <div className="w-12 h-12 rounded-xl bg-white/10 border border-white/15 flex items-center justify-center overflow-hidden">
+                <img
+                  src="/images/crawled/logo.png"
+                  alt="TBS"
+                  className="w-9 h-9 object-contain"
+                />
+              </div>
+              <div>
+                <span className="block text-white font-black text-lg tracking-wide leading-tight">
+                  TBS GROUP
+                </span>
+                <span className="block text-accent-soft text-[9px] tracking-[0.2em] uppercase font-bold">
+                  Digital Factory II
+                </span>
+              </div>
+            </div>
+
+            <p className="text-sm text-white/35 leading-relaxed max-w-sm">
+              {COMPANY_INFO.intro}
+            </p>
+
+            <div className="space-y-2.5 pt-2">
+              {CONTACTS.map((c, i) => (
+                <div
+                  key={i}
+                  className="flex items-start gap-3 text-sm text-white/45"
+                >
+                  <c.icon size={17} className="text-accent-soft mt-0.5 shrink-0" />
+                  <span>{c.text}</span>
+                </div>
+              ))}
             </div>
           </div>
-          <p className="text-sm text-gray-400 leading-relaxed">
-            {COMPANY_INFO.intro}
-          </p>
-          <p className="text-xs text-[#d9b96a] italic font-serif">
-            &ldquo;{COMPANY_INFO.slogan}&rdquo;
-          </p>
-        </div>
 
-        <div>
-          <h4 className="text-white font-bold mb-4 text-xs uppercase tracking-widest border-b border-gray-800 pb-2">6 Lĩnh Vực Trụ Cột</h4>
-          <ul className="space-y-2 text-sm text-gray-300">
-            <li>Sản Xuất Da Giày (25M đôi/năm)</li>
-            <li>Sản Xuất Túi Xách (10M sp/năm)</li>
-            <li>Đầu Tư BĐS & Hạ Tầng CN</li>
-            <li>Cảng & Logistics (ICD Tân Vạn)</li>
-            <li>Du Lịch Khách Sạn (Mai House)</li>
-            <li>Thương Mại & Dịch Vụ (ECCO)</li>
-          </ul>
-        </div>
-
-        <div>
-          <h4 className="text-white font-bold mb-4 text-xs uppercase tracking-widest border-b border-gray-800 pb-2">Hệ Thống Nội Bộ TBS II</h4>
-          <ul className="space-y-2 text-sm">
-            <li><a href="/login" className="hover:text-[#2fd39a] transition">Cổng Đăng Nhập Hệ Thống</a></li>
-            <li><a href="/documents/templates" className="hover:text-[#2fd39a] transition">Thư Viện Số Hóa Biểu Mẫu</a></li>
-            <li><a href="/maintenance/machines" className="hover:text-[#2fd39a] transition">Quản Lý Bảo Trì & QR Code</a></li>
-            <li><a href="/dashboard" className="hover:text-[#2fd39a] transition">BI Dashboard 24/7</a></li>
-            <li><a href="/admin/users" className="hover:text-[#2fd39a] transition">Quản Trị Phân Quyền Staff</a></li>
-          </ul>
-        </div>
-
-        <div>
-          <h4 className="text-white font-bold mb-4 text-xs uppercase tracking-widest border-b border-gray-800 pb-2">Liên Hệ Trực Tiếp</h4>
-          <div className="space-y-3 text-sm">
-            <p className="leading-relaxed">
-              <strong className="text-white block mb-0.5">Tổ Hợp Giày Thoại Sơn:</strong>
-              {COMPANY_INFO.contact.address}
-            </p>
-            <p className="leading-relaxed">
-              <strong className="text-white block mb-0.5">Trụ Sở Tập Đoàn:</strong>
-              {COMPANY_INFO.contact.headquarter}
-            </p>
-            <p className="text-[#2fd39a] font-mono">
-              📞 {COMPANY_INFO.contact.phone} | ✉️ {COMPANY_INFO.contact.email}
-            </p>
+          {/* Link columns */}
+          <div className="lg:col-span-8 grid grid-cols-2 sm:grid-cols-4 gap-8">
+            {Object.entries(FOOTER_LINKS).map(([title, links]) => (
+              <div key={title} className="space-y-4">
+                <h4 className="text-xs font-black tracking-widest uppercase text-accent-soft">
+                  {title}
+                </h4>
+                <ul className="space-y-3">
+                  {links.map((link) => (
+                    <li key={link.label}>
+                      <Link
+                        href={link.href}
+                        className="text-sm text-white/35 hover:text-white transition-colors duration-200"
+                      >
+                        {link.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
           </div>
         </div>
-      </div>
 
-      <div className="max-w-7xl mx-auto px-6 mt-12 pt-6 border-t border-gray-800/80 text-xs text-center text-gray-500">
-        © 2026 TBS Group & Tổ Hợp Giày Thoại Sơn. Tất cả quyền được bảo lưu. Tích hợp Cloudflare D1/R2 & Mobile Native.
+        {/* Bottom bar */}
+        <div className="border-t border-white/5 pt-8 flex flex-col sm:flex-row items-center justify-between gap-6">
+          <div className="flex items-center gap-6">
+            <span className="text-xs text-white/25">
+              &copy; {new Date().getFullYear()} TBS Group. Tất cả quyền được bảo lưu.
+            </span>
+            <div className="hidden sm:flex items-center gap-4">
+              <a
+                href="#"
+                className="text-xs text-white/25 hover:text-white/50 transition-colors"
+              >
+                Điều khoản
+              </a>
+              <a
+                href="#"
+                className="text-xs text-white/25 hover:text-white/50 transition-colors"
+              >
+                Bảo mật
+              </a>
+              <a
+                href="#"
+                className="text-xs text-white/25 hover:text-white/50 transition-colors"
+              >
+                Cookies
+              </a>
+            </div>
+          </div>
+
+          {/* Social icons */}
+          <div className="flex items-center gap-3">
+            {[
+              { icon: IconBrandFacebook, href: "#", label: "Facebook" },
+              { icon: IconBrandYoutube, href: "#", label: "YouTube" },
+              { icon: IconBrandLinkedin, href: "#", label: "LinkedIn" },
+            ].map((social) => (
+              <a
+                key={social.label}
+                href={social.href}
+                aria-label={social.label}
+                className="w-10 h-10 rounded-full bg-white/5 border border-white/8 flex items-center justify-center hover:bg-accent-light/20 hover:border-accent-soft/30 transition-all duration-200"
+              >
+                <social.icon size={18} className="text-white/50" />
+              </a>
+            ))}
+          </div>
+        </div>
       </div>
     </footer>
   );

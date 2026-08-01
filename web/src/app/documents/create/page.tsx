@@ -86,7 +86,7 @@ export default function CreateDocumentPage() {
 
           {generatedSuccess && (
             <div className="p-3 bg-emerald-500/20 border border-emerald-500/40 rounded-xl text-xs text-emerald-300 text-center font-semibold">
-              🎉 Đã xuất và lưu trữ file thành công lên Cloudflare R2!
+              Đã xuất và lưu trữ file thành công lên Cloudflare R2.
             </div>
           )}
         </div>

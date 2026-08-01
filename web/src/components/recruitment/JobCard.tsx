@@ -6,14 +6,14 @@ import { IconMapPin, IconClock, IconUsers, IconArrowRight } from "@tabler/icons-
 import type { Job } from "@/lib/api";
 
 const CATEGORY_LABELS: Record<string, string> = {
-  "it": "💻 Công Nghệ",
-  "san-xuat": "🏭 Sản Xuất",
-  "qc": "🔍 Kiểm Soát Chất Lượng",
-  "ky-thuat": "🔧 Kỹ Thuật",
-  "hanh-chinh-nhan-su": "👥 Hành Chính - Nhân Sự",
-  "ke-toan": "📊 Kế Toán",
-  "logistics": "🚛 Logistics",
-  "kinh-doanh": "💼 Kinh Doanh",
+  "it": "Công nghệ",
+  "san-xuat": "Sản xuất",
+  "qc": "Kiểm soát chất lượng",
+  "ky-thuat": "Kỹ thuật",
+  "hanh-chinh-nhan-su": "Hành chính — Nhân sự",
+  "ke-toan": "Kế toán",
+  "logistics": "Logistics",
+  "kinh-doanh": "Kinh doanh",
 };
 
 const CATEGORY_COLORS: Record<string, string> = {
@@ -47,7 +47,7 @@ export default function JobCard({ job, compact = false }: JobCardProps) {
   const categoryColor = CATEGORY_COLORS[job.category || ""] || "bg-gray-100 text-gray-700";
 
   return (
-    <div className="group bg-white rounded-2xl border border-gray-100 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden flex flex-col">
+    <div className="group bg-surface rounded-2xl border border-border shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 overflow-hidden flex flex-col">
       <div className="p-6 flex-1 flex flex-col">
         {/* Category + Time badges */}
         <div className="flex items-center justify-between mb-3">
@@ -56,28 +56,28 @@ export default function JobCard({ job, compact = false }: JobCardProps) {
               {categoryLabel}
             </span>
           )}
-          <span className="text-[11px] text-gray-400">{timeAgo(job.createdAt)}</span>
+          <span className="text-[11px] text-steel">{timeAgo(job.createdAt)}</span>
         </div>
 
         {/* Title */}
-        <h3 className="text-lg font-bold text-[#08221a] group-hover:text-[#158a63] transition-colors mb-2 line-clamp-2">
+        <h3 className="font-display text-lg font-bold text-ink group-hover:text-accent transition-colors mb-2 line-clamp-2">
           {job.title}
         </h3>
 
         {/* Meta info */}
-        <div className="flex flex-wrap gap-3 text-xs text-gray-500 mb-4">
+        <div className="flex flex-wrap gap-3 text-xs text-steel mb-4">
           <span className="flex items-center gap-1">
-            <IconMapPin size={14} className="text-[#158a63]" />
+            <IconMapPin size={14} className="text-accent" />
             {job.location}
           </span>
           {!compact && (
             <>
               <span className="flex items-center gap-1">
-                <IconUsers size={14} className="text-[#158a63]" />
+                <IconUsers size={14} className="text-accent" />
                 {job.slots} vị trí
               </span>
               <span className="flex items-center gap-1">
-                <IconClock size={14} className="text-[#158a63]" />
+                <IconClock size={14} className="text-accent" />
                 {job.salary}
               </span>
             </>
@@ -86,7 +86,7 @@ export default function JobCard({ job, compact = false }: JobCardProps) {
 
         {/* Description preview */}
         {!compact && (
-          <p className="text-sm text-gray-600 line-clamp-3 mb-4 leading-relaxed">
+          <p className="text-sm text-steel line-clamp-3 mb-4 leading-relaxed">
             {job.description}
           </p>
         )}
@@ -95,13 +95,13 @@ export default function JobCard({ job, compact = false }: JobCardProps) {
         <div className="flex-1" />
 
         {/* Footer actions */}
-        <div className="flex items-center justify-between pt-4 border-t border-gray-50">
-          <span className="text-xs font-medium text-[#158a63]">
+        <div className="flex items-center justify-between pt-4 border-t border-border">
+          <span className="text-xs font-medium text-accent">
             {job._count?.applications ?? job.applyCount} lượt ứng tuyển
           </span>
           <Link
             href={`/careers/${job.id}`}
-            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-[#158a63] text-white text-xs font-semibold hover:bg-[#1fae7d] transition-colors shadow-sm shadow-emerald-200"
+            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-accent text-white text-xs font-semibold hover:bg-accent-light active:scale-[0.98] transition-all duration-200 shadow-sm"
           >
             Xem Chi Tiết
             <IconArrowRight size={14} />

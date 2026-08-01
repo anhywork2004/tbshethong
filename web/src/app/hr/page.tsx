@@ -506,8 +506,8 @@ export default function HRPage() {
                     <IconCheck size={14} /> {excelResult.message}
                   </div>
                   <div className="flex gap-4 text-gray-400">
-                    <span>✅ {excelResult.created} thành công</span>
-                    {excelResult.skipped > 0 && <span>⚠️ {excelResult.skipped} bỏ qua</span>}
+                    <span>{excelResult.created} thành công</span>
+                    {excelResult.skipped > 0 && <span>{excelResult.skipped} bỏ qua</span>}
                   </div>
                   {excelResult.errors?.length > 0 && (
                     <div className="mt-2 space-y-1 max-h-32 overflow-y-auto">
@@ -536,11 +536,11 @@ export default function HRPage() {
 
               {/* Column mapping hint */}
               <details className="text-[10px] text-gray-500">
-                <summary className="cursor-pointer hover:text-gray-300">📋 Các cột được hỗ trợ trong file Excel</summary>
+                <summary className="cursor-pointer hover:text-gray-300">Các cột được hỗ trợ trong file Excel</summary>
                 <div className="mt-2 p-3 rounded-xl bg-[#0b0d0c] border border-gray-800 space-y-1">
                   <p><strong className="text-gray-300">Bắt buộc:</strong> Tiêu đề, Mức lương, Địa điểm, Mô tả, Yêu cầu</p>
                   <p><strong className="text-gray-300">Tùy chọn:</strong> Quyền lợi, Số lượng, Ngành nghề, Trình độ, Tỉnh/TP, Email liên hệ, SĐT liên hệ, Hạn nộp</p>
-                  <p className="text-gray-600 mt-1">💡 Tải file mẫu để xem cấu trúc đúng chuẩn.</p>
+                  <p className="text-gray-600 mt-1">Tải file mẫu để xem cấu trúc đúng chuẩn.</p>
                 </div>
               </details>
             </div>

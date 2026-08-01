@@ -1,55 +1,127 @@
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import Link from "next/link";
+import {
+  IconMapPin,
+  IconPhone,
+  IconMail,
+  IconBuildingFactory,
+} from "@tabler/icons-react";
+import { COMPANY_INFO } from "@/lib/companyData";
+
+const LOCATIONS = [
+  {
+    icon: IconBuildingFactory,
+    title: "Nhà máy TBS Thoại Sơn",
+    address:
+      "Cụm Công Nghiệp Thoại Sơn, Huyện Thoại Sơn, Tỉnh An Giang, Việt Nam",
+  },
+  {
+    icon: IconMapPin,
+    title: "Văn phòng điều hành",
+    address: "Số 5, Đường ĐT 743, Phường An Bình, TP. Dĩ An, Bình Dương",
+  },
+];
 
 export default function ContactPage() {
   return (
-    <div className="min-h-screen flex flex-col bg-[#f9fdfb]">
+    <div className="min-h-screen flex flex-col bg-canvas">
       <Header />
-      <main className="flex-1 py-16 max-w-4xl mx-auto px-6">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-extrabold text-[#08221a]">Liên Hệ Với TBS Group</h1>
-          <p className="text-gray-600 mt-2 text-base">Chúng tôi luôn sẵn sàng hỗ trợ và giải đáp thắc mắc của bạn</p>
-        </div>
 
-        <div className="bg-white p-8 rounded-2xl border border-gray-100 shadow-xl grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div>
-            <h2 className="text-lg font-bold text-[#158a63] mb-4">Trụ Sở & Chi Nhánh</h2>
-            <div className="space-y-4 text-sm text-gray-700">
-              <div>
-                <strong className="block text-[#08221a]">Nhà Máy TBS Thoại Sơn:</strong>
-                <span>Cụm Công Nghiệp Thoại Sơn, Huyện Thoại Sơn, Tỉnh An Giang</span>
-              </div>
-              <div>
-                <strong className="block text-[#08221a]">Văn Phòng Điều Hành:</strong>
-                <span>TP. Hồ Chí Minh & Bình Dương</span>
-              </div>
-              <div>
-                <strong className="block text-[#08221a]">Hotline Hỗ Trợ Kỹ Thuật:</strong>
-                <span className="text-[#158a63] font-bold">1900 888 999</span>
-              </div>
-              <div>
-                <strong className="block text-[#08221a]">Email Liên Hệ:</strong>
-                <span>contact@tbsgroup.vn</span>
-              </div>
+      <main className="flex-1 pt-28 pb-16">
+        <div className="max-w-[1400px] mx-auto px-5 sm:px-8 lg:px-12">
+          {/* Page header */}
+          <div className="max-w-3xl mb-16 space-y-4">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-accent-wash text-accent text-xs font-bold uppercase tracking-wider">
+              Liên hệ
             </div>
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-ink tracking-tight text-display">
+              Liên hệ với TBS Group
+            </h1>
+            <p className="text-steel text-lg leading-relaxed max-w-[55ch]">
+              Chúng tôi luôn sẵn sàng hỗ trợ và giải đáp thắc mắc của bạn.
+            </p>
           </div>
 
-          <div className="bg-[#eef7f2] p-6 rounded-xl border border-emerald-100 flex flex-col justify-between">
-            <div>
-              <h3 className="font-bold text-[#08221a] mb-2">Truy Cập Nhanh Hệ Thống Nội Bộ</h3>
-              <p className="text-xs text-gray-600 leading-relaxed mb-6">
-                Đối với cán bộ công nhân viên TBS Group, vui lòng đăng nhập tài khoản nội bộ để số hóa biểu mẫu hoặc tải app mobile sửa chữa máy hỏng.
-              </p>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {/* Locations */}
+            <div className="lg:col-span-2 space-y-6">
+              {LOCATIONS.map((loc, idx) => {
+                const Icon = loc.icon;
+                return (
+                  <div
+                    key={idx}
+                    className="bg-surface rounded-3xl p-8 border border-border shadow-sm"
+                  >
+                    <div className="flex items-start gap-4">
+                      <div className="w-12 h-12 rounded-2xl bg-accent-wash text-accent flex items-center justify-center shrink-0">
+                        <Icon size={24} />
+                      </div>
+                      <div>
+                        <h3 className="font-bold text-ink text-lg text-display mb-1">
+                          {loc.title}
+                        </h3>
+                        <p className="text-steel text-sm leading-relaxed">
+                          {loc.address}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+
+              {/* Contact info */}
+              <div className="bg-surface rounded-3xl p-8 border border-border shadow-sm">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <div className="flex items-start gap-3">
+                    <IconPhone size={20} className="text-accent mt-0.5 shrink-0" />
+                    <div>
+                      <div className="text-xs font-bold text-muted uppercase tracking-wider mb-1">
+                        Điện thoại
+                      </div>
+                      <div className="text-ink font-semibold">
+                        {COMPANY_INFO.contact.phone}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <IconMail size={20} className="text-accent mt-0.5 shrink-0" />
+                    <div>
+                      <div className="text-xs font-bold text-muted uppercase tracking-wider mb-1">
+                        Email
+                      </div>
+                      <div className="text-ink font-semibold">
+                        {COMPANY_INFO.contact.email}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <a
-              href="/login"
-              className="w-full py-3 rounded-lg bg-[#158a63] text-white font-bold text-center text-sm hover:bg-[#1fae7d] transition block"
-            >
-              Đăng Nhập Cổng Nội Bộ
-            </a>
+
+            {/* Internal system CTA */}
+            <div className="bg-accent-deep rounded-3xl p-8 text-white flex flex-col justify-between">
+              <div>
+                <h3 className="text-xl font-black text-display mb-3">
+                  Truy cập hệ thống nội bộ
+                </h3>
+                <p className="text-white/45 text-sm leading-relaxed mb-8">
+                  Đối với cán bộ công nhân viên TBS Group, vui lòng đăng nhập
+                  tài khoản nội bộ để số hóa biểu mẫu hoặc tải app mobile sửa
+                  chữa máy hỏng.
+                </p>
+              </div>
+              <Link
+                href="/login"
+                className="w-full text-center py-3.5 rounded-xl bg-accent-light hover:bg-accent-soft text-white font-bold text-sm transition-colors duration-200 active:scale-[0.98]"
+              >
+                Đăng nhập cổng nội bộ
+              </Link>
+            </div>
           </div>
         </div>
       </main>
+
       <Footer />
     </div>
   );

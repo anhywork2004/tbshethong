@@ -22,7 +22,7 @@ export default function MachinesPage() {
 
         <div className="flex gap-3">
           <button className="px-4 py-2.5 rounded-xl bg-white border border-gray-200 text-xs font-bold text-[#08221a] hover:bg-gray-50 shadow-sm">
-            📥 Import Từ Excel
+            Import từ Excel
           </button>
           <button className="px-4 py-2.5 rounded-xl bg-[#158a63] text-white text-xs font-bold hover:bg-[#1fae7d] transition shadow-md">
             + Thêm Thiết Bị Mới
@@ -59,7 +59,7 @@ export default function MachinesPage() {
                     onClick={() => setSelectedQR(m.qrData)}
                     className="px-3 py-1 bg-emerald-100 text-[#158a63] font-bold rounded-lg hover:bg-emerald-200"
                   >
-                    🔍 Xem Mã QR
+                    Xem mã QR
                   </button>
                 </td>
               </tr>

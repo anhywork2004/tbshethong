@@ -1,60 +1,82 @@
-import Link from 'next/link';
+"use client";
 
-export default function AdminLayout({ children }: { children: React.ReactNode }) {
+import Link from "next/link";
+import {
+  IconUsers,
+  IconShield,
+  IconBuilding,
+  IconFileText,
+  IconChartBar,
+} from "@tabler/icons-react";
+
+export default function AdminLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
-    <div className="min-h-screen flex bg-[#f9fdfb]">
-      {/* ADMIN SIDEBAR */}
-      <aside className="w-64 bg-[#08221a] text-white p-6 border-r border-[#158a63]/20 flex flex-col justify-between">
+    <div className="min-h-screen flex bg-canvas">
+      {/* Admin sidebar */}
+      <aside className="w-64 bg-accent-deep text-white p-6 border-r border-accent/15 flex flex-col justify-between">
         <div>
           <div className="flex items-center gap-3 mb-8">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#158a63] to-[#2fd39a] flex items-center justify-center font-bold text-[#08221a]">
+            <div className="w-10 h-10 rounded-xl bg-accent-light flex items-center justify-center font-bold text-white">
               TBS
             </div>
             <div>
-              <div className="font-bold text-sm text-[#f2dc9a]">ADMIN PANEL</div>
-              <div className="text-[11px] text-gray-400">Quản Trị RBAC & Hệ Thống</div>
+              <div className="font-bold text-sm text-gold-light">
+                ADMIN PANEL
+              </div>
+              <div className="text-[11px] text-white/30">
+                Quản trị RBAC & Hệ thống
+              </div>
             </div>
           </div>
 
           <nav className="space-y-1 text-sm font-medium">
             <Link
               href="/admin/users"
-              className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-[#0f4133] transition text-gray-200 hover:text-white"
+              className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-accent-mid transition text-white/65 hover:text-white"
             >
-              <span>👥</span> Quản Lý Nhân Viên
+              <IconUsers size={18} />
+              Quản lý nhân viên
             </Link>
             <Link
               href="/admin/roles"
-              className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-[#0f4133] transition text-gray-200 hover:text-white"
+              className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-accent-mid transition text-white/65 hover:text-white"
             >
-              <span>🛡️</span> Vai Trò (Roles)
+              <IconShield size={18} />
+              Vai trò (Roles)
             </Link>
             <Link
               href="/admin/departments"
-              className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-[#0f4133] transition text-gray-200 hover:text-white"
+              className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-accent-mid transition text-white/65 hover:text-white"
             >
-              <span>🏢</span> Phòng Ban
+              <IconBuilding size={18} />
+              Phòng ban
             </Link>
 
-            <div className="pt-4 mt-4 border-t border-gray-800 text-xs text-gray-400 font-semibold uppercase tracking-wider px-4">
-              Phân Hệ Khác
+            <div className="pt-4 mt-4 border-t border-white/8 text-xs text-white/25 font-semibold uppercase tracking-wider px-4">
+              Phân hệ khác
             </div>
             <Link
               href="/documents/templates"
-              className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-[#0f4133] transition text-gray-200 hover:text-white"
+              className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-accent-mid transition text-white/65 hover:text-white"
             >
-              <span>📄</span> Số Hóa Giấy Tờ
+              <IconFileText size={18} />
+              Số hóa giấy tờ
             </Link>
             <Link
               href="/dashboard"
-              className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-[#0f4133] transition text-gray-200 hover:text-white"
+              className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-accent-mid transition text-white/65 hover:text-white"
             >
-              <span>📊</span> BI Dashboard
+              <IconChartBar size={18} />
+              BI Dashboard
             </Link>
           </nav>
         </div>
 
-        <div className="pt-6 border-t border-gray-800 flex items-center justify-between text-xs text-gray-400">
+        <div className="pt-6 border-t border-white/8 flex items-center justify-between text-xs text-white/25">
           <span>TBS Group v1.0</span>
           <Link href="/login" className="text-red-400 hover:underline">
             Đăng xuất
@@ -62,7 +84,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         </div>
       </aside>
 
-      {/* MAIN CONTENT AREA */}
+      {/* Main content */}
       <main className="flex-1 p-10 overflow-y-auto">{children}</main>
     </div>
   );

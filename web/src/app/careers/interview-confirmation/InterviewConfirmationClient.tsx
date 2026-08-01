@@ -69,7 +69,9 @@ export default function InterviewConfirmationClient() {
         <Header />
         <main className="flex-1 flex items-center justify-center">
           <div className="bg-white rounded-2xl border border-gray-100 shadow-xl p-8 max-w-md mx-4 w-full text-center">
-            <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-emerald-100 flex items-center justify-center text-3xl">🔐</div>
+            <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-emerald-100 flex items-center justify-center">
+              <IconCheck size={32} className="text-accent" />
+            </div>
             <h1 className="text-xl font-bold text-[#08221a] mb-2">Xác Nhận Danh Tính</h1>
             <p className="text-sm text-gray-500 mb-6">Nhập email bạn đã dùng khi ứng tuyển để xem thông tin hồ sơ</p>
             <input type="email" value={lookupEmail} onChange={(e) => setLookupEmail(e.target.value)} onKeyDown={(e) => { if (e.key === "Enter") loadApplication(); }} placeholder="nguyenvana@gmail.com" className="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-[#158a63] mb-3 text-center" autoFocus />
@@ -99,17 +101,17 @@ export default function InterviewConfirmationClient() {
       <main className="flex-1 max-w-2xl mx-auto px-6 py-12 w-full">
         <div className="text-center mb-8">
           <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-emerald-100 flex items-center justify-center"><IconCheck size={40} className="text-[#158a63]" /></div>
-          <h1 className="text-2xl font-black text-[#08221a] mb-2">🎉 Hồ Sơ Đã Được Gửi Thành Công!</h1>
+          <h1 className="text-2xl font-black text-[#08221a] mb-2">Hồ sơ đã được gửi thành công</h1>
           <p className="text-sm text-gray-500">Cảm ơn bạn đã ứng tuyển vào TBS Group. Dưới đây là thông tin hồ sơ của bạn.</p>
         </div>
 
         <div className="bg-white rounded-2xl border border-gray-100 shadow-md p-6 sm:p-8 mb-6">
-          <h2 className="text-sm font-bold text-gray-500 uppercase tracking-wider mb-4">📋 Thông Tin Hồ Sơ</h2>
+          <h2 className="text-sm font-bold text-gray-500 uppercase tracking-wider mb-4">Thông tin hồ sơ</h2>
           <div className="space-y-3 text-sm">
             <div className="flex justify-between py-2 border-b border-gray-50"><span className="text-gray-500">Mã hồ sơ</span><code className="text-[#158a63] font-mono text-xs bg-emerald-50 px-2 py-0.5 rounded">{application.id}</code></div>
             <div className="flex justify-between py-2 border-b border-gray-50"><span className="text-gray-500">Họ tên</span><span className="font-semibold text-[#08221a]">{application.fullName}</span></div>
             <div className="flex justify-between py-2 border-b border-gray-50"><span className="text-gray-500">Vị trí</span><span className="font-semibold text-[#08221a] text-right ml-4">{application.job?.title}</span></div>
-            <div className="flex justify-between py-2 border-b border-gray-50"><span className="text-gray-500">Trạng thái</span><span className="inline-block px-3 py-0.5 rounded-full text-xs font-bold bg-blue-50 text-blue-600">📨 Đã Gửi</span></div>
+            <div className="flex justify-between py-2 border-b border-gray-50"><span className="text-gray-500">Trạng thái</span><span className="inline-block px-3 py-0.5 rounded-full text-xs font-bold bg-blue-50 text-blue-600">Đã gửi</span></div>
             <div className="flex justify-between py-2"><span className="text-gray-500">Ngày nộp</span><span className="text-[#08221a]">{new Date(application.createdAt).toLocaleDateString("vi-VN", { weekday: "long", year: "numeric", month: "long", day: "numeric", hour: "2-digit", minute: "2-digit" })}</span></div>
           </div>
         </div>
@@ -117,18 +119,18 @@ export default function InterviewConfirmationClient() {
         <div className="bg-white rounded-2xl border border-gray-100 shadow-md p-6 sm:p-8 mb-6">
           <h2 className="text-lg font-bold text-[#08221a] mb-4">⏳ Điều Gì Sẽ Xảy Ra Tiếp Theo?</h2>
           <div className="space-y-4">
-            {[{ step: 1, title: "Xem Xét Hồ Sơ", desc: "HR sẽ xem xét CV trong 3-5 ngày làm việc", icon: "🔍" }, { step: 2, title: "Liên Hệ Phỏng Vấn", desc: "HR sẽ liên hệ để sắp xếp lịch phỏng vấn", icon: "📞" }, { step: 3, title: "Phỏng Vấn", desc: "Tham gia phỏng vấn trực tiếp hoặc online", icon: "🤝" }, { step: 4, title: "Kết Quả", desc: "Nhận thông báo kết quả trong vòng 7 ngày", icon: "📬" }].map((item) => (
-              <div key={item.step} className="flex items-start gap-3"><div className="w-8 h-8 rounded-full bg-emerald-100 flex items-center justify-center text-sm shrink-0">{item.icon}</div><div><h3 className="font-semibold text-[#08221a] text-sm">{item.title}</h3><p className="text-xs text-gray-500">{item.desc}</p></div></div>
+            {[{ step: 1, title: "Xem xét hồ sơ", desc: "HR sẽ xem xét CV trong 3-5 ngày làm việc" }, { step: 2, title: "Liên hệ phỏng vấn", desc: "HR sẽ liên hệ để sắp xếp lịch phỏng vấn" }, { step: 3, title: "Phỏng vấn", desc: "Tham gia phỏng vấn trực tiếp hoặc online" }, { step: 4, title: "Kết quả", desc: "Nhận thông báo kết quả trong vòng 7 ngày" }].map((item) => (
+              <div key={item.step} className="flex items-start gap-3"><div className="w-8 h-8 rounded-full bg-emerald-100 flex items-center justify-center text-sm shrink-0 font-bold text-accent">{item.step}</div><div><h3 className="font-semibold text-[#08221a] text-sm">{item.title}</h3><p className="text-xs text-gray-500">{item.desc}</p></div></div>
             ))}
           </div>
         </div>
 
         {!application.interview && !scheduled && (
           <div className="bg-white rounded-2xl border border-gray-100 shadow-md p-6 sm:p-8 mb-6">
-            <h2 className="text-lg font-bold text-[#08221a] mb-4">📅 Bạn Muốn Chủ Động Đặt Lịch?</h2>
+            <h2 className="text-lg font-bold text-[#08221a] mb-4">Bạn muốn chủ động đặt lịch?</h2>
             <p className="text-sm text-gray-600 mb-4">Bạn có thể chọn ngay một khung giờ phỏng vấn phù hợp.</p>
             {!showSlots ? (
-              <button onClick={handleLoadSlots} className="px-6 py-3 rounded-xl bg-amber-500 text-white font-bold text-sm hover:bg-amber-600 transition-colors">📅 Xem Lịch Trống</button>
+              <button onClick={handleLoadSlots} className="px-6 py-3 rounded-xl bg-amber-500 text-white font-bold text-sm hover:bg-amber-600 transition-colors">Xem lịch trống</button>
             ) : (
               <div className="space-y-4">
                 <div className="space-y-4 max-h-80 overflow-y-auto">
@@ -138,7 +140,7 @@ export default function InterviewConfirmationClient() {
                     ))}
                 </div>
                 {scheduleError && <div className="p-3 rounded-xl bg-red-50 text-red-600 text-xs text-center">{scheduleError}</div>}
-                <button onClick={handleSchedule} disabled={!selectedSlot || scheduling} className="w-full py-3 rounded-xl bg-[#158a63] text-white font-bold text-sm hover:bg-[#1fae7d] transition-colors disabled:opacity-50">{scheduling ? "Đang đặt lịch..." : "✅ Xác Nhận Đặt Lịch"}</button>
+                <button onClick={handleSchedule} disabled={!selectedSlot || scheduling} className="w-full py-3 rounded-xl bg-[#158a63] text-white font-bold text-sm hover:bg-[#1fae7d] transition-colors disabled:opacity-50">{scheduling ? "Đang đặt lịch..." : "Xác nhận đặt lịch"}</button>
               </div>
             )}
           </div>
@@ -149,7 +151,7 @@ export default function InterviewConfirmationClient() {
         )}
 
         <div className="flex flex-wrap gap-3 justify-center">
-          <Link href="/careers/tracker" className="px-6 py-3 rounded-xl bg-[#158a63] text-white font-bold text-sm hover:bg-[#1fae7d] transition-colors">📊 Theo Dõi Hồ Sơ</Link>
+          <Link href="/careers/tracker" className="px-6 py-3 rounded-xl bg-[#158a63] text-white font-bold text-sm hover:bg-[#1fae7d] transition-colors">Theo dõi hồ sơ</Link>
           <Link href="/careers" className="px-6 py-3 rounded-xl bg-gray-100 text-gray-700 font-bold text-sm hover:bg-gray-200 transition-colors">Xem Thêm Vị Trí</Link>
         </div>
         <div className="text-center mt-8">

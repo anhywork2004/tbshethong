@@ -33,7 +33,7 @@ const SUGGESTED_QUESTIONS = [
 const INITIAL_MESSAGE: ChatMessage = {
   role: "assistant",
   content:
-    "Chào bạn! 👋 Tôi là trợ lý tuyển dụng AI của **TBS Group**. Tôi có thể giúp bạn:\n\n✅ Tìm hiểu về các vị trí đang tuyển\n✅ Giải đáp về quy trình ứng tuyển\n✅ Thông tin về TBS Group và môi trường làm việc\n\nHãy đặt câu hỏi hoặc chọn một gợi ý bên dưới nhé!",
+    "Xin chào! Tôi là trợ lý tuyển dụng AI của TBS Group. Tôi có thể giúp bạn:\n\n- Tìm hiểu về các vị trí đang tuyển\n- Giải đáp về quy trình ứng tuyển\n- Thông tin về TBS Group và môi trường làm việc\n\nHãy đặt câu hỏi hoặc chọn một gợi ý bên dưới nhé!",
 };
 
 export default function AIChatBubble() {
@@ -111,10 +111,10 @@ export default function AIChatBubble() {
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="fixed bottom-6 right-6 z-[90] w-14 h-14 rounded-full bg-gradient-to-br from-[#158a63] to-[#2fd39a] text-white shadow-2xl shadow-emerald-500/30 flex items-center justify-center hover:scale-110 active:scale-95 transition-all duration-200 animate-pulse-subtle"
+          className="fixed bottom-6 right-6 z-[90] w-14 h-14 rounded-2xl bg-accent text-white shadow-lg shadow-accent/20 flex items-center justify-center hover:scale-105 hover:bg-accent-light active:scale-95 transition-all duration-200 animate-float"
           aria-label="Mở trợ lý AI tuyển dụng"
         >
-          <IconRobot size={28} />
+          <IconRobot size={26} strokeWidth={1.5} />
         </button>
       )}
 
@@ -122,14 +122,14 @@ export default function AIChatBubble() {
       {isOpen && (
         <div className="fixed bottom-6 right-6 z-[90] w-[380px] h-[540px] bg-white rounded-2xl shadow-2xl border border-gray-100 flex flex-col overflow-hidden">
           {/* Header */}
-          <div className="flex items-center justify-between px-4 py-3 bg-gradient-to-r from-[#08221a] to-[#0f4133] text-white shrink-0">
+          <div className="flex items-center justify-between px-4 py-3 bg-accent-deep text-white shrink-0">
             <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-lg bg-emerald-500/20 flex items-center justify-center">
-                <IconRobot size={20} className="text-[#2fd39a]" />
+              <div className="w-8 h-8 rounded-xl bg-accent/20 flex items-center justify-center">
+                <IconRobot size={20} className="text-accent-soft" strokeWidth={1.5} />
               </div>
               <div>
-                <h3 className="text-sm font-bold">TBS Tuyển Dụng AI</h3>
-                <p className="text-[10px] text-emerald-300">Trợ lý ảo • Luôn sẵn sàng</p>
+                <h3 className="text-sm font-bold font-display">TBS Tuyển Dụng AI</h3>
+                <p className="text-[10px] text-accent-soft/70">Trợ lý ảo</p>
               </div>
             </div>
             <div className="flex items-center gap-1">
@@ -185,7 +185,7 @@ export default function AIChatBubble() {
             {/* Suggested questions — only show when empty */}
             {messages.length <= 1 && (
               <div className="space-y-2 pt-2">
-                <p className="text-[10px] text-gray-400 text-center mb-2">💡 Gợi ý câu hỏi</p>
+                <p className="text-[10px] text-gray-400 text-center mb-2">Gợi ý câu hỏi</p>
                 {SUGGESTED_QUESTIONS.map((q, i) => (
                   <button
                     key={i}
@@ -202,7 +202,7 @@ export default function AIChatBubble() {
           </div>
 
           {/* Input */}
-          <div className="px-4 py-3 border-t border-gray-100 bg-white shrink-0">
+          <div className="px-4 py-3 border-t border-border bg-white shrink-0">
             <div className="flex items-center gap-2">
               <input
                 ref={inputRef}
@@ -212,20 +212,20 @@ export default function AIChatBubble() {
                 onKeyDown={handleKeyDown}
                 disabled={isTyping}
                 placeholder="Nhập câu hỏi của bạn..."
-                className="flex-1 px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-[#158a63] disabled:bg-gray-50 transition-all"
+                className="flex-1 px-4 py-2.5 rounded-xl border border-border text-sm focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent-wash disabled:bg-canvas transition-all"
               />
               <button
                 onClick={() => send(input)}
                 disabled={!input.trim() || isTyping}
-                className="p-2.5 rounded-xl bg-[#158a63] text-white hover:bg-[#1fae7d] transition-colors disabled:opacity-40 disabled:cursor-not-allowed shrink-0"
+                className="p-2.5 rounded-xl bg-accent text-white hover:bg-accent-light active:scale-95 transition-all disabled:opacity-40 disabled:cursor-not-allowed shrink-0"
                 aria-label="Gửi"
               >
-                {isTyping ? <IconLoader2 size={18} className="animate-spin" /> : <IconSend size={18} />}
+                {isTyping ? <IconLoader2 size={18} className="animate-spin" /> : <IconSend size={18} strokeWidth={1.5} />}
               </button>
             </div>
-            <p className="text-[10px] text-gray-400 text-center mt-1.5">
-              Trợ lý AI • Có thể có sai sót •{" "}
-              <a href="mailto:tuyendungdaotaovp2@tbsgroup.vn" className="text-[#158a63] hover:underline">
+            <p className="text-[10px] text-muted text-center mt-1.5">
+              Trợ lý AI - Có thể có sai sót -{" "}
+              <a href="mailto:tuyendungdaotaovp2@tbsgroup.vn" className="text-accent hover:underline">
                 Liên hệ HR
               </a>
             </p>

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useRef, useCallback } from "react";
-import { IconUpload, IconFile, IconX, IconArrowLeft, IconArrowRight, IconCheck, IconLoader2 } from "@tabler/icons-react";
+import { IconUpload, IconFile, IconX, IconArrowLeft, IconArrowRight, IconCheck, IconLoader2, IconAlertTriangle } from "@tabler/icons-react";
 import { uploadCV, applyToJob } from "@/lib/api";
 
 interface ApplyFormData {
@@ -354,7 +354,7 @@ export default function ApplyModal({ jobId, jobTitle, isOpen, onClose, onSuccess
         {/* Error */}
         {error && (
           <div className="mx-6 mb-2 p-3 rounded-xl bg-red-50 border border-red-200 text-red-600 text-xs text-center">
-            ⚠️ {error}
+            <IconAlertTriangle size={16} className="inline mr-1 shrink-0" /> {error}
           </div>
         )}
 

@@ -21,11 +21,11 @@ import {
 } from "@tabler/icons-react";
 
 const STATUS_CONFIG: Record<string, { label: string; color: string; bg: string; icon: string }> = {
-  SUBMITTED: { label: "Đã Gửi", color: "text-blue-600", bg: "bg-blue-50 border-blue-200", icon: "📨" },
-  REVIEWING: { label: "Đang Xem Xét", color: "text-amber-600", bg: "bg-amber-50 border-amber-200", icon: "🔍" },
-  INTERVIEW_SCHEDULED: { label: "Đã Lên Lịch Phỏng Vấn", color: "text-purple-600", bg: "bg-purple-50 border-purple-200", icon: "📅" },
-  ACCEPTED: { label: "Trúng Tuyển", color: "text-green-600", bg: "bg-green-50 border-green-200", icon: "🎉" },
-  REJECTED: { label: "Chưa Phù Hợp", color: "text-red-600", bg: "bg-red-50 border-red-200", icon: "🙏" },
+  SUBMITTED: { label: "Đã gửi", color: "text-blue-600", bg: "bg-blue-50 border-blue-200", icon: "IconSend" },
+  REVIEWING: { label: "Đang xem xét", color: "text-amber-600", bg: "bg-amber-50 border-amber-200", icon: "IconSearch" },
+  INTERVIEW_SCHEDULED: { label: "Đã lên lịch phỏng vấn", color: "text-purple-600", bg: "bg-purple-50 border-purple-200", icon: "IconCalendar" },
+  ACCEPTED: { label: "Trúng tuyển", color: "text-green-600", bg: "bg-green-50 border-green-200", icon: "IconConfetti" },
+  REJECTED: { label: "Chưa phù hợp", color: "text-red-600", bg: "bg-red-50 border-red-200", icon: "IconX" },
 };
 
 const DAY_LABELS: Record<number, string> = {
@@ -164,7 +164,7 @@ export default function TrackerPage() {
               </div>
               {error && (
                 <div className="p-3 rounded-xl bg-red-50 border border-red-200 text-red-600 text-xs text-center">
-                  ⚠️ {error}
+                  {error}
                 </div>
               )}
               <button
@@ -222,7 +222,7 @@ export default function TrackerPage() {
             {/* Interview Info */}
             {application.interview && (
               <div className="bg-white rounded-2xl border border-gray-100 shadow-md p-6 sm:p-8">
-                <h2 className="text-lg font-bold text-[#08221a] mb-4">📅 Lịch Phỏng Vấn Của Bạn</h2>
+                <h2 className="text-lg font-bold text-[#08221a] mb-4">Lịch phỏng vấn của bạn</h2>
                 <div className="bg-emerald-50 rounded-xl p-4 space-y-3">
                   <div className="flex items-center gap-2">
                     <IconCalendar size={18} className="text-[#158a63]" />
@@ -251,10 +251,10 @@ export default function TrackerPage() {
                       ? "bg-amber-100 text-amber-700"
                       : "bg-gray-100 text-gray-600"
                   }`}>
-                    {application.interview.status === "CONFIRMED" ? "✅ Đã Xác Nhận" :
-                     application.interview.status === "PENDING" ? "⏳ Chờ Xác Nhận" :
-                     application.interview.status === "CANCELLED" ? "❌ Đã Hủy" :
-                     application.interview.status === "RESCHEDULED" ? "🔄 Đang Đổi Lịch" :
+                    {application.interview.status === "CONFIRMED" ? "Đã xác nhận" :
+                     application.interview.status === "PENDING" ? "Chờ xác nhận" :
+                     application.interview.status === "CANCELLED" ? "Đã hủy" :
+                     application.interview.status === "RESCHEDULED" ? "Đang đổi lịch" :
                      application.interview.status}
                   </div>
                 </div>
@@ -267,13 +267,13 @@ export default function TrackerPage() {
                       disabled={confirming}
                       className="flex-1 py-2.5 rounded-xl bg-[#158a63] text-white text-sm font-semibold hover:bg-[#1fae7d] transition-colors disabled:opacity-50"
                     >
-                      {confirming ? "Đang xác nhận..." : "✅ Xác Nhận Lịch"}
+                      {confirming ? "Đang xác nhận..." : "Xác nhận lịch"}
                     </button>
                     <button
                       onClick={handleViewSlots}
                       className="flex-1 py-2.5 rounded-xl bg-amber-100 text-amber-700 text-sm font-semibold hover:bg-amber-200 transition-colors"
                     >
-                      🔄 Đổi Lịch Khác
+                      Đổi lịch khác
                     </button>
                   </div>
                 )}
@@ -283,7 +283,7 @@ export default function TrackerPage() {
             {/* Schedule Interview (if not yet scheduled) */}
             {!application.interview && application.status === "SUBMITTED" && (
               <div className="bg-white rounded-2xl border border-gray-100 shadow-md p-6 sm:p-8">
-                <h2 className="text-lg font-bold text-[#08221a] mb-4">📅 Đặt Lịch Phỏng Vấn</h2>
+                <h2 className="text-lg font-bold text-[#08221a] mb-4">Đặt lịch phỏng vấn</h2>
                 <p className="text-sm text-gray-600 mb-4">
                   Bạn có thể chủ động đặt lịch phỏng vấn. HR sẽ xác nhận lại thời gian phù hợp.
                 </p>
@@ -293,13 +293,13 @@ export default function TrackerPage() {
                     onClick={handleViewSlots}
                     className="px-6 py-3 rounded-xl bg-[#158a63] text-white font-bold text-sm hover:bg-[#1fae7d] transition-colors"
                   >
-                    📅 Xem Lịch Trống & Đặt Hẹn
+                    Xem lịch trống & đặt hẹn
                   </button>
                 ) : (
                   <div className="space-y-4">
                     {scheduleSuccess ? (
                       <div className="p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-700 text-sm text-center">
-                        ✅ Đặt lịch phỏng vấn thành công! HR sẽ xác nhận trong thời gian sớm nhất.
+                        Đặt lịch phỏng vấn thành công. HR sẽ xác nhận trong thời gian sớm nhất.
                       </div>
                     ) : (
                       <>
@@ -346,7 +346,7 @@ export default function TrackerPage() {
                           disabled={!selectedSlot || scheduling}
                           className="w-full py-3 rounded-xl bg-[#158a63] text-white font-bold text-sm hover:bg-[#1fae7d] transition-colors disabled:opacity-50"
                         >
-                          {scheduling ? "Đang đặt lịch..." : "✅ Xác Nhận Đặt Lịch"}
+                          {scheduling ? "Đang đặt lịch..." : "Xác nhận đặt lịch"}
                         </button>
                       </>
                     )}
