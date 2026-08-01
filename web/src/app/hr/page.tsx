@@ -1,17 +1,23 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { 
-  IconUser, 
-  IconBriefcase, 
-  IconFileText, 
-  IconPlus, 
-  IconTrash, 
+import {
+  IconUser,
+  IconBriefcase,
+  IconFileText,
+  IconPlus,
+  IconTrash,
   IconDownload,
   IconArrowLeft,
   IconLock,
   IconPhone,
-  IconMail
+  IconMail,
+  IconUpload,
+  IconFileSpreadsheet,
+  IconCheck,
+  IconX,
+  IconLoader2,
+  IconAlertTriangle,
 } from "@tabler/icons-react";
 
 export default function HRPage() {
@@ -31,6 +37,12 @@ export default function HRPage() {
   const [jobDesc, setJobDesc] = useState("");
   const [jobReqs, setJobReqs] = useState("");
   const [formMsg, setFormMsg] = useState("");
+
+  // Excel upload states
+  const [excelFile, setExcelFile] = useState<File | null>(null);
+  const [excelUploading, setExcelUploading] = useState(false);
+  const [excelResult, setExcelResult] = useState<any>(null);
+  const [excelError, setExcelError] = useState("");
 
   // Authenticate user & load initial stats
   useEffect(() => {
@@ -123,6 +135,57 @@ export default function HRPage() {
       }
     } catch (err) {
       setFormMsg("Lỗi kết nối mạng.");
+    }
+  };
+
+  const handleExcelUpload = async () => {
+    if (!excelFile || !token) return;
+    setExcelUploading(true);
+    setExcelError("");
+    setExcelResult(null);
+
+    try {
+      const formData = new FormData();
+      formData.append("file", excelFile);
+
+      const res = await fetch("http://localhost:8000/api/recruitment/hr/jobs/upload-excel", {
+        method: "POST",
+        headers: { Authorization: `Bearer ${token}` },
+        body: formData,
+      });
+
+      const data = await res.json();
+      if (res.ok) {
+        setExcelResult(data);
+        setExcelFile(null);
+        fetchHRData(); // Refresh job list
+      } else {
+        setExcelError(data.error || "Upload thất bại");
+      }
+    } catch {
+      setExcelError("Lỗi kết nối mạng");
+    } finally {
+      setExcelUploading(false);
+    }
+  };
+
+  const downloadTemplate = async () => {
+    if (!token) return;
+    try {
+      const res = await fetch("http://localhost:8000/api/recruitment/hr/jobs/template", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      if (res.ok) {
+        const blob = await res.blob();
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "TBS_TuyenDung_Mau.xlsx";
+        a.click();
+        window.URL.revokeObjectURL(url);
+      }
+    } catch {
+      setExcelError("Không thể tải file mẫu");
     }
   };
 
@@ -364,6 +427,122 @@ export default function HRPage() {
                   Đăng Tin Lên Cổng Tuyển Dụng
                 </button>
               </form>
+            </div>
+
+            {/* Excel Bulk Upload Panel */}
+            <div className="bg-[#121614]/80 backdrop-blur-md border border-[#2fd39a1a] rounded-3xl p-6 sm:p-8 space-y-4">
+              <div>
+                <h2 className="text-lg font-serif font-bold text-white flex items-center gap-2">
+                  <IconFileSpreadsheet className="text-[#2fd39a]" size={20} /> Upload Excel Tuyển Dụng Hàng Loạt
+                </h2>
+                <p className="text-xs text-gray-400 mt-1">
+                  Tải file Excel (.xlsx) chứa danh sách vị trí cần đăng. Mỗi dòng là 1 tin tuyển dụng.
+                </p>
+              </div>
+
+              {/* Download template */}
+              <button
+                onClick={downloadTemplate}
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#1fae7d11] border border-[#2fd39a22] text-[#2fd39a] text-xs font-semibold hover:bg-[#1fae7d22] transition-all"
+              >
+                <IconDownload size={14} /> Tải File Excel Mẫu
+              </button>
+
+              {/* File input */}
+              <div className="relative">
+                <input
+                  type="file"
+                  accept=".xlsx,.xls"
+                  onChange={(e) => {
+                    const f = e.target.files?.[0];
+                    if (f) {
+                      if (f.size > 5 * 1024 * 1024) {
+                        setExcelError("File vượt quá 5MB");
+                        return;
+                      }
+                      setExcelFile(f);
+                      setExcelError("");
+                      setExcelResult(null);
+                    }
+                  }}
+                  className="hidden"
+                  id="excel-upload"
+                />
+                <label
+                  htmlFor="excel-upload"
+                  className={`flex flex-col items-center gap-2 p-6 rounded-2xl border-2 border-dashed cursor-pointer transition-all ${
+                    excelFile
+                      ? "border-[#2fd39a] bg-[#1fae7d11]"
+                      : "border-gray-700 hover:border-[#2fd39a44] bg-[#0b0d0c]/40"
+                  }`}
+                >
+                  {excelFile ? (
+                    <>
+                      <IconFileSpreadsheet size={32} className="text-[#2fd39a]" />
+                      <span className="text-[#2fd39a] text-sm font-semibold">{excelFile.name}</span>
+                      <span className="text-gray-500 text-[10px]">{(excelFile.size / 1024).toFixed(1)} KB</span>
+                    </>
+                  ) : (
+                    <>
+                      <IconUpload size={32} className="text-gray-500" />
+                      <span className="text-gray-400 text-sm">Kéo thả hoặc click chọn file Excel</span>
+                      <span className="text-gray-600 text-[10px]">.xlsx, .xls — tối đa 5MB</span>
+                    </>
+                  )}
+                </label>
+              </div>
+
+              {/* Error */}
+              {excelError && (
+                <div className="flex items-center gap-2 p-3 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 text-xs">
+                  <IconAlertTriangle size={14} /> {excelError}
+                </div>
+              )}
+
+              {/* Result */}
+              {excelResult && (
+                <div className={`p-4 rounded-xl text-xs space-y-2 ${excelResult.errors?.length > 0 ? "bg-amber-500/10 border border-amber-500/20 text-amber-300" : "bg-[#1fae7d11] border border-[#2fd39a22] text-[#2fd39a]"}`}>
+                  <div className="flex items-center gap-2 font-bold">
+                    <IconCheck size={14} /> {excelResult.message}
+                  </div>
+                  <div className="flex gap-4 text-gray-400">
+                    <span>✅ {excelResult.created} thành công</span>
+                    {excelResult.skipped > 0 && <span>⚠️ {excelResult.skipped} bỏ qua</span>}
+                  </div>
+                  {excelResult.errors?.length > 0 && (
+                    <div className="mt-2 space-y-1 max-h-32 overflow-y-auto">
+                      {excelResult.errors.map((e: any, i: number) => (
+                        <div key={i} className="text-red-400 flex items-start gap-1.5">
+                          <IconX size={12} className="mt-0.5 shrink-0" /> {e.reason || e.row}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {/* Upload button */}
+              <button
+                onClick={handleExcelUpload}
+                disabled={!excelFile || excelUploading}
+                className="w-full bg-gradient-to-r from-gr2 to-gr3 hover:from-gr hover:to-gr2 text-dk font-bold py-3 rounded-xl text-xs tracking-wider uppercase transition-all active:scale-95 disabled:opacity-30 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+              >
+                {excelUploading ? (
+                  <><IconLoader2 size={14} className="animate-spin" /> Đang xử lý...</>
+                ) : (
+                  <><IconUpload size={14} /> Upload & Tạo Tin Tuyển Dụng</>
+                )}
+              </button>
+
+              {/* Column mapping hint */}
+              <details className="text-[10px] text-gray-500">
+                <summary className="cursor-pointer hover:text-gray-300">📋 Các cột được hỗ trợ trong file Excel</summary>
+                <div className="mt-2 p-3 rounded-xl bg-[#0b0d0c] border border-gray-800 space-y-1">
+                  <p><strong className="text-gray-300">Bắt buộc:</strong> Tiêu đề, Mức lương, Địa điểm, Mô tả, Yêu cầu</p>
+                  <p><strong className="text-gray-300">Tùy chọn:</strong> Quyền lợi, Số lượng, Ngành nghề, Trình độ, Tỉnh/TP, Email liên hệ, SĐT liên hệ, Hạn nộp</p>
+                  <p className="text-gray-600 mt-1">💡 Tải file mẫu để xem cấu trúc đúng chuẩn.</p>
+                </div>
+              </details>
             </div>
 
             {/* Manage Jobs Vacancies Panel */}

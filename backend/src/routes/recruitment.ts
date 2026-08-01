@@ -777,4 +777,286 @@ router.patch("/hr/interviews/:id", authenticateToken as any, requireHR as any, a
   }
 });
 
+// ============================================================
+// A8. HR: Upload Excel file to bulk-create jobs
+// ============================================================
+import * as XLSX from "xlsx";
+
+// Separate multer config for Excel upload
+const excelUpload = multer({
+  storage: multer.memoryStorage(),
+  limits: { fileSize: 5 * 1024 * 1024 }, // 5MB
+  fileFilter: (req, file, cb) => {
+    const allowed = [".xlsx", ".xls"];
+    const ext = path.extname(file.originalname).toLowerCase();
+    if (allowed.includes(ext)) {
+      cb(null, true);
+    } else {
+      cb(new Error("Chỉ chấp nhận file Excel (.xlsx hoặc .xls)"));
+    }
+  },
+});
+
+// Column mapping: Excel header (Vietnamese) → Job field
+const COLUMN_MAP: Record<string, string> = {
+  "tiêu đề": "title",
+  "tieu de": "title",
+  "vị trí": "title",
+  "vi tri": "title",
+  "chức danh": "title",
+  "chuc danh": "title",
+  "mức lương": "salary",
+  "muc luong": "salary",
+  "lương": "salary",
+  "luong": "salary",
+  "địa điểm": "location",
+  "dia diem": "location",
+  "nơi làm việc": "location",
+  "noi lam viec": "location",
+  "mô tả": "description",
+  "mo ta": "description",
+  "mô tả công việc": "description",
+  "mo ta cong viec": "description",
+  "yêu cầu": "requirements",
+  "yeu cau": "requirements",
+  "yêu cầu ứng viên": "requirements",
+  "yeu cau ung vien": "requirements",
+  "quyền lợi": "benefits",
+  "quyen loi": "benefits",
+  "phúc lợi": "benefits",
+  "phuc loi": "benefits",
+  "chế độ": "benefits",
+  "che do": "benefits",
+  "số lượng": "slots",
+  "so luong": "slots",
+  "slots": "slots",
+  "ngành nghề": "category",
+  "nganh nghe": "category",
+  "lĩnh vực": "category",
+  "linh vuc": "category",
+  "trình độ": "educationLevel",
+  "trinh do": "educationLevel",
+  "học vấn": "educationLevel",
+  "hoc van": "educationLevel",
+  "bằng cấp": "educationLevel",
+  "bang cap": "educationLevel",
+  "tỉnh": "province",
+  "tinh": "province",
+  "tỉnh/tp": "province",
+  "tinh/tp": "province",
+  "thành phố": "province",
+  "thanh pho": "province",
+  "địa chỉ": "province",
+  "dia chi": "province",
+  "email": "contactEmail",
+  "email liên hệ": "contactEmail",
+  "email lien he": "contactEmail",
+  "số điện thoại": "contactPhone",
+  "so dien thoai": "contactPhone",
+  "sđt": "contactPhone",
+  "sdt": "contactPhone",
+  "điện thoại": "contactPhone",
+  "dien thoai": "contactPhone",
+  "hạn nộp": "expiresAt",
+  "han nop": "expiresAt",
+  "ngày hết hạn": "expiresAt",
+  "ngay het han": "expiresAt",
+  "deadline": "expiresAt",
+};
+
+function normalizeHeader(header: string): string {
+  return header
+    .trim()
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[̀-ͯ]/g, ""); // Remove Vietnamese diacritics
+}
+
+function mapRow(row: Record<string, string>): any {
+  const job: any = {};
+  const missingFields: string[] = [];
+
+  for (const [header, value] of Object.entries(row)) {
+    const normalized = normalizeHeader(header);
+    const field = COLUMN_MAP[normalized];
+
+    if (field && value && String(value).trim()) {
+      const trimmedValue = String(value).trim();
+
+      if (field === "slots") {
+        job[field] = parseInt(trimmedValue) || 1;
+      } else if (field === "expiresAt") {
+        // Try to parse as date
+        const parsed = new Date(trimmedValue);
+        if (!isNaN(parsed.getTime())) {
+          job[field] = parsed;
+        }
+        // If invalid date, just use the string
+      } else {
+        job[field] = trimmedValue;
+      }
+    }
+  }
+
+  // Set defaults
+  if (!job.slots) job.slots = 1;
+  if (!job.contactEmail) job.contactEmail = "tuyendungdaotaovp2@tbsgroup.vn";
+  if (!job.contactPhone) job.contactPhone = "0905 359 017 (Miss Lịch)";
+
+  return job;
+}
+
+router.post(
+  "/hr/jobs/upload-excel",
+  authenticateToken as any,
+  requireHR as any,
+  (req: AuthenticatedRequest, res: Response, next: any) => {
+    excelUpload.single("file")(req, res, (err) => {
+      if (err) {
+        if (err.message.includes("Chỉ chấp nhận")) {
+          return res.status(400).json({ error: err.message });
+        }
+        return res.status(400).json({ error: "Lỗi khi tải file lên" });
+      }
+      next();
+    });
+  },
+  async (req: AuthenticatedRequest, res: Response) => {
+    if (!req.file) {
+      return res.status(400).json({ error: "Vui lòng chọn file Excel để tải lên" });
+    }
+
+    try {
+      // Parse Excel from buffer
+      const workbook = XLSX.read(req.file.buffer, { type: "buffer" });
+      const sheetName = workbook.SheetNames[0];
+      if (!sheetName) {
+        return res.status(400).json({ error: "File Excel không có sheet dữ liệu nào" });
+      }
+
+      const sheet = workbook.Sheets[sheetName];
+      const rows = XLSX.utils.sheet_to_json<Record<string, string>>(sheet, { defval: "" });
+
+      if (rows.length === 0) {
+        return res.status(400).json({ error: "File Excel không có dữ liệu. Vui lòng kiểm tra lại." });
+      }
+
+      const results = {
+        total: rows.length,
+        created: 0,
+        skipped: 0,
+        errors: [] as { row: number; reason: string }[],
+        jobs: [] as any[],
+      };
+
+      for (let i = 0; i < rows.length; i++) {
+        const row = rows[i];
+        const jobData = mapRow(row);
+
+        // Validate required fields
+        if (!jobData.title || !jobData.title.trim()) {
+          results.errors.push({ row: i + 2, reason: `Dòng ${i + 2}: Thiếu tiêu đề công việc` });
+          results.skipped++;
+          continue;
+        }
+
+        if (!jobData.salary || !jobData.salary.trim()) {
+          results.errors.push({ row: i + 2, reason: `Dòng ${i + 2}: Thiếu mức lương` });
+          results.skipped++;
+          continue;
+        }
+
+        if (!jobData.location || !jobData.location.trim()) {
+          results.errors.push({ row: i + 2, reason: `Dòng ${i + 2}: Thiếu địa điểm làm việc` });
+          results.skipped++;
+          continue;
+        }
+
+        if (!jobData.description || !jobData.description.trim()) {
+          results.errors.push({ row: i + 2, reason: `Dòng ${i + 2}: Thiếu mô tả công việc` });
+          results.skipped++;
+          continue;
+        }
+
+        if (!jobData.requirements || !jobData.requirements.trim()) {
+          results.errors.push({ row: i + 2, reason: `Dòng ${i + 2}: Thiếu yêu cầu ứng viên` });
+          results.skipped++;
+          continue;
+        }
+
+        try {
+          const job = await prisma.job.create({ data: jobData });
+          results.jobs.push({ id: job.id, title: job.title });
+          results.created++;
+        } catch (createErr: any) {
+          results.errors.push({ row: i + 2, reason: `Dòng ${i + 2}: ${createErr.message}` });
+          results.skipped++;
+        }
+      }
+
+      return res.json({
+        success: true,
+        message: `Đã tạo ${results.created}/${results.total} tin tuyển dụng thành công${results.skipped > 0 ? ` (${results.skipped} dòng bị bỏ qua)` : ""}`,
+        ...results,
+      });
+    } catch (error: any) {
+      console.error("Excel upload error:", error);
+      return res.status(500).json({ error: "Không thể xử lý file Excel. Vui lòng kiểm tra định dạng file." });
+    }
+  }
+);
+
+// ============================================================
+// A9. HR: Download Excel template
+// ============================================================
+router.get("/hr/jobs/template", authenticateToken as any, requireHR as any, (req: AuthenticatedRequest, res: Response) => {
+  // Create a template workbook
+  const wb = XLSX.utils.book_new();
+
+  const templateData = [
+    {
+      "Tiêu đề": "Nhân Viên Lập Trình Số",
+      "Mức lương": "14.000.000 - 15.000.000 VND",
+      "Địa điểm": "TBS Zone 2, TP. Hồ Chí Minh",
+      "Mô tả": "Tham gia xây dựng hệ thống quy trình sản xuất thông minh TBS II...",
+      "Yêu cầu": "- Thành thạo HTML, CSS, JavaScript\n- Có kiến thức về C#",
+      "Quyền lợi": "- Thu nhập cạnh tranh\n- BHXH, BHYT, BHTN\n- Đào tạo nâng cao",
+      "Số lượng": "2",
+      "Ngành nghề": "it",
+      "Trình độ": "cao-dang",
+      "Tỉnh/TP": "TP. Hồ Chí Minh",
+      "Email liên hệ": "tuyendungdaotaovp2@tbsgroup.vn",
+      "SĐT liên hệ": "0905 359 017 (Miss Lịch)",
+      "Hạn nộp": "2026-12-31",
+    },
+  ];
+
+  const ws = XLSX.utils.json_to_sheet(templateData);
+
+  // Set column widths
+  ws["!cols"] = [
+    { wch: 35 }, // Tiêu đề
+    { wch: 25 }, // Mức lương
+    { wch: 35 }, // Địa điểm
+    { wch: 50 }, // Mô tả
+    { wch: 40 }, // Yêu cầu
+    { wch: 40 }, // Quyền lợi
+    { wch: 10 }, // Số lượng
+    { wch: 20 }, // Ngành nghề
+    { wch: 15 }, // Trình độ
+    { wch: 20 }, // Tỉnh/TP
+    { wch: 30 }, // Email
+    { wch: 25 }, // SĐT
+    { wch: 15 }, // Hạn nộp
+  ];
+
+  XLSX.utils.book_append_sheet(wb, ws, "Tin tuyển dụng");
+
+  const buffer = XLSX.write(wb, { type: "buffer", bookType: "xlsx" });
+
+  res.setHeader("Content-Type", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+  res.setHeader("Content-Disposition", "attachment; filename=TBS_TuyenDung_Mau.xlsx");
+  res.send(buffer);
+});
+
 export default router;
