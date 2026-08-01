@@ -2,7 +2,7 @@
 
 @theme inline {
   --font-sans: var(--font-sans);
-  --font-display: var(--font-display);
+  --font-display: var(--font-sans);
 
   /* TBS Brand Palette — Muted Industrial, Controlled Saturation */
 

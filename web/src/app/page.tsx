@@ -59,149 +59,69 @@ export default function HomePage() {
       <Header />
 
       <main className="flex-1">
-        {/* ═══════ HERO — Asymmetric Split Screen ═══════ */}
+        {/* HERO — Split with real factory photo */}
         <section className="relative min-h-[100dvh] flex items-center bg-accent-deep text-white overflow-hidden">
-          {/* Background layers */}
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-accent-soft/15 via-transparent to-transparent pointer-events-none" />
-          <div className="absolute top-1/4 left-1/3 w-[500px] h-[500px] rounded-full bg-accent/8 blur-[120px]" />
-          <div
-            className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] rounded-full bg-gold/5 blur-[100px]"
-            style={{ animationDelay: "1.5s" }}
-          />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-accent-soft/10 via-transparent to-transparent pointer-events-none" />
 
           <div className="relative z-10 w-full max-w-[1400px] mx-auto px-5 sm:px-8 lg:px-12 pt-28 pb-16 lg:pt-32 lg:pb-24">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
               {/* Left: Content */}
-              <div className="lg:col-span-7 space-y-6">
-                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-accent-light/15 text-accent-soft text-xs font-bold uppercase tracking-widest border border-accent-soft/20 backdrop-blur">
-                  <span className="relative flex h-2 w-2">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-soft opacity-75" />
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-accent-soft" />
-                  </span>
+              <div className="lg:col-span-6 space-y-6">
+                <p className="text-accent-soft text-xs font-bold uppercase tracking-[0.18em]">
                   {COMPANY_INFO.subTitle}
-                </div>
+                </p>
 
                 <h1 className="text-display text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.08]">
                   {COMPANY_INFO.shortName}
-                  <span className="block mt-3 font-sans font-normal text-xl sm:text-2xl lg:text-3xl bg-gradient-to-r from-gold-light via-gold to-gold-wash bg-clip-text text-transparent italic">
-                    &ldquo;{COMPANY_INFO.slogan}&rdquo;
+                  <span className="block mt-3 text-2xl sm:text-3xl lg:text-4xl text-white/60 font-light italic leading-tight">
+                    {COMPANY_INFO.slogan}
                   </span>
                 </h1>
 
-                <p className="text-white/55 text-base sm:text-lg leading-relaxed max-w-[60ch]">
+                <p className="text-white/50 text-base sm:text-lg leading-relaxed max-w-[60ch]">
                   {COMPANY_INFO.intro}
                 </p>
 
-                {/* Single primary CTA */}
-                <div className="pt-2">
+                <div className="flex flex-wrap gap-4 pt-2">
                   <Link
                     href="/login"
-                    className="inline-flex items-center gap-2.5 bg-gradient-to-r from-gold to-gold-light text-accent-deep font-extrabold px-8 py-4 rounded-full text-sm tracking-wider uppercase shadow-xl shadow-amber-500/10 hover:brightness-110 active:scale-[0.97] transition-all duration-200"
+                    className="inline-flex items-center gap-2.5 bg-white text-accent-deep font-bold px-7 py-3.5 rounded-xl text-sm tracking-wide hover:bg-accent-soft hover:text-white active:scale-[0.98] transition-all duration-200"
                   >
                     Truy cập hệ thống nội bộ
-                    <IconArrowRight
-                      size={18}
-                      className="group-hover:translate-x-1 transition-transform"
-                    />
+                    <IconArrowRight size={18} />
                   </Link>
+                  <a
+                    href="#sectors"
+                    className="inline-flex items-center gap-2.5 text-white/60 font-semibold px-7 py-3.5 rounded-xl text-sm hover:text-white hover:bg-white/5 transition-all duration-200"
+                  >
+                    Khám phá TBS Group
+                  </a>
                 </div>
               </div>
 
-              {/* Right: Live Dashboard Widget */}
-              <div className="lg:col-span-5">
-                <div className="relative rounded-3xl bg-accent-deep/80 p-6 sm:p-8 border border-accent-soft/25 shadow-2xl shadow-accent-deep/90 backdrop-blur-2xl">
-                  {/* Window chrome */}
-                  <div className="flex items-center justify-between border-b border-white/8 pb-4 mb-6">
-                    <div className="flex items-center gap-2">
-                      <div className="w-3 h-3 rounded-full bg-red-500/80" />
-                      <div className="w-3 h-3 rounded-full bg-amber-400/80" />
-                      <div className="w-3 h-3 rounded-full bg-accent-soft/80" />
-                      <span className="text-xs text-white/30 font-mono ml-2">
-                        tbshethong.workers.dev
-                      </span>
-                    </div>
-                    <span className="px-3 py-1 rounded-full text-[10px] font-black tracking-widest bg-accent-soft text-white uppercase shadow-md shadow-accent-soft/20">
-                      Live 24/7
-                    </span>
-                  </div>
-
-                  <div className="space-y-4">
-                    <div className="bg-accent-mid/70 p-4 rounded-2xl border border-accent-soft/15">
-                      <div className="text-xs text-white/50 font-medium">
-                        Sản lượng Nhà máy Thoại Sơn hôm nay
-                      </div>
-                      <div className="text-3xl font-extrabold text-accent-soft mt-1 font-mono tabular-nums">
-                        32,840
-                      </div>
-                      <div className="text-[11px] text-accent-soft/70 mt-0.5">
-                        +14.2% so với tiến độ kế hoạch
-                      </div>
-                    </div>
-
-                    <div className="grid grid-cols-2 gap-4">
-                      <div className="bg-accent-mid/50 p-4 rounded-2xl border border-accent-soft/10">
-                        <div className="text-xs text-white/40">
-                          Tỷ lệ máy hoạt động
-                        </div>
-                        <div className="text-2xl font-bold text-gold-light mt-1 font-mono tabular-nums">
-                          98.7%
-                        </div>
-                        <div className="text-[10px] text-amber-300/70">
-                          2 máy đang sửa chữa
-                        </div>
-                      </div>
-                      <div className="bg-accent-mid/50 p-4 rounded-2xl border border-accent-soft/10">
-                        <div className="text-xs text-white/40">
-                          Chuyền đang vận hành
-                        </div>
-                        <div className="text-2xl font-bold text-accent-soft mt-1 font-mono tabular-nums">
-                          33
-                        </div>
-                        <div className="text-[10px] text-accent-soft/70">
-                          Toàn bộ công suất
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="bg-accent-mid/35 p-4 rounded-2xl border border-white/5">
-                      <div className="text-xs font-bold text-white/60 mb-2">
-                        Nhật ký bảo trì gần đây
-                      </div>
-                      <div className="flex items-center justify-between text-xs py-1.5 border-b border-white/5">
-                        <span className="text-accent-soft font-mono">
-                          #TK-8895 (Máy May Lập Trình TS-01)
-                        </span>
-                        <span className="px-2 py-0.5 rounded text-[10px] font-semibold bg-amber-500/15 text-amber-300">
-                          Đang xử lý
-                        </span>
-                      </div>
-                      <div className="flex items-center justify-between text-xs py-1.5">
-                        <span className="text-accent-soft font-mono">
-                          #TK-8894 (Máy Cắt Chuyền B2)
-                        </span>
-                        <span className="px-2 py-0.5 rounded text-[10px] font-semibold bg-accent-soft/15 text-accent-soft">
-                          Hoàn thành
-                        </span>
-                      </div>
-                    </div>
-                  </div>
+              {/* Right: Real factory photo — no fake dashboard */}
+              <div className="lg:col-span-6">
+                <div className="relative rounded-3xl overflow-hidden aspect-[4/3] bg-accent-mid">
+                  <img
+                    src="https://www.tbsgroup.vn/wp-content/uploads/2014/12/TBS-GROUP_team_1836-x-765-2.jpg"
+                    alt="TBS Group — Tổ hợp nhà máy Thoại Sơn"
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-accent-deep/40 via-transparent to-transparent" />
                 </div>
               </div>
             </div>
 
-            {/* Stats bar */}
+            {/* Stats bar — clean, no glass */}
             <div className="mt-16 lg:mt-20">
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 p-6 rounded-3xl bg-accent-deep/60 border border-accent-soft/15 backdrop-blur-xl">
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-1 sm:gap-3">
                 {COMPANY_STATS.map((stat, idx) => (
-                  <div key={idx} className="text-center p-3">
-                    <div className="text-2xl lg:text-3xl font-black text-accent-soft font-mono tabular-nums">
+                  <div key={idx} className="text-center p-4">
+                    <div className="text-2xl lg:text-3xl font-black text-white font-mono tabular-nums">
                       {stat.value}
                     </div>
-                    <div className="text-xs font-bold text-white uppercase tracking-wider mt-1">
+                    <div className="text-xs font-semibold text-white/60 uppercase tracking-wider mt-1">
                       {stat.label}
-                    </div>
-                    <div className="text-[11px] text-white/35 mt-1 line-clamp-2 leading-tight">
-                      {stat.description}
                     </div>
                   </div>
                 ))}
@@ -391,29 +311,16 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* ═══════ CAREERS CTA — Split Screen ═══════ */}
-        <section className="relative py-24 lg:py-32 overflow-hidden">
-          <div className="absolute inset-0 bg-accent-deep" />
-          <div
-            className="absolute inset-0 bg-cover bg-center opacity-8"
-            style={{
-              backgroundImage:
-                "url('https://www.tbsgroup.vn/wp-content/uploads/2014/12/TBS-GROUP_team_1836-x-765-2.jpg')",
-            }}
-          />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full bg-accent/8 blur-[120px]" />
-
+        {/* CAREERS CTA */}
+        <section className="relative py-24 lg:py-32 bg-accent-deep overflow-hidden">
           <div className="relative z-10 max-w-[1400px] mx-auto px-5 sm:px-8 lg:px-12">
             <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
               <div className="lg:col-span-7 space-y-6">
-                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-gold/25 bg-gold/8 text-gold-light text-xs font-bold uppercase tracking-widest">
+                <p className="text-accent-soft text-xs font-bold uppercase tracking-[0.18em]">
                   Cơ hội sự nghiệp
-                </div>
+                </p>
                 <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight text-display">
-                  Gia nhập{" "}
-                  <span className="bg-gradient-to-r from-gold-light to-gold bg-clip-text text-transparent">
-                    TBS Group
-                  </span>
+                  Gia nhập TBS Group
                 </h2>
                 <p className="text-white/50 text-base lg:text-lg leading-relaxed max-w-[55ch]">
                   Trở thành một phần của tập đoàn đa ngành hàng đầu Việt Nam. Làm
@@ -423,33 +330,14 @@ export default function HomePage() {
 
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
                   {[
-                    {
-                      icon: IconUsers,
-                      title: "51,200 nhân sự",
-                      desc: "Môi trường chuyên nghiệp, đa dạng và hòa nhập",
-                    },
-                    {
-                      icon: IconChartBar,
-                      title: "Đào tạo & Phát triển",
-                      desc: "Lộ trình thăng tiến rõ ràng, đào tạo kỹ năng",
-                    },
-                    {
-                      icon: IconBuildingStore,
-                      title: "Phúc lợi toàn diện",
-                      desc: "Living Wage, bảo hiểm, học bổng cho con em CBCNV",
-                    },
+                    { icon: IconUsers, title: "51,200 nhân sự", desc: "Môi trường chuyên nghiệp, đa dạng" },
+                    { icon: IconChartBar, title: "Đào tạo & Phát triển", desc: "Lộ trình thăng tiến rõ ràng" },
+                    { icon: IconBuildingStore, title: "Phúc lợi toàn diện", desc: "Living Wage, bảo hiểm, học bổng" },
                   ].map((b, i) => (
-                    <div
-                      key={i}
-                      className="bg-white/5 backdrop-blur rounded-2xl p-5 border border-white/8 hover:bg-white/8 transition-colors duration-200"
-                    >
-                      <b.icon size={28} className="text-gold-light mb-3" />
-                      <h4 className="font-bold text-white text-sm mb-1">
-                        {b.title}
-                      </h4>
-                      <p className="text-xs text-white/35 leading-relaxed">
-                        {b.desc}
-                      </p>
+                    <div key={i} className="bg-white/[0.03] rounded-2xl p-5 hover:bg-white/[0.06] transition-colors duration-200">
+                      <b.icon size={24} strokeWidth={1.5} className="text-white/50 mb-3" />
+                      <h4 className="font-bold text-white text-sm mb-1">{b.title}</h4>
+                      <p className="text-xs text-white/35 leading-relaxed">{b.desc}</p>
                     </div>
                   ))}
                 </div>
@@ -457,7 +345,7 @@ export default function HomePage() {
                 <div className="pt-2">
                   <Link
                     href="/careers"
-                    className="inline-flex items-center gap-2.5 bg-gradient-to-r from-gold to-gold-light text-accent-deep font-extrabold px-8 py-4 rounded-full text-sm tracking-wider uppercase shadow-xl shadow-amber-500/10 hover:brightness-110 active:scale-[0.97] transition-all duration-200"
+                    className="inline-flex items-center gap-2.5 bg-white text-accent-deep font-bold px-7 py-3.5 rounded-xl text-sm hover:bg-accent-soft hover:text-white active:scale-[0.98] transition-all duration-200"
                   >
                     Xem vị trí tuyển dụng
                     <IconArrowRight size={18} />
@@ -465,7 +353,7 @@ export default function HomePage() {
                 </div>
               </div>
 
-              {/* Stats visual */}
+              {/* Stats */}
               <div className="lg:col-span-5">
                 <div className="grid grid-cols-2 gap-4">
                   {[
@@ -474,16 +362,11 @@ export default function HomePage() {
                     { value: "24.7M", label: "Đôi giày mỗi năm" },
                     { value: "70M€", label: "Đầu tư năng lượng sạch" },
                   ].map((s, i) => (
-                    <div
-                      key={i}
-                      className="bg-white/5 backdrop-blur rounded-3xl p-6 border border-white/8 text-center hover:bg-white/8 transition-colors duration-200"
-                    >
-                      <span className="block text-2xl sm:text-3xl font-black text-accent-soft font-mono tabular-nums mb-1">
+                    <div key={i} className="bg-white/[0.03] rounded-2xl p-6 text-center hover:bg-white/[0.06] transition-colors duration-200">
+                      <span className="block text-2xl sm:text-3xl font-black text-white font-mono tabular-nums mb-1">
                         {s.value}
                       </span>
-                      <span className="text-[11px] text-white/35 font-medium">
-                        {s.label}
-                      </span>
+                      <span className="text-[11px] text-white/40 font-medium">{s.label}</span>
                     </div>
                   ))}
                 </div>

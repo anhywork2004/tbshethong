@@ -1,14 +1,7 @@
 import type { Metadata } from "next";
-import { Outfit, Be_Vietnam_Pro } from "next/font/google";
+import { Be_Vietnam_Pro } from "next/font/google";
 import "./globals.css";
 import DevToolsShield from "@/components/DevToolsShield";
-
-const outfit = Outfit({
-  variable: "--font-display",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800", "900"],
-  display: "swap",
-});
 
 const vietnamPro = Be_Vietnam_Pro({
   variable: "--font-sans",
@@ -39,7 +32,7 @@ export default function RootLayout({
   return (
     <html
       lang="vi"
-      className={`${vietnamPro.variable} ${outfit.variable} h-full antialiased`}
+      className={`${vietnamPro.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col font-sans bg-canvas text-ink">
         <DevToolsShield />
