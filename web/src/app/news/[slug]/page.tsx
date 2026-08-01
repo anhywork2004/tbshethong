@@ -1,7 +1,9 @@
 import React from "react";
 import Link from "next/link";
 import { Navbar, Footer } from "@/components/home";
-import { IconCalendar, IconEye, IconArrowLeft, IconExternalLink, IconTag } from "@tabler/icons-react";
+import { IconCalendar, IconEye, IconArrowLeft } from "@tabler/icons-react";
+
+export const dynamicParams = false;
 
 export async function generateStaticParams() {
   return [
