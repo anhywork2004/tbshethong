@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useRef, useEffect, useState } from "react";
+import Link from "next/link";
 import { IconArrowRight, IconBuildingFactory, IconBackpack, IconBuildingSkyscraper, IconShip, IconBuildingStore } from "@tabler/icons-react";
 
 const BUSINESSES = [
@@ -12,6 +13,7 @@ const BUSINESSES = [
     color: "emerald",
     image: "/images/crawled/Da-giay1.jpg",
     stats: { value: "21M+", label: "Đôi giày/năm" },
+    newsCategory: "san-xuat-cong-nghiep",
   },
   {
     title: "Sản Xuất Túi Xách",
@@ -21,6 +23,7 @@ const BUSINESSES = [
     color: "violet",
     image: "/images/crawled/Tui-xach1.jpg",
     stats: { value: "10M+", label: "Túi xách/năm" },
+    newsCategory: "san-xuat-cong-nghiep",
   },
   {
     title: "Bất Động Sản & Hạ Tầng",
@@ -30,6 +33,7 @@ const BUSINESSES = [
     color: "amber",
     image: "/images/crawled/03_INVESTMENT_ASSET_MANAGEMENT.jpg",
     stats: { value: "2.75", label: "Tỷ VND/căn hộ" },
+    newsCategory: "tin-tap-doan",
   },
   {
     title: "Cảng & Logistics",
@@ -39,6 +43,7 @@ const BUSINESSES = [
     color: "blue",
     image: "/images/crawled/04_LOGISTICS.jpg",
     stats: { value: "220K", label: "m² kho bãi" },
+    newsCategory: "tin-tap-doan",
   },
   {
     title: "Du Lịch & Khách Sạn",
@@ -48,6 +53,7 @@ const BUSINESSES = [
     color: "rose",
     image: "/images/crawled/05.webp",
     stats: { value: "15", label: "Năm golf" },
+    newsCategory: "tin-tap-doan",
   },
 ];
 
@@ -156,9 +162,12 @@ export default function BusinessUnits() {
                     </h3>
                     <p className="text-sm text-gray-500 leading-relaxed">{biz.desc}</p>
                     <div className="pt-2">
-                      <span className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-600 hover:text-emerald-700 cursor-pointer">
-                        Tìm hiểu thêm <IconArrowRight size={14} />
-                      </span>
+                      <Link
+                        href={`/news?category=${biz.newsCategory}`}
+                        className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-600 hover:text-emerald-700 transition-colors"
+                      >
+                        Tin tức liên quan <IconArrowRight size={14} />
+                      </Link>
                     </div>
                   </div>
                 </div>

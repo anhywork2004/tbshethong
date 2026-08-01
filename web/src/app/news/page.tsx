@@ -42,7 +42,14 @@ export default function NewsPage() {
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [total, setTotal] = useState(0);
-  const [categorySlug, setCategorySlug] = useState("");
+
+  // Read ?category= from URL on mount
+  const getInitialCategory = () => {
+    if (typeof window === "undefined") return "";
+    const params = new URLSearchParams(window.location.search);
+    return params.get("category") || "";
+  };
+  const [categorySlug, setCategorySlug] = useState(getInitialCategory);
   const [search, setSearch] = useState("");
   const [searchInput, setSearchInput] = useState("");
 
