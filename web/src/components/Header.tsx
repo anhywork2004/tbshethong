@@ -61,21 +61,17 @@ export default function Header() {
           : 'bg-[#08221a]/75 border-[#2fd39a]/20 backdrop-blur-xl shadow-xl shadow-emerald-950/40'
       }`}>
         {/* Brand Logo */}
-        <Link href="/" className="flex items-center gap-3 group">
-          <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-[#158a63] via-[#1fae7d] to-[#2fd39a] p-0.5 shadow-lg shadow-emerald-950/50 group-hover:scale-105 transition-transform duration-300">
-            <div className="w-full h-full bg-[#08221a] rounded-[calc(1rem-2px)] flex items-center justify-center font-black text-white text-sm">
-              TBS
-            </div>
-          </div>
-          <div>
-            <div className="font-extrabold text-white text-base tracking-wider leading-none flex items-center gap-1.5">
-              TBS GROUP
-              <span className="w-1.5 h-1.5 rounded-full bg-[#2fd39a] animate-pulse" />
-            </div>
-            <span className="text-[9.5px] text-[#f2dc9a] font-bold uppercase tracking-widest block mt-0.5">
-              {isLoggedIn ? 'Nội Bộ — TBS II' : 'Tập Đoàn & Thoại Sơn'}
+        <Link href="/" className="flex items-center group">
+          <img
+            src="/images/tbs-logo.png"
+            alt="TBS Group"
+            className="h-9 w-auto object-contain brightness-0 invert group-hover:opacity-90 transition-opacity duration-200"
+          />
+          {isLoggedIn && (
+            <span className="ml-3 text-[9.5px] text-[#f2dc9a] font-bold uppercase tracking-widest hidden sm:block border-l border-white/20 pl-3">
+              Nội Bộ II
             </span>
-          </div>
+          )}
         </Link>
 
         {/* Desktop Navigation Links */}
