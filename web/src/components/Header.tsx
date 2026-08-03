@@ -124,7 +124,7 @@ export default function Header() {
         </nav>
 
         {/* Right Action Button (Login vs User Profile / Logout) */}
-        <div className="hidden sm:flex items-center gap-3">
+        <div className="hidden md:flex items-center gap-3">
           {isLoggedIn ? (
             <div className="flex items-center gap-3">
               <span className="text-xs font-bold text-[#f2dc9a] flex items-center gap-1 bg-[#0f4133]/60 px-3 py-1.5 rounded-full border border-emerald-500/30">
