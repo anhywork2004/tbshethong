@@ -1,7 +1,7 @@
 "use client";
 
 import Link from 'next/link';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 import { IconArrowRight, IconMenu2, IconX, IconLogout, IconUserCheck } from '@tabler/icons-react';
 
@@ -9,13 +9,26 @@ export default function Header() {
   const router = useRouter();
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const lastScrollY = useRef(0);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userInfo, setUserInfo] = useState<{ empCode?: string; name?: string } | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      const currentY = window.scrollY;
+      setScrolled(currentY > 20);
+
+      if (currentY > lastScrollY.current && currentY > 80) {
+        // Cuộn xuống → ẩn header
+        setHidden(true);
+        setMobileOpen(false);
+      } else {
+        // Cuộn lên → hiện header
+        setHidden(false);
+      }
+      lastScrollY.current = currentY;
     };
     window.addEventListener('scroll', handleScroll);
 
@@ -54,7 +67,7 @@ export default function Header() {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 pt-3 transition-all duration-300 pointer-events-none">
+    <header className={`fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 pt-3 transition-all duration-500 pointer-events-none ${hidden ? '-translate-y-full opacity-0' : 'translate-y-0 opacity-100'}`}>
       <div className={`max-w-6xl mx-auto pointer-events-auto transition-all duration-500 rounded-full px-5 py-2.5 flex items-center justify-between border ${
         scrolled
           ? 'bg-[#08221a]/90 border-[#2fd39a]/35 shadow-2xl shadow-emerald-950/80 backdrop-blur-2xl py-2'
