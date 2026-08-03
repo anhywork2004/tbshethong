@@ -80,17 +80,17 @@ export default function HomePage() {
 
                 <div className="flex flex-wrap gap-4 pt-2">
                   <Link
-                    href="/login"
+                    href="/about"
                     className="inline-flex items-center gap-2.5 bg-white text-accent-deep font-bold px-7 py-3.5 rounded-xl text-sm tracking-wide hover:bg-accent-soft hover:text-white active:scale-[0.98] transition-all duration-200"
                   >
-                    Truy cập hệ thống nội bộ
+                    Tìm hiểu về TBS Group
                     <IconArrowRight size={18} />
                   </Link>
                   <a
                     href="#sectors"
                     className="inline-flex items-center gap-2.5 text-white/60 font-semibold px-7 py-3.5 rounded-xl text-sm hover:text-white hover:bg-white/5 transition-all duration-200"
                   >
-                    Khám phá TBS Group
+                    6 Ngành kinh doanh cốt lõi
                   </a>
                 </div>
               </div>

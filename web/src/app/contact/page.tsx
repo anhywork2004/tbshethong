@@ -25,16 +25,13 @@ const LOCATIONS = [
 
 export default function ContactPage() {
   return (
-    <div className="min-h-screen flex flex-col bg-canvas">
+    <div className="min-h-screen flex flex-col bg-canvas font-sans antialiased text-ink">
       <Header />
 
       <main className="flex-1 pt-28 pb-16">
         <div className="max-w-[1400px] mx-auto px-5 sm:px-8 lg:px-12">
-          {/* Page header */}
-          <div className="max-w-3xl mb-16 space-y-4">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-accent-wash text-accent text-xs font-bold uppercase tracking-wider">
-              Liên hệ
-            </div>
+          {/* Page header — clean editorial layout */}
+          <div className="max-w-3xl mb-16 space-y-3">
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-ink tracking-tight text-display">
               Liên hệ với TBS Group
             </h1>
@@ -99,23 +96,22 @@ export default function ContactPage() {
               </div>
             </div>
 
-            {/* Internal system CTA */}
-            <div className="bg-accent-deep rounded-3xl p-8 text-white flex flex-col justify-between">
+            {/* Employee Portal CTA Card */}
+            <div className="bg-accent-deep rounded-3xl p-8 text-white flex flex-col justify-between border border-white/10 shadow-lg">
               <div>
                 <h3 className="text-xl font-black text-display mb-3">
-                  Truy cập hệ thống nội bộ
+                  Cổng Dành Cho Cán Bộ Nhân Viên
                 </h3>
-                <p className="text-white/45 text-sm leading-relaxed mb-8">
+                <p className="text-white/50 text-sm leading-relaxed mb-8">
                   Đối với cán bộ công nhân viên TBS Group, vui lòng đăng nhập
-                  tài khoản nội bộ để số hóa biểu mẫu hoặc tải app mobile sửa
-                  chữa máy hỏng.
+                  tài khoản nội bộ để quản lý công việc và xử lý quy trình biểu mẫu.
                 </p>
               </div>
               <Link
                 href="/login"
-                className="w-full text-center py-3.5 rounded-xl bg-accent-light hover:bg-accent-soft text-white font-bold text-sm transition-colors duration-200 active:scale-[0.98]"
+                className="w-full text-center py-3.5 rounded-xl bg-white text-accent-deep font-bold text-sm hover:bg-accent-soft hover:text-white transition-colors duration-200 active:scale-[0.98]"
               >
-                Đăng nhập cổng nội bộ
+                Đăng nhập tài khoản
               </Link>
             </div>
           </div>
