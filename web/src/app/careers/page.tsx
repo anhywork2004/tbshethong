@@ -8,7 +8,7 @@ import JobCard from "@/components/recruitment/JobCard";
 import ApplyModal from "@/components/recruitment/ApplyModal";
 import AIChatBubble from "@/components/recruitment/AIChatBubble";
 import { fetchJobs, type Job } from "@/lib/api";
-import { IconSearch, IconLoader2, IconMapPin, IconBriefcase } from "@tabler/icons-react";
+import { IconSearch, IconLoader2, IconBriefcase } from "@tabler/icons-react";
 
 const CATEGORIES = [
   { value: "", label: "Tất cả ngành nghề" },
@@ -37,7 +37,6 @@ export default function CareersPage() {
   const [category, setCategory] = useState("");
   const [province, setProvince] = useState("");
 
-  // Apply modal state
   const [applyModalOpen, setApplyModalOpen] = useState(false);
   const [selectedJob, setSelectedJob] = useState<Job | null>(null);
 
@@ -51,7 +50,7 @@ export default function CareersPage() {
         province: province || undefined,
       });
       setJobs(data);
-    } catch (err) {
+    } catch {
       setError("Không thể tải danh sách việc làm. Vui lòng thử lại sau.");
     } finally {
       setLoading(false);
@@ -73,38 +72,35 @@ export default function CareersPage() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-tbs-light">
+    <div className="min-h-screen flex flex-col bg-tbs-light font-sans antialiased text-ink">
       <Header />
 
       <main className="flex-1">
-        {/* Hero Banner */}
-        <section className="relative py-16 lg:py-20 bg-gradient-to-b from-tbs-dark via-tbs-mid to-[#158a63] text-white overflow-hidden">
+        {/* Hero Banner — Clean editorial typography */}
+        <section className="relative py-20 lg:py-24 bg-gradient-to-b from-tbs-dark via-tbs-mid to-[#158a63] text-white overflow-hidden">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-emerald-400/20 via-transparent to-transparent pointer-events-none" />
           <div className="max-w-7xl mx-auto px-6 relative z-10 text-center">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 text-accent-soft text-xs font-bold uppercase tracking-widest mb-6">
-              <IconBriefcase size={14} /> Cơ Hội Nghề Nghiệp
-            </div>
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight mb-3">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight mb-3 text-display">
               Tuyển Dụng{" "}
               <span className="bg-gradient-to-r from-gold-light to-[#d9b96a] bg-clip-text text-transparent">
                 TBS Group
               </span>
             </h1>
-            <p className="text-gray-300 text-base sm:text-lg max-w-2xl mx-auto">
+            <p className="text-gray-300 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
               Gia nhập tập đoàn đa ngành hàng đầu Việt Nam với 50.000+ nhân sự, 6 lĩnh vực trụ cột
               và môi trường làm việc chuyên nghiệp
             </p>
 
             {/* Stats */}
-            <div className="grid grid-cols-3 gap-6 max-w-xl mx-auto mt-10">
+            <div className="grid grid-cols-3 gap-6 max-w-xl mx-auto mt-10 border-t border-white/10 pt-6">
               {[
                 { value: "50.000+", label: "Nhân Sự" },
                 { value: "6", label: "Ngành Trụ Cột" },
                 { value: "30+", label: "Năm Phát Triển" },
               ].map((s, i) => (
-                <div key={i} className="text-center p-3">
-                  <div className="text-2xl font-black text-gold-light">{s.value}</div>
-                  <div className="text-[11px] text-gray-400 mt-0.5">{s.label}</div>
+                <div key={i} className="text-center p-2">
+                  <div className="text-2xl sm:text-3xl font-black text-gold-light font-mono tabular-nums">{s.value}</div>
+                  <div className="text-xs text-gray-300 font-medium mt-1">{s.label}</div>
                 </div>
               ))}
             </div>
@@ -180,7 +176,7 @@ export default function CareersPage() {
           ) : (
             <>
               <div className="flex items-center justify-between mb-6">
-                <h2 className="text-xl font-bold text-tbs-dark">
+                <h2 className="text-xl font-bold text-tbs-dark text-display">
                   {jobs.length} Vị Trí Đang Tuyển Dụng
                 </h2>
               </div>
@@ -204,25 +200,20 @@ export default function CareersPage() {
 
         {/* TBS Company Info */}
         <section className="bg-gradient-to-b from-white to-[#eef7f2] py-16 border-t border-emerald-100">
-          <div className="max-w-4xl mx-auto px-6 text-center">
-            <img
-              src="/images/tbs-logo.png"
-              alt="TBS Group"
-              className="w-20 h-20 object-contain mx-auto mb-6"
-            />
-            <h3 className="text-2xl font-black text-tbs-dark mb-3">TBS Group Tuyển Dụng</h3>
-            <p className="text-gray-600 text-sm leading-relaxed max-w-2xl mx-auto mb-8">
+          <div className="max-w-4xl mx-auto px-6 text-center space-y-4">
+            <h3 className="text-2xl font-black text-tbs-dark text-display">TBS Group Tuyển Dụng</h3>
+            <p className="text-gray-600 text-sm leading-relaxed max-w-2xl mx-auto">
               Với hơn 30 năm phát triển, TBS Group tự hào là một trong những tập đoàn sản xuất công
               nghiệp hàng đầu Việt Nam. Chúng tôi luôn chào đón những nhân tài mong muốn phát triển
               sự nghiệp trong môi trường chuyên nghiệp, năng động và đầy cơ hội.
             </p>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-4">
               {[
                 { title: "Môi Trường Chuyên Nghiệp", desc: "33 chuyền sản xuất công nghệ cao, hệ thống quản lý số hóa toàn diện" },
                 { title: "Phát Triển Sự Nghiệp", desc: "Lộ trình thăng tiến rõ ràng, đào tạo kỹ năng liên tục" },
                 { title: "Phúc Lợi Toàn Diện", desc: "Living Wage, bảo hiểm, học bổng cho con em CBCNV" },
               ].map((item, i) => (
-                <div key={i} className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100">
+                <div key={i} className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 text-left">
                   <h4 className="font-bold text-tbs-dark text-sm mb-2">{item.title}</h4>
                   <p className="text-xs text-gray-500 leading-relaxed">{item.desc}</p>
                 </div>

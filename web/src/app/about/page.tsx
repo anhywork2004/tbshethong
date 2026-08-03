@@ -3,7 +3,6 @@ import Footer from "@/components/Footer";
 import {
   IconBuildingFactory,
   IconDeviceMobile,
-  IconChartBar,
 } from "@tabler/icons-react";
 
 const HIGHLIGHTS = [
@@ -23,16 +22,13 @@ const HIGHLIGHTS = [
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen flex flex-col bg-canvas">
+    <div className="min-h-screen flex flex-col bg-canvas font-sans antialiased text-ink">
       <Header />
 
       <main className="flex-1 pt-28 pb-16">
         <div className="max-w-[1400px] mx-auto px-5 sm:px-8 lg:px-12">
-          {/* Page header — asymmetric, left-aligned */}
-          <div className="max-w-3xl mb-16 space-y-4">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-accent-wash text-accent text-xs font-bold uppercase tracking-wider">
-              Về TBS Group
-            </div>
+          {/* Page header — clean editorial layout */}
+          <div className="max-w-3xl mb-16 space-y-3">
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-ink tracking-tight text-display">
               Giới thiệu tập đoàn TBS Group
             </h1>
