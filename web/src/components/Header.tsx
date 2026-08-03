@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
-import { IconArrowRight, IconMenu2, IconX, IconLogOut, IconUserCheck } from '@tabler/icons-react';
+import { IconArrowRight, IconMenu2, IconX, IconLogout, IconUserCheck } from '@tabler/icons-react';
 
 export default function Header() {
   const router = useRouter();
@@ -19,7 +19,6 @@ export default function Header() {
     };
     window.addEventListener('scroll', handleScroll);
 
-    // Check login token from cookie or localStorage
     const checkAuth = () => {
       const cookies = document.cookie.split('; ');
       const tokenCookie = cookies.find((row) => row.startsWith('tbs_token='));
@@ -27,7 +26,6 @@ export default function Header() {
 
       if (token) {
         setIsLoggedIn(true);
-        // Try parsing payload if possible or set default logged in state
         try {
           const payloadBase64 = token.split('.')[1];
           if (payloadBase64) {
@@ -128,7 +126,7 @@ export default function Header() {
                 onClick={handleLogout}
                 className="group relative inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-red-500/20 text-red-300 border border-red-500/30 font-bold text-xs hover:bg-red-500/30 transition-all duration-200"
               >
-                <IconLogOut size={14} />
+                <IconLogout size={14} />
                 <span>Đăng Xuất</span>
               </button>
             </div>
@@ -228,7 +226,7 @@ export default function Header() {
                 onClick={handleLogout}
                 className="inline-flex items-center justify-center gap-2 w-full py-3 rounded-full bg-red-500/20 text-red-300 border border-red-500/30 font-bold text-sm"
               >
-                <IconLogOut size={16} />
+                <IconLogout size={16} />
                 Đăng Xuất ({userInfo?.empCode || 'CBCNV'})
               </button>
             ) : (
