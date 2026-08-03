@@ -8,7 +8,18 @@ export async function seedDatabase() {
     // 1. Check if roles exist
     const rolesCount = await prisma.role.count();
     if (rolesCount > 0) {
-      console.log("Database already seeded. Skipping initialization.");
+      console.log("Database already seeded. Updating admin password if needed...");
+      // Always ensure admin user has correct password
+      const existingAdmin = await prisma.user.findUnique({
+        where: { email: "admin@tbsgroup.vn" },
+      });
+      if (existingAdmin) {
+        await prisma.user.update({
+          where: { email: "admin@tbsgroup.vn" },
+          data: { passwordHash: hashPassword("Admin@123456") },
+        });
+        console.log("Admin password reset to Admin@123456");
+      }
       return;
     }
 
@@ -85,7 +96,7 @@ export async function seedDatabase() {
     await prisma.user.create({
       data: {
         email: "admin@tbsgroup.vn",
-        passwordHash: hashPassword("AdminPassword123!"),
+        passwordHash: hashPassword("Admin@123456"),
         fullName: "TBS Chief Admin",
         departmentId: dAdmin.id,
         roleId: rAdmin.id

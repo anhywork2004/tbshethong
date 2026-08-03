@@ -1,140 +1,126 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import Link from "next/link";
-import {
-  IconLogin,
-  IconNews,
-  IconBuildingFactory,
-  IconBriefcase,
-  IconPhone,
-  IconInfoCircle,
-  IconMenu2,
-  IconX,
-} from "@tabler/icons-react";
-
-const NAV_ITEMS = [
-  { label: "Giới thiệu", href: "/about", icon: IconInfoCircle },
-  { label: "Lĩnh vực", href: "/#sectors", icon: IconBuildingFactory },
-  { label: "Tin tức", href: "/news", icon: IconNews },
-  { label: "Tuyển dụng", href: "/careers", icon: IconBriefcase },
-  { label: "Liên hệ", href: "/contact", icon: IconPhone },
-];
+import Link from 'next/link';
+import { useState, useEffect } from 'react';
+import { IconArrowRight, IconMenu2, IconX } from '@tabler/icons-react';
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  useEffect(() => {
-    document.body.style.overflow = mobileOpen ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [mobileOpen]);
-
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+    <header className="fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 pt-3 transition-all duration-300 pointer-events-none">
+      <div className={`max-w-6xl mx-auto pointer-events-auto transition-all duration-500 rounded-full px-5 py-2.5 flex items-center justify-between border ${
         scrolled
-          ? "bg-accent-deep/97 backdrop-blur-xl shadow-2xl shadow-black/15 border-b border-accent/10"
-          : "bg-transparent"
-      }`}
-    >
-      <div className="max-w-[1400px] mx-auto px-5 sm:px-8 lg:px-12">
-        <div className="flex justify-between items-center h-[72px]">
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-3 group shrink-0">
-            <div className="relative w-11 h-11 rounded-xl bg-white/10 backdrop-blur border border-white/15 flex items-center justify-center overflow-hidden group-hover:border-accent-soft/40 transition-all duration-300">
-              <img
-                src="/images/crawled/logo.png"
-                alt="TBS"
-                className="w-8 h-8 object-contain"
-              />
+          ? 'bg-[#08221a]/90 border-[#2fd39a]/35 shadow-2xl shadow-emerald-950/80 backdrop-blur-2xl py-2'
+          : 'bg-[#08221a]/75 border-[#2fd39a]/20 backdrop-blur-xl shadow-xl shadow-emerald-950/40'
+      }`}>
+        {/* Brand Logo */}
+        <Link href="/" className="flex items-center gap-3 group">
+          <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-[#158a63] via-[#1fae7d] to-[#2fd39a] p-0.5 shadow-lg shadow-emerald-950/50 group-hover:scale-105 transition-transform duration-300">
+            <div className="w-full h-full bg-[#08221a] rounded-[calc(1rem-2px)] flex items-center justify-center font-black text-white text-sm">
+              TBS
             </div>
-            <div className="hidden sm:block">
-              <span className="block text-white font-bold text-sm tracking-wide leading-tight">
-                TBS GROUP
-              </span>
-              <span className="block text-accent-soft text-[9px] tracking-[0.2em] uppercase font-semibold">
-                Digital Factory II
-              </span>
+          </div>
+          <div>
+            <div className="font-extrabold text-white text-base tracking-wider leading-none flex items-center gap-1.5">
+              TBS GROUP
+              <span className="w-1.5 h-1.5 rounded-full bg-[#2fd39a] animate-pulse" />
+            </div>
+            <span className="text-[9.5px] text-[#f2dc9a] font-bold uppercase tracking-widest block mt-0.5">
+              Hệ Thống Vận Hành II
+            </span>
+          </div>
+        </Link>
+
+        {/* Desktop Navigation Links */}
+        <nav className="hidden md:flex items-center gap-7 text-xs font-bold text-gray-300 uppercase tracking-widest">
+          <Link href="#sectors" className="hover:text-[#2fd39a] transition-colors relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-[#2fd39a] after:scale-x-0 hover:after:scale-x-100 after:transition-transform">
+            Ngành Trụ Cột
+          </Link>
+          <Link href="/documents/templates" className="hover:text-[#2fd39a] transition-colors relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-[#2fd39a] after:scale-x-0 hover:after:scale-x-100 after:transition-transform">
+            Số Hóa Biểu Mẫu
+          </Link>
+          <Link href="/maintenance/machines" className="hover:text-[#2fd39a] transition-colors relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-[#2fd39a] after:scale-x-0 hover:after:scale-x-100 after:transition-transform">
+            Bảo Trì Máy
+          </Link>
+          <Link href="/dashboard" className="hover:text-[#2fd39a] transition-colors relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-[#2fd39a] after:scale-x-0 hover:after:scale-x-100 after:transition-transform">
+            BI Dashboard
+          </Link>
+        </nav>
+
+        {/* Right CTA Button with Trailing Icon */}
+        <div className="hidden sm:flex items-center gap-3">
+          <Link
+            href="/login"
+            className="group relative inline-flex items-center gap-2.5 px-5 py-2 rounded-full bg-gradient-to-r from-[#d9b96a] via-[#f2dc9a] to-[#d9b96a] text-[#08221a] font-extrabold text-xs tracking-wide shadow-lg shadow-amber-500/20 hover:brightness-110 active:scale-[0.98] transition-all duration-200"
+          >
+            <span>Đăng Nhập</span>
+            <div className="w-6 h-6 rounded-full bg-[#08221a]/15 flex items-center justify-center group-hover:translate-x-0.5 transition-transform duration-200">
+              <IconArrowRight size={13} className="text-[#08221a]" />
             </div>
           </Link>
-
-          {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-1">
-            {NAV_ITEMS.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="relative px-4 py-2 text-sm font-medium text-white/65 hover:text-white transition-colors duration-200 rounded-lg hover:bg-white/5"
-              >
-                <span className="flex items-center gap-1.5">
-                  <item.icon
-                    size={16}
-                    className="opacity-50 group-hover:opacity-100 transition-opacity"
-                  />
-                  {item.label}
-                </span>
-              </Link>
-            ))}
-          </nav>
-
-          {/* CTA + Mobile Toggle */}
-          <div className="flex items-center gap-3">
-            <Link
-              href="/login"
-              className="hidden sm:inline-flex items-center gap-2 bg-accent-light hover:bg-accent-soft text-white font-bold px-5 py-2.5 rounded-full text-xs tracking-wider uppercase shadow-lg shadow-accent/15 hover:shadow-accent/25 active:scale-[0.97] transition-all duration-200"
-            >
-              <IconLogin size={15} />
-              Đăng nhập
-            </Link>
-
-            <button
-              onClick={() => setMobileOpen(!mobileOpen)}
-              className="lg:hidden p-2.5 text-white/75 hover:text-white transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
-              aria-label="Menu"
-            >
-              {mobileOpen ? <IconX size={26} /> : <IconMenu2 size={26} />}
-            </button>
-          </div>
         </div>
+
+        {/* Mobile Toggle Button */}
+        <button
+          onClick={() => setMobileOpen(!mobileOpen)}
+          className="md:hidden w-9 h-9 rounded-full bg-white/10 border border-white/20 text-white flex items-center justify-center hover:bg-white/20 transition"
+          aria-label="Toggle Navigation"
+        >
+          {mobileOpen ? <IconX size={18} /> : <IconMenu2 size={18} />}
+        </button>
       </div>
 
-      {/* Mobile Menu */}
-      <div
-        className={`lg:hidden fixed inset-0 top-[72px] bg-accent-deep/98 backdrop-blur-xl transition-all duration-400 ${
-          mobileOpen ? "opacity-100 visible" : "opacity-0 invisible"
-        }`}
-      >
-        <nav className="flex flex-col p-6 gap-2">
-          {NAV_ITEMS.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              onClick={() => setMobileOpen(false)}
-              className="flex items-center gap-3 px-5 py-4 text-white text-base font-medium rounded-2xl hover:bg-white/5 active:bg-white/10 transition-colors"
-            >
-              <item.icon size={20} className="text-accent-soft" />
-              {item.label}
-            </Link>
-          ))}
+      {/* Mobile Drawer Overlay */}
+      {mobileOpen && (
+        <div className="md:hidden fixed inset-x-4 top-20 p-6 rounded-3xl bg-[#08221a]/95 border border-[#2fd39a]/30 backdrop-blur-2xl shadow-2xl shadow-emerald-950/90 pointer-events-auto space-y-4 text-center animate-in fade-in slide-in-from-top-4 duration-300">
+          <Link
+            href="#sectors"
+            onClick={() => setMobileOpen(false)}
+            className="block py-2.5 text-sm font-bold text-gray-200 hover:text-[#2fd39a] border-b border-white/10"
+          >
+            Ngành Trụ Cột
+          </Link>
+          <Link
+            href="/documents/templates"
+            onClick={() => setMobileOpen(false)}
+            className="block py-2.5 text-sm font-bold text-gray-200 hover:text-[#2fd39a] border-b border-white/10"
+          >
+            Số Hóa Biểu Mẫu
+          </Link>
+          <Link
+            href="/maintenance/machines"
+            onClick={() => setMobileOpen(false)}
+            className="block py-2.5 text-sm font-bold text-gray-200 hover:text-[#2fd39a] border-b border-white/10"
+          >
+            Bảo Trì Máy Móc
+          </Link>
+          <Link
+            href="/dashboard"
+            onClick={() => setMobileOpen(false)}
+            className="block py-2.5 text-sm font-bold text-gray-200 hover:text-[#2fd39a] border-b border-white/10"
+          >
+            BI Dashboard 24/7
+          </Link>
           <Link
             href="/login"
             onClick={() => setMobileOpen(false)}
-            className="mt-4 w-full flex justify-center items-center gap-2 bg-accent-light text-white font-bold py-4 rounded-2xl text-sm tracking-wider uppercase active:scale-[0.98] transition-all"
+            className="inline-flex items-center justify-center gap-2 w-full py-3 rounded-full bg-gradient-to-r from-[#d9b96a] to-[#f2dc9a] text-[#08221a] font-extrabold text-sm shadow-xl"
           >
-            <IconLogin size={18} />
-            Đăng nhập hệ thống
+            Truy Cập Đăng Nhập
+            <IconArrowRight size={16} />
           </Link>
-        </nav>
-      </div>
+        </div>
+      )}
     </header>
   );
 }

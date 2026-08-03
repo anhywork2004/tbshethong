@@ -15,8 +15,10 @@ const prisma = new PrismaClient();
  * @desc Login user and return JWT
  */
 router.post("/login", authRateLimiter, async (req: AuthenticatedRequest, res: Response) => {
-  const { email, password } = req.body;
-  
+  // Accept both `email` and `empCode` field names
+  const email = req.body.email || req.body.empCode;
+  const { password } = req.body;
+
   if (!email || !password) {
     return res.status(400).json({ error: "Bad Request", message: "Email and password are required." });
   }
